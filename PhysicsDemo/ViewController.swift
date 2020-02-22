@@ -33,12 +33,6 @@ class ViewController: NSViewController {
         physicsWorld = PhysicsWorld()
         physicsWorld.gravity = -10
         
-        // Add a ball
-        let ball = Ball(radius: ballRadius)
-        ball.position = Vector2D(100, 100)
-        ball.affectedByPhysics = true
-        physicsWorld.add(ball: ball)
-        
         // Add bottom Boundary
         let bottomBoundary = Boundary(orientation: .minY)
         bottomBoundary.value = 20
@@ -59,13 +53,13 @@ class ViewController: NSViewController {
     
     override func viewDidLayout() {
         super.viewDidLayout()
-        physicsView.render(world: physicsWorld, worldSize: simulationSize)
+        physicsView.render(world: physicsWorld, simulationSize: simulationSize)
     }
     
     private func tick(dt: Double) {
         
         physicsWorld.step(dt: dt)
-        physicsView.render(world: physicsWorld, worldSize: simulationSize)
+        physicsView.render(world: physicsWorld, simulationSize: simulationSize)
     }
     
     // MARK: - Mouse handling
