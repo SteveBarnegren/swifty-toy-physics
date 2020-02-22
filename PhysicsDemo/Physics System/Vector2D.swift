@@ -8,9 +8,12 @@
 
 import Foundation
 
-struct Vector2D {
+struct Vector2D: Equatable {
     var x: Double
     var y: Double
+    
+    var width: Double { x }
+    var height: Double { y }
     
     static let zero = Vector2D(0,0)
     
@@ -45,5 +48,15 @@ func +=(lhs: inout Vector2D, rhs: Vector2D) {
 func -=(lhs: inout Vector2D, rhs: Vector2D) {
     lhs.x -= rhs.x
     lhs.y -= rhs.y
+}
+
+// MARK: - Conversions
+
+extension Vector2D {
+    
+    var cgSize: CGSize {
+        CGSize(width: self.width, height: self.height)
+    }
+    
 }
 

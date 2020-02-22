@@ -13,6 +13,9 @@ private enum TouchState {
     case holdingBall(Ball)
 }
 
+let simulationSize = Vector2D(400, 300)
+let ballRadius = 5.0
+
 class ViewController: NSViewController {
     
     @IBOutlet private var physicsView: PhysicsRenderingView!
@@ -31,7 +34,7 @@ class ViewController: NSViewController {
         physicsWorld.gravity = -10
         
         // Add a ball
-        let ball = Ball(radius: 5)
+        let ball = Ball(radius: ballRadius)
         ball.position = Vector2D(100, 100)
         ball.affectedByPhysics = true
         physicsWorld.add(ball: ball)
@@ -56,13 +59,13 @@ class ViewController: NSViewController {
     
     override func viewDidLayout() {
         super.viewDidLayout()
-        physicsView.render(world: physicsWorld)
+        physicsView.render(world: physicsWorld, worldSize: simulationSize)
     }
     
     private func tick(dt: Double) {
         
         physicsWorld.step(dt: dt)
-        physicsView.render(world: physicsWorld)
+        physicsView.render(world: physicsWorld, worldSize: simulationSize)
     }
     
     // MARK: - Mouse handling
@@ -70,7 +73,7 @@ class ViewController: NSViewController {
     override func mouseDown(with event: NSEvent) {
         super.mouseDown(with: event)
         
-        let pos = location(from: event)
+        let pos = ballPlacementLocation(from: event)
         print("Down: \(pos)")
         
         physicsWorld.removeAllBalls()
@@ -86,7 +89,7 @@ class ViewController: NSViewController {
     override func mouseDragged(with event: NSEvent) {
         super.mouseDragged(with: event)
         
-        let pos = location(from: event)
+        let pos = ballPlacementLocation(from: event)
         print("Dragged: \(pos)")
         
         switch touchState {
@@ -100,7 +103,7 @@ class ViewController: NSViewController {
     override func mouseUp(with event: NSEvent) {
         super.mouseUp(with: event)
         
-        let pos = location(from: event)
+        let pos = ballPlacementLocation(from: event)
         print("Up: \(pos)")
         
         switch touchState {
@@ -112,10 +115,17 @@ class ViewController: NSViewController {
         }
     }
     
-    private func location(from event: NSEvent) -> NSPoint {
+    private func ballPlacementLocation(from event: NSEvent) -> NSPoint {
+        var p = simulationLocation(from: event)
+        p.x = p.x.constrained(min: ballRadius.cgf, max: (simulationSize.width-ballRadius).cgf)
+        p.y = p.y.constrained(min: ballRadius.cgf, max: (simulationSize.height-ballRadius).cgf)
+        return p
+    }
+        
+    private func simulationLocation(from event: NSEvent) -> NSPoint {
         let windowPos = event.locationInWindow
         let viewPos = physicsView.convert(windowPos, from: view)
-        return viewPos
+        return physicsView.convertPoint(viewToWorld: viewPos)
     }
 }
 

@@ -19,6 +19,7 @@
 		67B23440240196E900876EAC /* PhysicsRenderingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B2343F240196E900876EAC /* PhysicsRenderingView.swift */; };
 		67B234432401973800876EAC /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B234422401973800876EAC /* Double+Extensions.swift */; };
 		67B2344524019BA900876EAC /* DisplayLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B2344424019BA900876EAC /* DisplayLink.swift */; };
+		67B234472401DA1300876EAC /* Numeric+Constrained.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B234462401DA1300876EAC /* Numeric+Constrained.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		67B2343F240196E900876EAC /* PhysicsRenderingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsRenderingView.swift; sourceTree = "<group>"; };
 		67B234422401973800876EAC /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		67B2344424019BA900876EAC /* DisplayLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayLink.swift; sourceTree = "<group>"; };
+		67B234462401DA1300876EAC /* Numeric+Constrained.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Numeric+Constrained.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				67B234422401973800876EAC /* Double+Extensions.swift */,
+				67B234462401DA1300876EAC /* Numeric+Constrained.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67B234472401DA1300876EAC /* Numeric+Constrained.swift in Sources */,
 				67B234432401973800876EAC /* Double+Extensions.swift in Sources */,
 				67B2344524019BA900876EAC /* DisplayLink.swift in Sources */,
 				67B2343E240196B600876EAC /* Ball.swift in Sources */,
