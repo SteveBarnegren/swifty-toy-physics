@@ -48,7 +48,10 @@ class PhysicsWorld {
         case .minX:
             fatalError()
         case .maxX:
-            fatalError()
+            if ball.maxX > boundary.value {
+                ball.position.x = boundary.value - ball.radius
+                ball.velocity.x = -abs(ball.velocity.x) * boundary.elasticity
+            }
         case .minY:
             if ball.minY < boundary.value {
                 ball.position.y = boundary.value + ball.radius
@@ -57,7 +60,5 @@ class PhysicsWorld {
         case .maxY:
             fatalError()
         }
-        
-        
     }
 }

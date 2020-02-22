@@ -38,6 +38,11 @@ class ViewController: NSViewController {
         let bottomBoundary = Boundary(orientation: .minY)
         bottomBoundary.value = 20
         physicsWorld.add(boundary: bottomBoundary)
+        
+        // Add right Boundary
+        let rightBoundary = Boundary(orientation: .maxX)
+        rightBoundary.value = simulationSize.width - 20
+        physicsWorld.add(boundary: rightBoundary)
     }
     
     override func viewDidAppear() {
