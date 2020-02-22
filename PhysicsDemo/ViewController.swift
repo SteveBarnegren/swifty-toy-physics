@@ -25,7 +25,7 @@ class ViewController: NSViewController {
     private var isObservingDisplayLink = false
     
     private var touchState = TouchState.idle
-    private var inputHandler = InputHandlerPlaceBall()
+    private var inputHandler = InputHandlerFlingBall()
     
     override func viewDidLoad() {
         super.viewDidLoad()

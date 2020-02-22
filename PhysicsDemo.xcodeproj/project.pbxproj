@@ -23,6 +23,7 @@
 		67B234492401EB9200876EAC /* NSPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B234482401EB9200876EAC /* NSPoint+Extensions.swift */; };
 		67B2344C2401ECAA00876EAC /* InputHandlerPlaceBall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B2344B2401ECAA00876EAC /* InputHandlerPlaceBall.swift */; };
 		67B2344E2401EFE900876EAC /* InputHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B2344D2401EFE900876EAC /* InputHandler.swift */; };
+		67B234502401F04D00876EAC /* InputHandlerFlingBall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B2344F2401F04D00876EAC /* InputHandlerFlingBall.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		67B234482401EB9200876EAC /* NSPoint+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPoint+Extensions.swift"; sourceTree = "<group>"; };
 		67B2344B2401ECAA00876EAC /* InputHandlerPlaceBall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHandlerPlaceBall.swift; sourceTree = "<group>"; };
 		67B2344D2401EFE900876EAC /* InputHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHandler.swift; sourceTree = "<group>"; };
+		67B2344F2401F04D00876EAC /* InputHandlerFlingBall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHandlerFlingBall.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 			children = (
 				67B2344D2401EFE900876EAC /* InputHandler.swift */,
 				67B2344B2401ECAA00876EAC /* InputHandlerPlaceBall.swift */,
+				67B2344F2401F04D00876EAC /* InputHandlerFlingBall.swift */,
 			);
 			path = "Input Handlers";
 			sourceTree = "<group>";
@@ -265,6 +268,7 @@
 				67B2343C240196A000876EAC /* Boundary.swift in Sources */,
 				67B23440240196E900876EAC /* PhysicsRenderingView.swift in Sources */,
 				67B2344E2401EFE900876EAC /* InputHandler.swift in Sources */,
+				67B234502401F04D00876EAC /* InputHandlerFlingBall.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

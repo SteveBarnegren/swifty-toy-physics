@@ -26,6 +26,13 @@ struct Vector2D: Equatable {
         self.x = Double(nsPoint.x)
         self.y = Double(nsPoint.y)
     }
+    
+    func distance(to other: Vector2D) -> Double {
+        
+        let xDiff = other.x - self.x
+        let yDiff = other.y - self.y
+        return sqrt(xDiff*xDiff + yDiff*yDiff)
+    }
 }
 
 func + (lhs: Vector2D, rhs: Vector2D) -> Vector2D {
