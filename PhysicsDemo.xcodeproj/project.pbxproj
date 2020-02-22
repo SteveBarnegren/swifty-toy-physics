@@ -20,6 +20,9 @@
 		67B234432401973800876EAC /* Double+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B234422401973800876EAC /* Double+Extensions.swift */; };
 		67B2344524019BA900876EAC /* DisplayLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B2344424019BA900876EAC /* DisplayLink.swift */; };
 		67B234472401DA1300876EAC /* Numeric+Constrained.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B234462401DA1300876EAC /* Numeric+Constrained.swift */; };
+		67B234492401EB9200876EAC /* NSPoint+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B234482401EB9200876EAC /* NSPoint+Extensions.swift */; };
+		67B2344C2401ECAA00876EAC /* InputHandlerPlaceBall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B2344B2401ECAA00876EAC /* InputHandlerPlaceBall.swift */; };
+		67B2344E2401EFE900876EAC /* InputHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B2344D2401EFE900876EAC /* InputHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +54,9 @@
 		67B234422401973800876EAC /* Double+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Extensions.swift"; sourceTree = "<group>"; };
 		67B2344424019BA900876EAC /* DisplayLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayLink.swift; sourceTree = "<group>"; };
 		67B234462401DA1300876EAC /* Numeric+Constrained.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Numeric+Constrained.swift"; sourceTree = "<group>"; };
+		67B234482401EB9200876EAC /* NSPoint+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPoint+Extensions.swift"; sourceTree = "<group>"; };
+		67B2344B2401ECAA00876EAC /* InputHandlerPlaceBall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHandlerPlaceBall.swift; sourceTree = "<group>"; };
+		67B2344D2401EFE900876EAC /* InputHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +103,7 @@
 				67B234362401965500876EAC /* Physics System */,
 				67B234182401911100876EAC /* AppDelegate.swift */,
 				67B2341A2401911100876EAC /* ViewController.swift */,
+				67B2344A2401EC6400876EAC /* Input Handlers */,
 				67B2343F240196E900876EAC /* PhysicsRenderingView.swift */,
 				67B2341C2401911200876EAC /* Assets.xcassets */,
 				67B2341E2401911200876EAC /* Main.storyboard */,
@@ -131,8 +138,18 @@
 			children = (
 				67B234422401973800876EAC /* Double+Extensions.swift */,
 				67B234462401DA1300876EAC /* Numeric+Constrained.swift */,
+				67B234482401EB9200876EAC /* NSPoint+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		67B2344A2401EC6400876EAC /* Input Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				67B2344D2401EFE900876EAC /* InputHandler.swift */,
+				67B2344B2401ECAA00876EAC /* InputHandlerPlaceBall.swift */,
+			);
+			path = "Input Handlers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -235,7 +252,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67B2344C2401ECAA00876EAC /* InputHandlerPlaceBall.swift in Sources */,
 				67B234472401DA1300876EAC /* Numeric+Constrained.swift in Sources */,
+				67B234492401EB9200876EAC /* NSPoint+Extensions.swift in Sources */,
 				67B234432401973800876EAC /* Double+Extensions.swift in Sources */,
 				67B2344524019BA900876EAC /* DisplayLink.swift in Sources */,
 				67B2343E240196B600876EAC /* Ball.swift in Sources */,
@@ -245,6 +264,7 @@
 				67B234192401911100876EAC /* AppDelegate.swift in Sources */,
 				67B2343C240196A000876EAC /* Boundary.swift in Sources */,
 				67B23440240196E900876EAC /* PhysicsRenderingView.swift in Sources */,
+				67B2344E2401EFE900876EAC /* InputHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
