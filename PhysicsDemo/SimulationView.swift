@@ -27,7 +27,15 @@ enum DrawableObject {
     case circle(CircleObject)
 }
 
-class PhysicsRenderingView: NSView {
+protocol SimulationViewDelegate: class {
+    func mouseDown(at location: Vector2D)
+    func mouseDragged(to location: Vector2D)
+    func mouseUp(at location: Vector2D)
+}
+
+class SimulationView: NSView {
+    
+    weak var delegate: SimulationViewDelegate?
     
     private var simulation: PhysicsSimulation?
     private var simulationSize = Vector2D.zero
@@ -126,6 +134,30 @@ class PhysicsRenderingView: NSView {
         circle.color.set()
         let path = NSBezierPath(ovalIn: convertedRect)
         path.fill()
+    }
+    
+    // MARK: - Mouse handling
+    
+    override func mouseDown(with event: NSEvent) {
+        super.mouseDown(with: event)
+        delegate?.mouseDown(at: simulationLocation(fromEvent: event))
+    }
+    
+    override func mouseDragged(with event: NSEvent) {
+        super.mouseDragged(with: event)
+        delegate?.mouseDragged(to: simulationLocation(fromEvent: event))
+    }
+    
+    override func mouseUp(with event: NSEvent) {
+        super.mouseUp(with: event)
+        delegate?.mouseUp(at: simulationLocation(fromEvent: event))
+    }
+    
+    private func simulationLocation(fromEvent event: NSEvent) -> Vector2D {
+        
+        let locationInView = convert(event.locationInWindow, from: nil)
+        let point = convertPoint(viewToSim: locationInView)
+        return Vector2D(point)
     }
     
     // MARK: - Coordinate conversion

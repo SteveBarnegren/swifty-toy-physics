@@ -8,27 +8,23 @@
 
 import Cocoa
 
-private enum TouchState {
-    case idle
-    case holdingBall(Ball)
-}
-
 let simulationSize = Vector2D(400, 300)
 let ballRadius = 5.0
 
 class ViewController: NSViewController {
     
-    @IBOutlet private var physicsView: PhysicsRenderingView!
+    @IBOutlet private var simulationView: SimulationView!
     
     private var simulation: PhysicsSimulation!
     
     private var isObservingDisplayLink = false
     
-    private var touchState = TouchState.idle
     private var inputHandler = InputHandlerFlingBall()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        simulationView.delegate = self
         
         // Create physics simulation
         simulation = PhysicsSimulation()
@@ -69,42 +65,28 @@ class ViewController: NSViewController {
     }
     
     private func render() {
-        physicsView.render(simulation: simulation,
+        simulationView.render(simulation: simulation,
                            simulationSize: simulationSize,
                            additionalObjects: inputHandler.objectsToRender())
     }
-    
-    // MARK: - Mouse handling
+}
+
+extension ViewController: SimulationViewDelegate {
     
     var inputHandlerContext: InputHandlerContext {
         return InputHandlerContext(simulation: simulation, simulationSize: simulationSize)
     }
     
-    override func mouseDown(with event: NSEvent) {
-        super.mouseDown(with: event)
-   
-        inputHandler.mouseDown(at: simulationLocation(from: event),
-                               context: inputHandlerContext)
+    func mouseDown(at location: Vector2D) {
+        inputHandler.mouseDown(at: location, context: inputHandlerContext)
     }
     
-    override func mouseDragged(with event: NSEvent) {
-        super.mouseDragged(with: event)
-   
-        inputHandler.mouseDragged(to: simulationLocation(from: event),
-                               context: inputHandlerContext)
+    func mouseDragged(to location: Vector2D) {
+        inputHandler.mouseDragged(to: location, context: inputHandlerContext)
     }
     
-    override func mouseUp(with event: NSEvent) {
-        super.mouseUp(with: event)
-   
-        inputHandler.mouseUp(at: simulationLocation(from: event),
-                               context: inputHandlerContext)
-    }
-        
-    private func simulationLocation(from event: NSEvent) -> Vector2D {
-        let windowPos = event.locationInWindow
-        let viewPos = physicsView.convert(windowPos, from: view)
-        return physicsView.convertPoint(viewToSim: viewPos).vector2D
+    func mouseUp(at location: Vector2D) {
+        inputHandler.mouseUp(at: location, context: inputHandlerContext)
     }
 }
 
