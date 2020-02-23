@@ -20,7 +20,7 @@ class ViewController: NSViewController {
     
     @IBOutlet private var physicsView: PhysicsRenderingView!
     
-    private var physicsWorld: PhysicsWorld!
+    private var simulation: PhysicsSimulation!
     
     private var isObservingDisplayLink = false
     
@@ -30,19 +30,19 @@ class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Create physics world
-        physicsWorld = PhysicsWorld()
-        physicsWorld.gravity = -10
+        // Create physics simulation
+        simulation = PhysicsSimulation()
+        simulation.gravity = -10
         
         // Add bottom Boundary
         let bottomBoundary = Boundary(orientation: .minY)
         bottomBoundary.value = 20
-        physicsWorld.add(boundary: bottomBoundary)
+        simulation.add(boundary: bottomBoundary)
         
         // Add right Boundary
         let rightBoundary = Boundary(orientation: .maxX)
         rightBoundary.value = simulationSize.width - 20
-        physicsWorld.add(boundary: rightBoundary)
+        simulation.add(boundary: rightBoundary)
     }
     
     override func viewDidAppear() {
@@ -64,12 +64,12 @@ class ViewController: NSViewController {
     
     private func tick(dt: Double) {
         
-        physicsWorld.step(dt: dt)
+        simulation.step(dt: dt)
         render()
     }
     
     private func render() {
-        physicsView.render(world: physicsWorld,
+        physicsView.render(simulation: simulation,
                            simulationSize: simulationSize,
                            additionalObjects: inputHandler.objectsToRender())
     }
@@ -77,7 +77,7 @@ class ViewController: NSViewController {
     // MARK: - Mouse handling
     
     var inputHandlerContext: InputHandlerContext {
-        return InputHandlerContext(world: physicsWorld, simulationSize: simulationSize)
+        return InputHandlerContext(simulation: simulation, simulationSize: simulationSize)
     }
     
     override func mouseDown(with event: NSEvent) {
@@ -104,7 +104,7 @@ class ViewController: NSViewController {
     private func simulationLocation(from event: NSEvent) -> Vector2D {
         let windowPos = event.locationInWindow
         let viewPos = physicsView.convert(windowPos, from: view)
-        return physicsView.convertPoint(viewToWorld: viewPos).vector2D
+        return physicsView.convertPoint(viewToSim: viewPos).vector2D
     }
 }
 

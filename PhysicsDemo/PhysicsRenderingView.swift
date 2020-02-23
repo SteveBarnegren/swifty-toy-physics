@@ -29,25 +29,25 @@ enum DrawableObject {
 
 class PhysicsRenderingView: NSView {
     
-    private var physicsWorld: PhysicsWorld?
+    private var simulation: PhysicsSimulation?
     private var simulationSize = Vector2D.zero
     private var objects = [DrawableObject]()
     
     // MARK: - Render
     
-    func render(world: PhysicsWorld, simulationSize: Vector2D, additionalObjects: [DrawableObject]) {
-        self.physicsWorld = world
+    func render(simulation: PhysicsSimulation, simulationSize: Vector2D, additionalObjects: [DrawableObject]) {
+        self.simulation = simulation
         self.simulationSize = simulationSize
         
         objects.removeAll()
         objects += additionalObjects
-        objects += world.boundaries.map { makeObject(for: $0, worldSize: simulationSize) }
-        objects += world.balls.map(makeObject)
+        objects += simulation.boundaries.map { makeObject(for: $0, simulationSize: simulationSize) }
+        objects += simulation.balls.map(makeObject)
         
         needsDisplay = true
     }
     
-    private func makeObject(for boundary: Boundary, worldSize: Vector2D) -> DrawableObject {
+    private func makeObject(for boundary: Boundary, simulationSize: Vector2D) -> DrawableObject {
         
         let start: NSPoint
         let end: NSPoint
@@ -55,10 +55,10 @@ class PhysicsRenderingView: NSView {
         switch boundary.orientation {
         case .minX, .maxX:
             start = NSPoint(x: boundary.value, y: 0)
-            end = NSPoint(x: boundary.value, y: worldSize.height)
+            end = NSPoint(x: boundary.value, y: simulationSize.height)
         case .minY, .maxY:
             start = NSPoint(x: 0, y: boundary.value)
-            end = NSPoint(x: worldSize.width, y: boundary.value)
+            end = NSPoint(x: simulationSize.width, y: boundary.value)
         }
         
         let line = LineObject(from: start, to: end)
@@ -84,9 +84,9 @@ class PhysicsRenderingView: NSView {
         }
         
         // Draw simulation background
-        let worldRect = aspectFit(size: simulationSize.cgSize, inSize: bounds.size)
+        let simulationRect = aspectFit(size: simulationSize.cgSize, inSize: bounds.size)
         NSColor.black.set()
-        NSBezierPath(rect: worldRect).fill()
+        NSBezierPath(rect: simulationRect).fill()
         
         // Draw objects
         objects.forEach(draw)
@@ -103,8 +103,8 @@ class PhysicsRenderingView: NSView {
     
     private func draw(line: LineObject) {
         
-        let from = convertPoint(worldToView: line.from)
-        let to = convertPoint(worldToView: line.to)
+        let from = convertPoint(simToView: line.from)
+        let to = convertPoint(simToView: line.to)
         
         line.color.set()
         
@@ -121,7 +121,7 @@ class PhysicsRenderingView: NSView {
                           y: circle.position.y - circle.radius.cgf,
                           width: circle.radius.cgf*2,
                           height: circle.radius.cgf*2)
-        let convertedRect = convertRect(worldToView: rect)
+        let convertedRect = convertRect(simToView: rect)
         
         circle.color.set()
         let path = NSBezierPath(ovalIn: convertedRect)
@@ -130,17 +130,17 @@ class PhysicsRenderingView: NSView {
     
     // MARK: - Coordinate conversion
     
-    func convertPoint(viewToWorld p: NSPoint) -> NSPoint {
+    func convertPoint(viewToSim p: NSPoint) -> NSPoint {
         
         var p = p
         
-        // Translate to world rect
-        p.x -= worldRect.minX
-        p.y -= worldRect.minY
+        // Translate to simulation rect
+        p.x -= simulationRect.minX
+        p.y -= simulationRect.minY
         
         // Calculate rect pct
-        let xPct = p.x / worldRect.width
-        let yPct = p.y / worldRect.height
+        let xPct = p.x / simulationRect.width
+        let yPct = p.y / simulationRect.height
         
         // Convert to simulation space
         let simX = simulationSize.width.cgf * xPct
@@ -149,26 +149,26 @@ class PhysicsRenderingView: NSView {
         return NSPoint(x: simX, y: simY)
     }
     
-    private func convertPoint(worldToView p: NSPoint) -> NSPoint {
+    private func convertPoint(simToView p: NSPoint) -> NSPoint {
         
         let xPct = p.x / CGFloat(simulationSize.width)
         let yPct = p.y / CGFloat(simulationSize.height)
         
-        return NSPoint(x: worldRect.minX + worldRect.width*xPct,
-                       y: worldRect.minY + worldRect.height*yPct)
+        return NSPoint(x: simulationRect.minX + simulationRect.width*xPct,
+                       y: simulationRect.minY + simulationRect.height*yPct)
     }
     
-    private func convertRect(worldToView r: NSRect) -> NSRect {
+    private func convertRect(simToView r: NSRect) -> NSRect {
         
         let xPct = r.origin.x / simulationSize.width.cgf
         let yPct = r.origin.y / simulationSize.height.cgf
         let widthPct = r.size.width / simulationSize.width.cgf
         let heightPct = r.size.height / simulationSize.height.cgf
         
-        return NSRect(x: worldRect.minX + worldRect.width*xPct,
-                      y: worldRect.minY + worldRect.height*yPct,
-                      width: worldRect.width * widthPct,
-                      height: worldRect.height * heightPct)
+        return NSRect(x: simulationRect.minX + simulationRect.width*xPct,
+                      y: simulationRect.minY + simulationRect.height*yPct,
+                      width: simulationRect.width * widthPct,
+                      height: simulationRect.height * heightPct)
     }
     
     private func aspectFit(size: NSSize, inSize parentSize: NSSize) -> NSRect {
@@ -187,7 +187,7 @@ class PhysicsRenderingView: NSView {
         }
     }
     
-    var worldRect: CGRect {
+    var simulationRect: CGRect {
         return aspectFit(size: simulationSize.cgSize, inSize: bounds.size)
     }
 }

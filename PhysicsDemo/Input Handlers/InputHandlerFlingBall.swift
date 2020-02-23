@@ -24,7 +24,7 @@ class InputHandlerFlingBall: InputHandler {
         let ball = Ball(radius: ballRadius)
         ball.position = position
         ball.affectedByPhysics = false
-        context.world.add(ball: ball)
+        context.simulation.add(ball: ball)
         
         fling = Fling(ball: ball, flingPos: position)
     }

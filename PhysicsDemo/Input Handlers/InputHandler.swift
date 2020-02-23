@@ -9,7 +9,7 @@
 import Foundation
 
 struct InputHandlerContext {
-    let world: PhysicsWorld
+    let simulation: PhysicsSimulation
     let simulationSize: Vector2D
 }
 

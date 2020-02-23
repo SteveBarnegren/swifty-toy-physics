@@ -1,5 +1,5 @@
 //
-//  PhysicsWorld.swift
+//  PhysicsSimulation.swift
 //  PhysicsDemo
 //
 //  Created by Steve Barnegren on 22/02/2020.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class PhysicsWorld {
+class PhysicsSimulation {
     
     var boundaries = [Boundary]()
     

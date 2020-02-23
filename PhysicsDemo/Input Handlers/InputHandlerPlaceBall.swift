@@ -17,7 +17,7 @@ class InputHandlerPlaceBall: InputHandler {
         let ball = Ball(radius: 5)
         ball.position = constrainLocation(position)
         ball.affectedByPhysics = false
-        context.world.add(ball: ball)
+        context.simulation.add(ball: ball)
         
         self.ball = ball
     }

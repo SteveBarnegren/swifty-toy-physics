@@ -13,7 +13,7 @@
 		67B234202401911200876EAC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67B2341E2401911200876EAC /* Main.storyboard */; };
 		67B2342C2401911300876EAC /* PhysicsDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B2342B2401911300876EAC /* PhysicsDemoTests.swift */; };
 		67B234382401966B00876EAC /* Vector2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B234372401966B00876EAC /* Vector2D.swift */; };
-		67B2343A2401969300876EAC /* PhysicsWorld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B234392401969300876EAC /* PhysicsWorld.swift */; };
+		67B2343A2401969300876EAC /* PhysicsSimulation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B234392401969300876EAC /* PhysicsSimulation.swift */; };
 		67B2343C240196A000876EAC /* Boundary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B2343B240196A000876EAC /* Boundary.swift */; };
 		67B2343E240196B600876EAC /* Ball.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B2343D240196B600876EAC /* Ball.swift */; };
 		67B23440240196E900876EAC /* PhysicsRenderingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B2343F240196E900876EAC /* PhysicsRenderingView.swift */; };
@@ -48,7 +48,7 @@
 		67B2342B2401911300876EAC /* PhysicsDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsDemoTests.swift; sourceTree = "<group>"; };
 		67B2342D2401911300876EAC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		67B234372401966B00876EAC /* Vector2D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Vector2D.swift; sourceTree = "<group>"; };
-		67B234392401969300876EAC /* PhysicsWorld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsWorld.swift; sourceTree = "<group>"; };
+		67B234392401969300876EAC /* PhysicsSimulation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsSimulation.swift; sourceTree = "<group>"; };
 		67B2343B240196A000876EAC /* Boundary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Boundary.swift; sourceTree = "<group>"; };
 		67B2343D240196B600876EAC /* Ball.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ball.swift; sourceTree = "<group>"; };
 		67B2343F240196E900876EAC /* PhysicsRenderingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsRenderingView.swift; sourceTree = "<group>"; };
@@ -128,7 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				67B234372401966B00876EAC /* Vector2D.swift */,
-				67B234392401969300876EAC /* PhysicsWorld.swift */,
+				67B234392401969300876EAC /* PhysicsSimulation.swift */,
 				67B2343B240196A000876EAC /* Boundary.swift */,
 				67B2343D240196B600876EAC /* Ball.swift */,
 			);
@@ -261,7 +261,7 @@
 				67B234432401973800876EAC /* Double+Extensions.swift in Sources */,
 				67B2344524019BA900876EAC /* DisplayLink.swift in Sources */,
 				67B2343E240196B600876EAC /* Ball.swift in Sources */,
-				67B2343A2401969300876EAC /* PhysicsWorld.swift in Sources */,
+				67B2343A2401969300876EAC /* PhysicsSimulation.swift in Sources */,
 				67B2341B2401911100876EAC /* ViewController.swift in Sources */,
 				67B234382401966B00876EAC /* Vector2D.swift in Sources */,
 				67B234192401911100876EAC /* AppDelegate.swift in Sources */,
