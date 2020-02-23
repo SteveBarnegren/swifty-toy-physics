@@ -9,20 +9,20 @@
 import Foundation
 import AppKit
 
-private struct LineObject {
+struct LineObject {
     let from: NSPoint
     let to: NSPoint
     var color = NSColor.white
     var strokeWidth = 1.0
 }
 
-private struct CircleObject {
+struct CircleObject {
     let position: NSPoint
     let radius: Double
     var color = NSColor.white
 }
 
-private enum DrawableObject {
+enum DrawableObject {
     case line(LineObject)
     case circle(CircleObject)
 }
@@ -35,11 +35,12 @@ class PhysicsRenderingView: NSView {
     
     // MARK: - Render
     
-    func render(world: PhysicsWorld, simulationSize: Vector2D) {
+    func render(world: PhysicsWorld, simulationSize: Vector2D, additionalObjects: [DrawableObject]) {
         self.physicsWorld = world
         self.simulationSize = simulationSize
         
         objects.removeAll()
+        objects += additionalObjects
         objects += world.boundaries.map { makeObject(for: $0, worldSize: simulationSize) }
         objects += world.balls.map(makeObject)
         

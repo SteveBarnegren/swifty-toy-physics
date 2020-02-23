@@ -20,4 +20,12 @@ protocol InputHandler {
     func mouseDragged(to position: Vector2D, context: InputHandlerContext)
     
     func mouseUp(at position: Vector2D, context: InputHandlerContext)
+    
+    func objectsToRender() -> [DrawableObject]
+}
+
+extension InputHandler {
+    func objectsToRender() -> [DrawableObject] {
+        return []
+    }
 }

@@ -22,6 +22,7 @@ class InputHandlerFlingBall: InputHandler {
     func mouseDown(at position: Vector2D, context: InputHandlerContext) {
         
         let ball = Ball(radius: ballRadius)
+        ball.position = position
         ball.affectedByPhysics = false
         context.world.add(ball: ball)
         
@@ -46,5 +47,17 @@ class InputHandlerFlingBall: InputHandler {
         fling.ball.affectedByPhysics = true
 
         self.fling = nil
+    }
+    
+    func objectsToRender() -> [DrawableObject] {
+        
+        guard let fling = fling else {
+            return []
+        }
+        
+        var line = LineObject(from: NSPoint(x: fling.ball.position.x, y: fling.ball.position.y),
+                              to: NSPoint(x: fling.flingPos.x, y: fling.flingPos.y))
+        line.color = .lightGray
+        return [.line(line)]
     }
 }

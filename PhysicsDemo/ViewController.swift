@@ -59,13 +59,19 @@ class ViewController: NSViewController {
     
     override func viewDidLayout() {
         super.viewDidLayout()
-        physicsView.render(world: physicsWorld, simulationSize: simulationSize)
+        render()
     }
     
     private func tick(dt: Double) {
         
         physicsWorld.step(dt: dt)
-        physicsView.render(world: physicsWorld, simulationSize: simulationSize)
+        render()
+    }
+    
+    private func render() {
+        physicsView.render(world: physicsWorld,
+                           simulationSize: simulationSize,
+                           additionalObjects: inputHandler.objectsToRender())
     }
     
     // MARK: - Mouse handling
