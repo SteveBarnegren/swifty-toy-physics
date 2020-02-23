@@ -14,12 +14,20 @@ let ballRadius = 5.0
 class ViewController: NSViewController {
     
     @IBOutlet private var simulationView: SimulationView!
+    @IBOutlet private var placementStyleSegmentedControl: NSSegmentedControl!
     
     private var simulation: PhysicsSimulation!
     
     private var isObservingDisplayLink = false
     
-    private var inputHandler = InputHandlerFlingBall()
+    private var inputHandlers: [InputHandler] = [
+        InputHandlerPlaceBall(),
+        InputHandlerFlingBall()
+    ]
+    
+    var inputHandler: InputHandler {
+        return inputHandlers[placementStyleSegmentedControl.indexOfSelectedItem]
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

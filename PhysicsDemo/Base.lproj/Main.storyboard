@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -709,28 +710,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="740" height="456"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="N6T-hd-L0c">
-                                <rect key="frame" x="354" y="220" width="33" height="16"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="hello" id="Klv-7R-X6T">
-                                    <font key="font" usesAppearanceFont="YES"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="OxH-LR-f9k" customClass="SimulationView" customModule="PhysicsDemo" customModuleProvider="target">
-                                <rect key="frame" x="20" y="20" width="700" height="416"/>
+                                <rect key="frame" x="20" y="20" width="539" height="416"/>
                             </customView>
+                            <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pg9-L7-Uij">
+                                <rect key="frame" x="577" y="413" width="145" height="24"/>
+                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="YIG-Xy-Qyw">
+                                    <font key="font" metaFont="system"/>
+                                    <segments>
+                                        <segment label="Drop" width="69" selected="YES"/>
+                                        <segment label="Fling" width="69" tag="1"/>
+                                    </segments>
+                                </segmentedCell>
+                            </segmentedControl>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="N6T-hd-L0c" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="2vm-1B-nqB"/>
+                            <constraint firstAttribute="trailing" secondItem="pg9-L7-Uij" secondAttribute="trailing" constant="20" id="DtH-Xk-7Ha"/>
                             <constraint firstAttribute="bottom" secondItem="OxH-LR-f9k" secondAttribute="bottom" constant="20" id="IVf-sZ-gFA"/>
-                            <constraint firstAttribute="trailing" secondItem="OxH-LR-f9k" secondAttribute="trailing" constant="20" id="Som-ry-wuE"/>
+                            <constraint firstItem="pg9-L7-Uij" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="Jrb-fJ-10p"/>
+                            <constraint firstItem="pg9-L7-Uij" firstAttribute="leading" secondItem="OxH-LR-f9k" secondAttribute="trailing" constant="20" id="MgY-eI-c4V"/>
                             <constraint firstItem="OxH-LR-f9k" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="aoK-hg-c1l"/>
                             <constraint firstItem="OxH-LR-f9k" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="d7A-kf-0o9"/>
-                            <constraint firstItem="N6T-hd-L0c" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="fZW-gl-9b7"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="placementStyleSegmentedControl" destination="pg9-L7-Uij" id="1UP-9i-IjG"/>
                         <outlet property="simulationView" destination="OxH-LR-f9k" id="9js-Pi-ADG"/>
                     </connections>
                 </viewController>
