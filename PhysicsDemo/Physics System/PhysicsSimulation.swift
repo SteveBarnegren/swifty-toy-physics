@@ -13,6 +13,7 @@ class PhysicsSimulation {
     var boundaries = [Boundary]()
     
     var balls = [Ball]()
+    var lines = [PhysicsLine]()
     var gravity = Double.zero
     
     func add(boundary: Boundary) {
@@ -27,6 +28,16 @@ class PhysicsSimulation {
     
     func removeAllBalls() {
         self.balls.removeAll()
+    }
+    
+    // MARK: - Manage Lines
+    
+    func add(line: PhysicsLine) {
+        self.lines.append(line)
+    }
+    
+    func removeAllLines() {
+        self.lines.removeAll()
     }
     
     func step(dt: Double) {

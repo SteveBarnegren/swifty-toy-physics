@@ -41,7 +41,7 @@ class SimulationView: NSView {
     private var simulationSize = Vector2D.zero
     private var objects = [DrawableObject]()
     
-    // MARK: - Render
+    // MARK: - Render simulation
     
     func render(simulation: PhysicsSimulation, simulationSize: Vector2D, additionalObjects: [DrawableObject]) {
         self.simulation = simulation
@@ -50,6 +50,7 @@ class SimulationView: NSView {
         objects.removeAll()
         objects += additionalObjects
         objects += simulation.boundaries.map { makeObject(for: $0, simulationSize: simulationSize) }
+        objects += simulation.lines.map(makeObject)
         objects += simulation.balls.map(makeObject)
         
         needsDisplay = true
@@ -79,6 +80,17 @@ class SimulationView: NSView {
         let circle = CircleObject(position: pos, radius: ball.radius)
         return .circle(circle)
     }
+    
+    private func makeObject(for physicsLine: PhysicsLine) -> DrawableObject {
+        
+        let start = NSPoint(x: physicsLine.start.x, y: physicsLine.start.y)
+        let end = NSPoint(x: physicsLine.end.x, y: physicsLine.end.y)
+        
+        let line = LineObject(from: start, to: end, color: .white, strokeWidth: 1)
+        return .line(line)
+    }
+    
+    // MARK: - Draw
     
     override func draw(_ rect: CGRect) {
         super.draw(rect)

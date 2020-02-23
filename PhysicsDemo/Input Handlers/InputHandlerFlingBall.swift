@@ -19,7 +19,7 @@ class InputHandlerFlingBall: InputHandler {
 
     private var fling: Fling?
     
-    func mouseDown(at position: Vector2D, context: InputHandlerContext) {
+    override func mouseDown(at position: Vector2D, context: InputHandlerContext) {
         
         let ball = Ball(radius: ballRadius)
         ball.position = position
@@ -29,11 +29,11 @@ class InputHandlerFlingBall: InputHandler {
         fling = Fling(ball: ball, flingPos: position)
     }
     
-    func mouseDragged(to position: Vector2D, context: InputHandlerContext) {
+    override func mouseDragged(to position: Vector2D, context: InputHandlerContext) {
         fling?.ball.position = position
     }
     
-    func mouseUp(at position: Vector2D, context: InputHandlerContext) {
+    override func mouseUp(at position: Vector2D, context: InputHandlerContext) {
         
         guard let fling = self.fling else {
             return
@@ -49,7 +49,7 @@ class InputHandlerFlingBall: InputHandler {
         self.fling = nil
     }
     
-    func objectsToRender() -> [DrawableObject] {
+    override func objectsToRender() -> [DrawableObject] {
         
         guard let fling = fling else {
             return []

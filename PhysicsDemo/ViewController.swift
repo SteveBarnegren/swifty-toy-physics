@@ -20,19 +20,16 @@ class ViewController: NSViewController {
     
     private var isObservingDisplayLink = false
     
-    private var inputHandlers: [InputHandler] = [
-        InputHandlerPlaceBall(),
-        InputHandlerFlingBall()
-    ]
-    
-    var inputHandler: InputHandler {
-        return inputHandlers[placementStyleSegmentedControl.indexOfSelectedItem]
+    private var inputHandlerStack = [InputHandler]()
+    private var inputHandler: InputHandler {
+        return inputHandlerStack.last!
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         simulationView.delegate = self
+        (view as! MainView).keyHandler = self
         
         // Create physics simulation
         simulation = PhysicsSimulation()
@@ -47,6 +44,14 @@ class ViewController: NSViewController {
         let rightBoundary = Boundary(orientation: .maxX)
         rightBoundary.value = simulationSize.width - 20
         simulation.add(boundary: rightBoundary)
+        
+        // Setup input handlers
+        let baseInputHandler = InputHandlerSwitch(handlers: [
+            InputHandlerPlaceBall(),
+            InputHandlerFlingBall()
+        ], currentIndex: { [unowned self] in self.placementStyleSegmentedControl.indexOfSelectedItem })
+        
+        pushInputHandler(baseInputHandler)
     }
     
     override func viewDidAppear() {
@@ -77,6 +82,31 @@ class ViewController: NSViewController {
                            simulationSize: simulationSize,
                            additionalObjects: inputHandler.objectsToRender())
     }
+    
+    // MARK: - Actions
+    
+    @IBAction private func addLineButtonPressed(sender: NSButton) {
+        pushInputHandler(InputHandlerPlacePhysicsLine())
+    }
+    
+    // MARK: - Key handling
+    
+    override func keyDown(with event: NSEvent) {
+        if let key = KeyboardKey(keyCode: event.keyCode) {
+            inputHandler.keyDown(key: key)
+        }
+    }
+    
+    // MARK: - Input Handlers
+    
+    private func pushInputHandler(_ handler: InputHandler) {
+        handler.delegate = self
+        inputHandlerStack.append(handler)
+    }
+    
+    private func popInputHandler() {
+        inputHandlerStack.removeLast()
+    }
 }
 
 extension ViewController: SimulationViewDelegate {
@@ -98,3 +128,9 @@ extension ViewController: SimulationViewDelegate {
     }
 }
 
+extension ViewController: InputHandlerDelegate {
+    
+    func inputHandlerDidFinish(handler: InputHandler) {
+        popInputHandler()
+    }
+}

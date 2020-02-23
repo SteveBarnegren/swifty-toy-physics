@@ -13,19 +13,19 @@ struct InputHandlerContext {
     let simulationSize: Vector2D
 }
 
-protocol InputHandler {
-    
-    func mouseDown(at position: Vector2D, context: InputHandlerContext)
-    
-    func mouseDragged(to position: Vector2D, context: InputHandlerContext)
-    
-    func mouseUp(at position: Vector2D, context: InputHandlerContext)
-    
-    func objectsToRender() -> [DrawableObject]
+protocol InputHandlerDelegate: class {
+    func inputHandlerDidFinish(handler: InputHandler)
 }
 
-extension InputHandler {
-    func objectsToRender() -> [DrawableObject] {
-        return []
-    }
+class InputHandler {
+    
+    weak var delegate: InputHandlerDelegate?
+    
+    func mouseDown(at position: Vector2D, context: InputHandlerContext) {}
+    func mouseDragged(to position: Vector2D, context: InputHandlerContext) {}
+    func mouseUp(at position: Vector2D, context: InputHandlerContext) {}
+    
+    func keyDown(key: KeyboardKey) {}
+    
+    func objectsToRender() -> [DrawableObject] { [] }
 }
