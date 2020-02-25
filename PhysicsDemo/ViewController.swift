@@ -15,6 +15,7 @@ class ViewController: NSViewController {
     
     @IBOutlet private var simulationView: SimulationView!
     @IBOutlet private var placementStyleSegmentedControl: NSSegmentedControl!
+    @IBOutlet private var instructionLabel: NSTextField!
     
     private var simulation: PhysicsSimulation!
     
@@ -102,10 +103,22 @@ class ViewController: NSViewController {
     private func pushInputHandler(_ handler: InputHandler) {
         handler.delegate = self
         inputHandlerStack.append(handler)
+        updateInstructionLabel()
     }
     
     private func popInputHandler() {
         inputHandlerStack.removeLast()
+        updateInstructionLabel()
+    }
+    
+    // MARK: - Instruction
+    
+    private func updateInstructionLabel() {
+        if let instruction = inputHandler.instruction {
+            instructionLabel.stringValue = instruction
+        } else {
+            instructionLabel.stringValue = ""
+        }
     }
 }
 

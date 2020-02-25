@@ -712,6 +712,21 @@
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="OxH-LR-f9k" customClass="SimulationView" customModule="PhysicsDemo" customModuleProvider="target">
                                 <rect key="frame" x="20" y="20" width="632" height="416"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="1" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="gTf-Cq-QUb">
+                                        <rect key="frame" x="18" y="394" width="596" height="16"/>
+                                        <textFieldCell key="cell" selectable="YES" alignment="center" title="Instruction" id="rny-FT-KLN">
+                                            <font key="font" usesAppearanceFont="YES"/>
+                                            <color key="textColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="gTf-Cq-QUb" firstAttribute="top" secondItem="OxH-LR-f9k" secondAttribute="top" constant="6" id="Je9-B0-G64"/>
+                                    <constraint firstItem="gTf-Cq-QUb" firstAttribute="leading" secondItem="OxH-LR-f9k" secondAttribute="leading" constant="20" id="iYG-rJ-IFW"/>
+                                    <constraint firstAttribute="trailing" secondItem="gTf-Cq-QUb" secondAttribute="trailing" constant="20" id="lbB-U1-Okp"/>
+                                </constraints>
                             </customView>
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vTu-0F-pPZ">
                                 <rect key="frame" x="672" y="374" width="141" height="62"/>
@@ -757,6 +772,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="instructionLabel" destination="gTf-Cq-QUb" id="F1l-3U-39P"/>
                         <outlet property="placementStyleSegmentedControl" destination="pg9-L7-Uij" id="1UP-9i-IjG"/>
                         <outlet property="simulationView" destination="OxH-LR-f9k" id="9js-Pi-ADG"/>
                     </connections>

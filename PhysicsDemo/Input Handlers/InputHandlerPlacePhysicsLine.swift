@@ -17,6 +17,10 @@ class InputHandlerPlacePhysicsLine: InputHandler {
     
     private var state: State?
     
+    override var instruction: String? {
+        return "Drag to create a line"
+    }
+    
     // MARK: - Mouse handling
     
     override func mouseDown(at position: Vector2D, context: InputHandlerContext) {
