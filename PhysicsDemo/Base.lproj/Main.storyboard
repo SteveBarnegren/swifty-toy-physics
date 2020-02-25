@@ -729,10 +729,10 @@
                                 </constraints>
                             </customView>
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vTu-0F-pPZ">
-                                <rect key="frame" x="672" y="374" width="141" height="62"/>
+                                <rect key="frame" x="672" y="333" width="141" height="103"/>
                                 <subviews>
                                     <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pg9-L7-Uij">
-                                        <rect key="frame" x="-2" y="39" width="145" height="24"/>
+                                        <rect key="frame" x="-2" y="80" width="145" height="24"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="YIG-Xy-Qyw">
                                             <font key="font" metaFont="system"/>
                                             <segments>
@@ -740,9 +740,12 @@
                                                 <segment label="Fling" width="69" tag="1"/>
                                             </segments>
                                         </segmentedCell>
+                                        <connections>
+                                            <action selector="placementStyleSegmentedControlChangedWithSender:" target="XfG-lQ-9wD" id="Ce8-S7-WEa"/>
+                                        </connections>
                                     </segmentedControl>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FUO-rN-e7B">
-                                        <rect key="frame" x="21" y="-7" width="100" height="32"/>
+                                        <rect key="frame" x="21" y="34" width="100" height="32"/>
                                         <buttonCell key="cell" type="push" title="Add Lines" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6U8-3V-Upr">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -751,12 +754,24 @@
                                             <action selector="addLineButtonPressedWithSender:" target="XfG-lQ-9wD" id="eiV-FC-y5y"/>
                                         </connections>
                                     </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dBb-7w-M6v">
+                                        <rect key="frame" x="39" y="-7" width="64" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Edit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OvT-mh-PTA">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="editButtonPressedWithSender:" target="XfG-lQ-9wD" id="385-Be-3ZS"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <visibilityPriorities>
                                     <integer value="1000"/>
                                     <integer value="1000"/>
+                                    <integer value="1000"/>
                                 </visibilityPriorities>
                                 <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>

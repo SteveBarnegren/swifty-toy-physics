@@ -29,5 +29,5 @@ class InputHandler {
     
     func keyDown(key: KeyboardKey) {}
     
-    func objectsToRender() -> [DrawableObject] { [] }
+    func objectsToRender(context: InputHandlerContext) -> [DrawableObject] { [] }
 }

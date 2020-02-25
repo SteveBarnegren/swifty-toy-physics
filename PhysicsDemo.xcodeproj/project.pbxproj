@@ -12,6 +12,8 @@
 		673D37DB2403085A00453684 /* InputHandlerSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673D37DA2403085A00453684 /* InputHandlerSwitch.swift */; };
 		673D37DD2403126E00453684 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673D37DC2403126E00453684 /* MainView.swift */; };
 		673D37DF24031EEF00453684 /* KeyboardKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673D37DE24031EEF00453684 /* KeyboardKey.swift */; };
+		673D37E12405C09F00453684 /* InputHandlerEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673D37E02405C09F00453684 /* InputHandlerEdit.swift */; };
+		673D37E32405C68800453684 /* Array+Sorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673D37E22405C68800453684 /* Array+Sorting.swift */; };
 		67B234192401911100876EAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B234182401911100876EAC /* AppDelegate.swift */; };
 		67B2341B2401911100876EAC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B2341A2401911100876EAC /* ViewController.swift */; };
 		67B2341D2401911200876EAC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 67B2341C2401911200876EAC /* Assets.xcassets */; };
@@ -47,6 +49,8 @@
 		673D37DA2403085A00453684 /* InputHandlerSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHandlerSwitch.swift; sourceTree = "<group>"; };
 		673D37DC2403126E00453684 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		673D37DE24031EEF00453684 /* KeyboardKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardKey.swift; sourceTree = "<group>"; };
+		673D37E02405C09F00453684 /* InputHandlerEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHandlerEdit.swift; sourceTree = "<group>"; };
+		673D37E22405C68800453684 /* Array+Sorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Sorting.swift"; sourceTree = "<group>"; };
 		67B234152401911100876EAC /* PhysicsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhysicsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		67B234182401911100876EAC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		67B2341A2401911100876EAC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -151,6 +155,7 @@
 		67B234412401972800876EAC /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				673D37E22405C68800453684 /* Array+Sorting.swift */,
 				67B234422401973800876EAC /* Double+Extensions.swift */,
 				67B234462401DA1300876EAC /* Numeric+Constrained.swift */,
 				67B234482401EB9200876EAC /* NSPoint+Extensions.swift */,
@@ -166,6 +171,7 @@
 				67B2344B2401ECAA00876EAC /* InputHandlerPlaceBall.swift */,
 				67B2344F2401F04D00876EAC /* InputHandlerFlingBall.swift */,
 				673D37D8240305C100453684 /* InputHandlerPlacePhysicsLine.swift */,
+				673D37E02405C09F00453684 /* InputHandlerEdit.swift */,
 			);
 			path = "Input Handlers";
 			sourceTree = "<group>";
@@ -275,10 +281,12 @@
 				67B2344C2401ECAA00876EAC /* InputHandlerPlaceBall.swift in Sources */,
 				67B234472401DA1300876EAC /* Numeric+Constrained.swift in Sources */,
 				67B234492401EB9200876EAC /* NSPoint+Extensions.swift in Sources */,
+				673D37E32405C68800453684 /* Array+Sorting.swift in Sources */,
 				67B234432401973800876EAC /* Double+Extensions.swift in Sources */,
 				67B2344524019BA900876EAC /* DisplayLink.swift in Sources */,
 				673D37DB2403085A00453684 /* InputHandlerSwitch.swift in Sources */,
 				67B2343E240196B600876EAC /* Ball.swift in Sources */,
+				673D37E12405C09F00453684 /* InputHandlerEdit.swift in Sources */,
 				673D37D9240305C100453684 /* InputHandlerPlacePhysicsLine.swift in Sources */,
 				67B2343A2401969300876EAC /* PhysicsSimulation.swift in Sources */,
 				67B2341B2401911100876EAC /* ViewController.swift in Sources */,

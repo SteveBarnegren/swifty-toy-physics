@@ -63,7 +63,7 @@ class InputHandlerPlacePhysicsLine: InputHandler {
         }
     }
     
-    override func objectsToRender() -> [DrawableObject] {
+    override func objectsToRender(context: InputHandlerContext) -> [DrawableObject] {
         
         guard let state = self.state else {
             return []

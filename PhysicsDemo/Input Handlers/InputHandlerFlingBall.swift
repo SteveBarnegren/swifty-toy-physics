@@ -49,7 +49,7 @@ class InputHandlerFlingBall: InputHandler {
         self.fling = nil
     }
     
-    override func objectsToRender() -> [DrawableObject] {
+    override func objectsToRender(context: InputHandlerContext) -> [DrawableObject] {
         
         guard let fling = fling else {
             return []

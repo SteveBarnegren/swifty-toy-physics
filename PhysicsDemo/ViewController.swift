@@ -81,13 +81,21 @@ class ViewController: NSViewController {
     private func render() {
         simulationView.render(simulation: simulation,
                            simulationSize: simulationSize,
-                           additionalObjects: inputHandler.objectsToRender())
+                           additionalObjects: inputHandler.objectsToRender(context: inputHandlerContext))
     }
     
     // MARK: - Actions
     
+    @IBAction private func placementStyleSegmentedControlChanged(sender: NSSegmentedControl) {
+        popToRootInputHandler()
+    }
+    
     @IBAction private func addLineButtonPressed(sender: NSButton) {
         pushInputHandler(InputHandlerPlacePhysicsLine())
+    }
+    
+    @IBAction private func editButtonPressed(sender: NSButton) {
+        pushInputHandler(InputHandlerEdit())
     }
     
     // MARK: - Key handling
@@ -108,6 +116,11 @@ class ViewController: NSViewController {
     
     private func popInputHandler() {
         inputHandlerStack.removeLast()
+        updateInstructionLabel()
+    }
+    
+    private func popToRootInputHandler() {
+        inputHandlerStack.removeSubrange(1...)
         updateInstructionLabel()
     }
     
