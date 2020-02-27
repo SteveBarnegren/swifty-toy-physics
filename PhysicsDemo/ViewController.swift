@@ -152,6 +152,18 @@ extension ViewController: SimulationViewDelegate {
     func mouseUp(at location: Vector2D) {
         inputHandler.mouseUp(at: location, context: inputHandlerContext)
     }
+    
+    func rightMouseDown(at location: Vector2D) {
+        inputHandler.rightMouseDown(at: location, context: inputHandlerContext)
+    }
+    
+    func rightMouseDragged(to location: Vector2D) {
+        inputHandler.rightMouseDragged(to: location, context: inputHandlerContext)
+    }
+    
+    func rightMouseUp(at location: Vector2D) {
+        inputHandler.rightMouseUp(at: location, context: inputHandlerContext)
+    }
 }
 
 extension ViewController: InputHandlerDelegate {

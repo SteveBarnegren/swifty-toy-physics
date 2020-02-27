@@ -26,6 +26,9 @@ class InputHandler {
     func mouseDown(at position: Vector2D, context: InputHandlerContext) {}
     func mouseDragged(to position: Vector2D, context: InputHandlerContext) {}
     func mouseUp(at position: Vector2D, context: InputHandlerContext) {}
+    func rightMouseDown(at position: Vector2D, context: InputHandlerContext) {}
+    func rightMouseDragged(to position: Vector2D, context: InputHandlerContext) {}
+    func rightMouseUp(at position: Vector2D, context: InputHandlerContext) {}
     
     func keyDown(key: KeyboardKey) {}
     

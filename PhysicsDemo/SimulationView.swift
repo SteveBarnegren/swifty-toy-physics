@@ -31,6 +31,9 @@ protocol SimulationViewDelegate: class {
     func mouseDown(at location: Vector2D)
     func mouseDragged(to location: Vector2D)
     func mouseUp(at location: Vector2D)
+    func rightMouseDown(at location: Vector2D)
+    func rightMouseDragged(to location: Vector2D)
+    func rightMouseUp(at location: Vector2D)
 }
 
 class SimulationView: NSView {
@@ -163,6 +166,21 @@ class SimulationView: NSView {
     override func mouseUp(with event: NSEvent) {
         super.mouseUp(with: event)
         delegate?.mouseUp(at: simulationLocation(fromEvent: event))
+    }
+    
+    override func rightMouseDown(with event: NSEvent) {
+        super.rightMouseDown(with: event)
+        delegate?.rightMouseDown(at: simulationLocation(fromEvent: event))
+    }
+    
+    override func rightMouseDragged(with event: NSEvent) {
+        super.rightMouseDragged(with: event)
+        delegate?.rightMouseDragged(to: simulationLocation(fromEvent: event))
+    }
+    
+    override func rightMouseUp(with event: NSEvent) {
+        super.rightMouseUp(with: event)
+        delegate?.rightMouseUp(at: simulationLocation(fromEvent: event))
     }
     
     private func simulationLocation(fromEvent event: NSEvent) -> Vector2D {

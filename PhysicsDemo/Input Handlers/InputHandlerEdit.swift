@@ -15,9 +15,21 @@ private struct EditHandle {
     let setter: (Vector2D) -> Void
 }
 
+private struct DeletionCandidate {
+    let distance: Double
+    let commit: () -> Void
+}
+
 class InputHandlerEdit: InputHandler {
     
+    override var instruction: String? {
+        "Drag handles to move. Right click to delete."
+    }
+    
     private var currentHandle: EditHandle?
+    private var deleteLocation: Vector2D?
+    
+    // MARK: - Left mouse (move handles)
 
     override func mouseDown(at position: Vector2D, context: InputHandlerContext) {
         
@@ -61,6 +73,46 @@ class InputHandlerEdit: InputHandler {
         }
         
         return handles
+    }
+    
+    // MARK: - Right Mouse (delete items)
+
+    override func rightMouseDown(at position: Vector2D, context: InputHandlerContext) {
+        deleteLocation = position
+    }
+    
+    override func rightMouseDragged(to position: Vector2D, context: InputHandlerContext) {
+        if let initialPosition = deleteLocation, position.distance(to: initialPosition) > grabDistance {
+            deleteLocation = nil
+        }
+    }
+    
+    override func rightMouseUp(at position: Vector2D, context: InputHandlerContext) {
+        if let location = deleteLocation {
+            deleteItem(atLocation: location, simulation: context.simulation)
+        }
+        deleteLocation = nil
+    }
+    
+    private func deleteItem(atLocation deleteLocation: Vector2D, simulation: PhysicsSimulation) {
+
+        let candidates = lineDeletionCandidates(location: deleteLocation, simultation: simulation)
+        
+        let candidate = candidates
+            .sortedAscendingBy { $0.distance }
+            .first
+        
+        if let c = candidate, c.distance <= grabDistance {
+            c.commit()
+        }
+    }
+    
+    private func lineDeletionCandidates(location: Vector2D, simultation: PhysicsSimulation) -> [DeletionCandidate] {
+        
+        return simultation.lines.map { line in
+            DeletionCandidate(distance: Math.distanceFromPointToLine(point: location, start: line.start, end: line.end),
+                              commit: { simultation.lines.removeAll(where: { $0 === line }) })
+        }
     }
     
     // MARK: - Key handling
