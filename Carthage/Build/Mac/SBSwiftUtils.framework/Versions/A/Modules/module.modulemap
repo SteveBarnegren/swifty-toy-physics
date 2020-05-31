@@ -1,0 +1,11 @@
+framework module SBSwiftUtils {
+  umbrella header "SBSwiftUtils.h"
+
+  export *
+  module * { export * }
+}
+
+module SBSwiftUtils.Swift {
+    header "SBSwiftUtils-Swift.h"
+    requires objc
+}

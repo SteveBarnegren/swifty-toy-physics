@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SBSwiftUtils
 
 class PhysicsSimulation {
     
