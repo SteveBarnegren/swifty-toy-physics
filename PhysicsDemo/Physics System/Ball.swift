@@ -11,6 +11,7 @@ import Foundation
 class Ball {
     
     var position = Vector2D.zero
+    var previousPosition: Vector2D?
     var velocity = Vector2D.zero
     var radius: Double
     var affectedByPhysics = false
