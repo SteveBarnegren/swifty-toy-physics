@@ -81,6 +81,10 @@ class PhysicsSimulation {
     
     private func resolveCollision(ball: Ball, previousBallPos: Vector2D, line: PhysicsLine) {
         
+        if ball.position == previousBallPos {
+            return
+        }
+        
         let ballLine = LineSegment(start: previousBallPos, end: ball.position)
         let collidingLine = LineSegment(start: line.start, end: line.end)
         updateBallPositionAndVelocity(line: collidingLine, ballLine: ballLine, ball: ball, elasticity: line.elasticity)

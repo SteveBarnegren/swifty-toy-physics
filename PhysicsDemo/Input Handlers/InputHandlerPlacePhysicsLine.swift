@@ -36,6 +36,11 @@ class InputHandlerPlacePhysicsLine: InputHandler {
             return
         }
         
+        if state.start.distance(to: state.end) < 5 {
+            self.state = nil
+            return
+        }
+        
         let line = PhysicsLine(start: state.start, end: state.end)
         context.simulation.add(line: line)
         
