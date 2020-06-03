@@ -22,5 +22,9 @@ extension Vector2D {
         CGSize(width: self.width, height: self.height)
     }
     
+    var nsPoint: NSPoint {
+        NSPoint(x: self.x, y: self.y)
+    }
+    
 }
 

@@ -17,6 +17,7 @@
 		673D37E12405C09F00453684 /* InputHandlerEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673D37E02405C09F00453684 /* InputHandlerEdit.swift */; };
 		673D37E32405C68800453684 /* Array+Sorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673D37E22405C68800453684 /* Array+Sorting.swift */; };
 		673D381324086BC600453684 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673D381224086BC600453684 /* Math.swift */; };
+		675C64EC248819C600117869 /* InputHandlerAddStaticCircles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675C64EB248819C600117869 /* InputHandlerAddStaticCircles.swift */; };
 		67A9FA142483F68700116CC5 /* VectorMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A9FA132483F68700116CC5 /* VectorMath.swift */; };
 		67B234192401911100876EAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B234182401911100876EAC /* AppDelegate.swift */; };
 		67B2341B2401911100876EAC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B2341A2401911100876EAC /* ViewController.swift */; };
@@ -71,6 +72,7 @@
 		673D37E02405C09F00453684 /* InputHandlerEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHandlerEdit.swift; sourceTree = "<group>"; };
 		673D37E22405C68800453684 /* Array+Sorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Sorting.swift"; sourceTree = "<group>"; };
 		673D381224086BC600453684 /* Math.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
+		675C64EB248819C600117869 /* InputHandlerAddStaticCircles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHandlerAddStaticCircles.swift; sourceTree = "<group>"; };
 		67A9FA132483F68700116CC5 /* VectorMath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VectorMath.swift; sourceTree = "<group>"; };
 		67B234152401911100876EAC /* PhysicsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhysicsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		67B234182401911100876EAC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				67B2344B2401ECAA00876EAC /* InputHandlerPlaceBall.swift */,
 				67B2344F2401F04D00876EAC /* InputHandlerFlingBall.swift */,
 				673D37D8240305C100453684 /* InputHandlerPlacePhysicsLine.swift */,
+				675C64EB248819C600117869 /* InputHandlerAddStaticCircles.swift */,
 				673D37E02405C09F00453684 /* InputHandlerEdit.swift */,
 			);
 			path = "Input Handlers";
@@ -330,6 +333,7 @@
 				67B2343C240196A000876EAC /* Boundary.swift in Sources */,
 				673D37DF24031EEF00453684 /* KeyboardKey.swift in Sources */,
 				67B23440240196E900876EAC /* SimulationView.swift in Sources */,
+				675C64EC248819C600117869 /* InputHandlerAddStaticCircles.swift in Sources */,
 				67B2344E2401EFE900876EAC /* InputHandler.swift in Sources */,
 				67B234502401F04D00876EAC /* InputHandlerFlingBall.swift in Sources */,
 				67A9FA142483F68700116CC5 /* VectorMath.swift in Sources */,

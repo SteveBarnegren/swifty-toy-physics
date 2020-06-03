@@ -94,6 +94,10 @@ class ViewController: NSViewController {
         pushInputHandler(InputHandlerPlacePhysicsLine())
     }
     
+    @IBAction private func addStaticCircleButtonPressed(sender: NSButton) {
+        pushInputHandler(InputHandlerAddStaticCircles())
+    }
+    
     @IBAction private func editButtonPressed(sender: NSButton) {
         pushInputHandler(InputHandlerEdit())
     }

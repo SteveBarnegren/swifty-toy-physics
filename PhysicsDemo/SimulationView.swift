@@ -9,6 +9,11 @@
 import Foundation
 import AppKit
 
+enum DrawStyle {
+    case stroke
+    case fill
+}
+
 struct LineObject {
     let from: NSPoint
     let to: NSPoint
@@ -20,6 +25,7 @@ struct CircleObject {
     let position: NSPoint
     let radius: Double
     var color = NSColor.white
+    var drawStyle = DrawStyle.fill
 }
 
 enum DrawableObject {
@@ -148,7 +154,12 @@ class SimulationView: NSView {
         
         circle.color.set()
         let path = NSBezierPath(ovalIn: convertedRect)
-        path.fill()
+        switch circle.drawStyle {
+        case .stroke:
+            path.stroke()
+        case .fill:
+            path.fill()
+        }
     }
     
     // MARK: - Mouse handling
