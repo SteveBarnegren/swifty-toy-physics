@@ -1,1 +1,2 @@
 github "SteveBarnegren/SBSwiftUtils" "feature/vector-improvements"
+github "SteveBarnegren/SBAutoLayout" "feature/mac-carthage-support"

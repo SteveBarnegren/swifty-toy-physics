@@ -3,7 +3,7 @@
   "Mac" : [
     {
       "name" : "SBSwiftUtils",
-      "hash" : "f3bf70d5cdd712347fb761032951f1146612e7de41267a197af81ee68054497c",
+      "hash" : "a67035996aaff711bcf25a4a93ca379668c9ea89994ef02fd28833a39b1817ae",
       "swiftToolchainVersion" : "5.1.2 (swiftlang-1100.0.278 clang-1100.0.33.9)"
     }
   ]

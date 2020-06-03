@@ -22,6 +22,7 @@ class InputHandler {
     weak var delegate: InputHandlerDelegate?
     
     var instruction: String? { return nil }
+    var uiVariables: [UIVariable] { [] }
     
     func mouseDown(at position: Vector2D, context: InputHandlerContext) {}
     func mouseDragged(to position: Vector2D, context: InputHandlerContext) {}

@@ -24,11 +24,10 @@ class InputHandlerAddStaticCircles: InputHandler {
     }
     
     override func mouseDragged(to position: Vector2D, context: InputHandlerContext) {
-        
+    
         if circlePosition != nil {
             circlePosition = position
         }
-        
     }
     
     override func mouseUp(at position: Vector2D, context: InputHandlerContext) {
@@ -74,5 +73,16 @@ class InputHandlerAddStaticCircles: InputHandler {
                                   color: .orange,
                                   drawStyle: .stroke)
         return [.circle(circle)]
+    }
+    
+    // MARK: - Variables
+    
+    override var uiVariables: [UIVariable] {
+        let radiusVariable = UIVariableDouble(name: "Radius",
+                                              min: 3,
+                                              max: 100,
+                                              get: { [unowned self] in self.radius },
+                                              set: { [unowned self] in self.radius = $0 })
+        return [radiusVariable]
     }
 }

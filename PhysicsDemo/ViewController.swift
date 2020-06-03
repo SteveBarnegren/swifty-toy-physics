@@ -14,8 +14,11 @@ let ballRadius = 5.0
 class ViewController: NSViewController {
     
     @IBOutlet private var simulationView: SimulationView!
+    @IBOutlet private var rightPanelContainerView: NSView!
     @IBOutlet private var placementStyleSegmentedControl: NSSegmentedControl!
     @IBOutlet private var instructionLabel: NSTextField!
+    
+    private var variablesPanelView: VariablesPanelView?
     
     private var simulation: PhysicsSimulation!
     
@@ -115,17 +118,22 @@ class ViewController: NSViewController {
     private func pushInputHandler(_ handler: InputHandler) {
         handler.delegate = self
         inputHandlerStack.append(handler)
-        updateInstructionLabel()
+        inputHandlerChanged()
     }
     
     private func popInputHandler() {
         inputHandlerStack.removeLast()
-        updateInstructionLabel()
+        inputHandlerChanged()
     }
     
     private func popToRootInputHandler() {
         inputHandlerStack.removeSubrange(1...)
+        inputHandlerChanged()
+    }
+    
+    private func inputHandlerChanged() {
         updateInstructionLabel()
+        updateInputHandlerUI()
     }
     
     // MARK: - Instruction
@@ -135,6 +143,35 @@ class ViewController: NSViewController {
             instructionLabel.stringValue = instruction
         } else {
             instructionLabel.stringValue = ""
+        }
+    }
+    
+    private func updateInputHandlerUI() {
+        let variables = inputHandler.uiVariables
+        
+        variablesPanelView?.removeFromSuperview()
+        variablesPanelView = nil
+        
+        if variables.isEmpty {
+            return
+        }
+        
+        let variableViews = variables.map(viewForUIVariable)
+        let panelView = VariablesPanelView(frame: .zero)
+        panelView.set(variableViews: variableViews)
+        
+        rightPanelContainerView.addSubview(panelView)
+        panelView.pinToSuperviewEdges()
+        
+        self.variablesPanelView = panelView
+    }
+    
+    private func viewForUIVariable(_ variable: UIVariable) -> NSView {
+        
+        if let doubleVariable = variable as? UIVariableDouble {
+            return UIVariableViewDouble(variable: doubleVariable)
+        } else {
+            fatalError()
         }
     }
 }

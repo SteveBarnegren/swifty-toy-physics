@@ -1,0 +1,10 @@
+{
+  "commitish" : "10d9df407ae458b121ea00f1556bc44303d23fde",
+  "Mac" : [
+    {
+      "name" : "SBAutoLayout",
+      "hash" : "97e544a10e280418bbf68aaa7dcadf7807f8e621ee28e71b3aec3a083ec28dde",
+      "swiftToolchainVersion" : "5.1.2 (swiftlang-1100.0.278 clang-1100.0.33.9)"
+    }
+  ]
+}

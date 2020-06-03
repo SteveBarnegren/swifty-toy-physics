@@ -1,0 +1,4 @@
+framework module SBAutoLayout {
+  header "SBAutoLayout-Swift.h"
+  requires objc
+}
