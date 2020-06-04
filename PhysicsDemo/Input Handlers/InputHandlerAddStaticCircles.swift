@@ -34,12 +34,12 @@ class InputHandlerAddStaticCircles: InputHandler {
     
     override func mouseUp(at position: Vector2D, context: InputHandlerContext) {
         
+        if let circlePosition = circlePosition {
+            let physicsCircle = PhysicsCircle(position: circlePosition, radius: radius)
+            context.simulation.add(circle: physicsCircle)
+        }
+    
         circlePosition = nil
-       
-        //let line = PhysicsLine(start: state.start, end: state.end)
-        //context.simulation.add(line: line)
-        
-        //self.state = nil
     }
     
     // MARK: - Keyboard

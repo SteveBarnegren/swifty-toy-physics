@@ -15,6 +15,7 @@ class PhysicsSimulation {
     
     var balls = [Ball]()
     var lines = [PhysicsLine]()
+    var circles = [PhysicsCircle]()
     var gravity = Double.zero
     
     func add(boundary: Boundary) {
@@ -41,6 +42,14 @@ class PhysicsSimulation {
         self.lines.removeAll()
     }
     
+    // MARK: - Manage Circles
+    
+    func add(circle: PhysicsCircle) {
+        circles.append(circle)
+    }
+    
+    // MARK: - Step
+    
     func step(dt: Double) {
         
         for ball in balls where ball.affectedByPhysics {
@@ -50,7 +59,10 @@ class PhysicsSimulation {
             // Move ball
             ball.position += ball.velocity * dt
             
+            // Resolve boundary collisions
             boundaries.forEach { resolveCollision(ball: ball, boundary: $0) }
+            
+            // Resolve line collisions
             if let previousBallPosition = ball.previousPosition {
                 lines.forEach { resolveCollision(ball: ball, previousBallPos: previousBallPosition, line: $0) }
             }

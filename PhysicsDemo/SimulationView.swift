@@ -36,6 +36,7 @@ class SimulationView: NSView {
         objects += simulation.boundaries.map { makeObject(for: $0, simulationSize: simulationSize) }
         objects += simulation.lines.map(makeObject)
         objects += simulation.balls.map(makeObject)
+        objects += simulation.circles.map(makeObject)
         objects += additionalObjects
         
         needsDisplay = true
@@ -72,6 +73,15 @@ class SimulationView: NSView {
         
         let line = LineDrawCommand(from: start, to: end, color: .white, strokeWidth: 1)
         return .line(line)
+    }
+    
+    private func makeObject(for physicsCircle: PhysicsCircle) -> DrawCommand {
+        
+        let command = CircleDrawCommand(position: physicsCircle.position,
+                                        radius: physicsCircle.radius,
+                                        color: .white,
+                                        drawStyle: .stroke)
+        return .circle(command)
     }
     
     // MARK: - Draw
