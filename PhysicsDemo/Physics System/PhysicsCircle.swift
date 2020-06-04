@@ -12,9 +12,11 @@ import SBSwiftUtils
 class PhysicsCircle {
     let position: Vector2D
     let radius: Double
+    let elasticity: Double
     
-    init(position: Vector2D, radius: Double) {
+    init(position: Vector2D, radius: Double, elasticity: Double = 0.7) {
         self.position = position
         self.radius = radius
+        self.elasticity = elasticity
     }
 }

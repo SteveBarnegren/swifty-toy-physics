@@ -63,13 +63,20 @@ class PhysicsSimulation {
             boundaries.forEach { resolveCollision(ball: ball, boundary: $0) }
             
             // Resolve line collisions
-            if let previousBallPosition = ball.previousPosition {
-                lines.forEach { resolveCollision(ball: ball, previousBallPos: previousBallPosition, line: $0) }
+            if let prevPos = ball.previousPosition {
+                lines.forEach { resolveCollision(ball: ball, previousBallPos: prevPos, line: $0) }
+            }
+            
+            // Resolve circle collisions
+            if let prevPos = ball.previousPosition {
+                circles.forEach { resolveCollision(ball: ball, previousBallPos: prevPos, circle: $0) }
             }
             
             ball.previousPosition = ball.position
         }
     }
+    
+    // MARK: - Boundary Collisions
     
     private func resolveCollision(ball: Ball, boundary: Boundary) {
         
@@ -90,6 +97,8 @@ class PhysicsSimulation {
             fatalError()
         }
     }
+    
+    // MARK: - Line Collisions
     
     private func resolveCollision(ball: Ball, previousBallPos: Vector2D, line: PhysicsLine) {
         
@@ -147,4 +156,71 @@ class PhysicsSimulation {
         
         return ballDirection.dotProduct(with: possibleNormal1) < 0 ? possibleNormal1 : possibleNormal2
     }
+    
+    // MARK: - Circle collisions
+    
+    private func resolveCollision(ball: Ball, previousBallPos: Vector2D, circle physicsCircle: PhysicsCircle) {
+        
+        let lineSegment = LineSegment(start: previousBallPos, end: ball.position)
+        let circle = Circle(center: physicsCircle.position, radius: physicsCircle.radius + ball.radius)
+        
+        guard let intersection = calculateIntersection(circle: circle, lineSegment: lineSegment) else {
+            return
+        }
+        
+        let reflectionNormal = (intersection - circle.center).normalized()
+        
+        // Use dot product to project against the reflection vector and subtract twice to get the 'mirror'
+        let ballDirection = (ball.position - previousBallPos).normalized()
+        var bounce = ballDirection - (2.0 * reflectionNormal * ballDirection.dotProduct(with: reflectionNormal))
+        
+        // Scale to the distance the the ball extends past the line
+        let extendDistance = intersection.distance(to: ball.position)
+        bounce = bounce.normalized() * extendDistance
+        
+        ball.position = intersection + bounce
+        ball.velocity = bounce.with(magnitude: ball.velocity.magnitude) * physicsCircle.elasticity
+    }
+    
+    private func calculateIntersection(circle: Circle, lineSegment: LineSegment) -> Vector2D? {
+        
+        // Check if the line segment is outside of the range of the circle
+        if !circle.xRange.overlaps(lineSegment.xRange) || !circle.yRange.overlaps(lineSegment.yRange) {
+            return nil
+        }
+        
+        // Calculate the line vector and a vector to the circle center
+        let lineVector = lineSegment.end - lineSegment.start
+        let toCircleVector = circle.center - lineSegment.start
+        
+        // Find the center of the cord that the line cuts through the circle
+        let cordCenter = lineSegment.start + toCircleVector.project(onTo: lineVector)
+        
+        // No intersection if greater than radius
+        let distanceToCenter = cordCenter.distance(to: circle.center)
+        if distanceToCenter > circle.radius {
+            return nil
+        }
+        
+        // Find the normals along the chord
+        let centerToChord = cordCenter - circle.center
+        let normals = self.normals(for: centerToChord)
+        
+        // Trace along the normal the correct amount using Pythagoras
+        let normal = normals.first.dotProduct(with: lineVector) < 0 ? normals.first : normals.second
+        let offset = sqrt((circle.radius * circle.radius) - (distanceToCenter * distanceToCenter))
+        let intersection = cordCenter + normal.with(magnitude: offset)
+        
+        // Check the intersection is in the bounds of the line segment
+        if intersection.x < min(lineSegment.start.x, lineSegment.end.x) { return nil }
+        if intersection.x > max(lineSegment.start.x, lineSegment.end.x) { return nil }
+        if intersection.y < min(lineSegment.start.y, lineSegment.end.y) { return nil }
+        if intersection.y > max(lineSegment.start.y, lineSegment.end.y) { return nil }
+        
+        return intersection
+    }
+    
+    private func normals(for vector: Vector2D) -> (first: Vector2D, second: Vector2D) {
+         return (Vector2D(x: -vector.y, y: vector.x), Vector2D(x: vector.y, y: -vector.x))
+     }
 }

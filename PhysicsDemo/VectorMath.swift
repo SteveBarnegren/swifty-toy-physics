@@ -24,6 +24,27 @@ struct Line {
 struct LineSegment {
     var start: Vector2D
     var end: Vector2D
+    
+    var xRange: ClosedRange<Double> {
+        (min(start.x, end.x))...(max(start.x, end.x))
+    }
+    
+    var yRange: ClosedRange<Double> {
+        (min(start.y, end.y))...(max(start.y, end.y))
+    }
+}
+
+struct Circle {
+    let center: Vector2D
+    let radius: Double
+    
+    var xRange: ClosedRange<Double> {
+        (center.x - radius)...(center.x + radius)
+    }
+    
+    var yRange: ClosedRange<Double> {
+        (center.y - radius)...(center.y + radius)
+    }
 }
 
 class VectorMath {
