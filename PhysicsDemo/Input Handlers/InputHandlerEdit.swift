@@ -7,12 +7,14 @@
 //
 
 import Foundation
+import AppKit
 
 private let grabDistance = 5.0
 
 private struct EditHandle {
     let point: Vector2D
     let setter: (Vector2D) -> Void
+    var color = NSColor.magenta
 }
 
 private struct DeletionCandidate {
@@ -55,8 +57,10 @@ class InputHandlerEdit: InputHandler {
         currentHandle = nil
     }
     
+    // MARK: - Create handles
+    
     private func getHandles(simulation: PhysicsSimulation) -> [EditHandle] {
-        return getLineHandles(simulation: simulation)
+        return getLineHandles(simulation: simulation) + getCircleHandles(simulation: simulation)
     }
     
     private func getLineHandles(simulation: PhysicsSimulation) -> [EditHandle] {
@@ -69,6 +73,24 @@ class InputHandlerEdit: InputHandler {
             )
             handles.append(
                 EditHandle(point: line.end, setter: { line.end = $0 })
+            )
+        }
+        
+        return handles
+    }
+    
+    private func getCircleHandles(simulation: PhysicsSimulation) -> [EditHandle] {
+        
+        var handles = [EditHandle]()
+        
+        for circle in simulation.circles {
+            handles.append(
+                EditHandle(point: circle.position, setter: { circle.position = $0 })
+            )
+            handles.append(
+                EditHandle(point: circle.position.adding(x: circle.radius),
+                           setter: { circle.radius = ($0.x - circle.position.x).constrained(min: 2) },
+                           color: .orange)
             )
         }
         
@@ -135,12 +157,9 @@ class InputHandlerEdit: InputHandler {
     
     override func objectsToRender(context: InputHandlerContext) -> [DrawCommand] {
         
-        // Draw a handles at each edit point
-        let points = context.simulation.lines.map { [$0.start, $0.end] }.joined()
-        
-        return points.map {
-            var circle = CircleDrawCommand(position: $0, radius: 2)
-            circle.color = .magenta
+        return getHandles(simulation: context.simulation).map {
+            var circle = CircleDrawCommand(position: $0.point, radius: 2)
+            circle.color = $0.color
             return .circle(circle)
         }
     }
