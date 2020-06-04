@@ -9,6 +9,8 @@
 import Foundation
 import AppKit
 
+private let lineThickness = 2.0
+
 protocol SimulationViewDelegate: class {
     func mouseDown(at location: Vector2D)
     func mouseDragged(to location: Vector2D)
@@ -125,7 +127,7 @@ class SimulationView: NSView {
         line.color.set()
         
         let path = NSBezierPath()
-        path.lineWidth = line.strokeWidth.cgf
+        path.lineWidth = lineThickness.cgf
         path.move(to: from)
         path.line(to: to)
         path.stroke()
@@ -143,6 +145,7 @@ class SimulationView: NSView {
         let path = NSBezierPath(ovalIn: convertedRect)
         switch circle.drawStyle {
         case .stroke:
+            path.lineWidth = lineThickness.cgf
             path.stroke()
         case .fill:
             path.fill()
@@ -161,6 +164,7 @@ class SimulationView: NSView {
         let path = NSBezierPath(rect: convertedRect)
         switch rect.drawStyle {
         case .stroke:
+            path.lineWidth = lineThickness.cgf
             path.stroke()
         case .fill:
             path.fill()

@@ -73,7 +73,7 @@ class PhysicsSimulation {
             
             // Resolve circle collisions
             if let prevPos = ball.previousPosition {
-                circles.forEach { resolveCollision(ball: ball, previousBallPos: prevPos, circle: $0) }
+                circles.forEach { resolveCollision(ball: ball, previousBallPos: prevPos, physicsCircle: $0) }
             }
             
             ball.previousPosition = ball.position
@@ -113,6 +113,11 @@ class PhysicsSimulation {
         let ballLine = LineSegment(start: previousBallPos, end: ball.position)
         let collidingLine = LineSegment(start: line.start, end: line.end)
         updateBallPositionAndVelocity(line: collidingLine, ballLine: ballLine, ball: ball, elasticity: line.elasticity)
+        
+        for lineEnd in [line.start, line.end] {
+            let circle = Circle(center: lineEnd, radius: ball.radius)
+            resolveCollision(ball: ball, previousBallPos: previousBallPos, circle: circle, elasticity: line.elasticity)
+        }
     }
     
     func updateBallPositionAndVelocity(line: LineSegment, ballLine: LineSegment, ball: Ball, elasticity: Double) {
@@ -163,10 +168,14 @@ class PhysicsSimulation {
     
     // MARK: - Circle collisions
     
-    private func resolveCollision(ball: Ball, previousBallPos: Vector2D, circle physicsCircle: PhysicsCircle) {
+    private func resolveCollision(ball: Ball, previousBallPos: Vector2D, physicsCircle: PhysicsCircle) {
+        let circle = Circle(center: physicsCircle.position, radius: physicsCircle.radius + ball.radius)
+        resolveCollision(ball: ball, previousBallPos: previousBallPos, circle: circle, elasticity: physicsCircle.elasticity)
+    }
+    
+    private func resolveCollision(ball: Ball, previousBallPos: Vector2D, circle: Circle, elasticity: Double) {
         
         let lineSegment = LineSegment(start: previousBallPos, end: ball.position)
-        let circle = Circle(center: physicsCircle.position, radius: physicsCircle.radius + ball.radius)
         
         guard let intersection = calculateIntersection(circle: circle, lineSegment: lineSegment) else {
             return
@@ -183,7 +192,7 @@ class PhysicsSimulation {
         bounce = bounce.normalized() * extendDistance
         
         ball.position = intersection + bounce
-        ball.velocity = bounce.with(magnitude: ball.velocity.magnitude) * physicsCircle.elasticity
+        ball.velocity = bounce.with(magnitude: ball.velocity.magnitude) * elasticity
     }
     
     private func calculateIntersection(circle: Circle, lineSegment: LineSegment) -> Vector2D? {
