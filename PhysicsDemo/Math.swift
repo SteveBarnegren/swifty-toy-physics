@@ -26,7 +26,7 @@ class Math {
         
         if param < 0 || (l1.x == l2.x && l1.y == l2.y) {
             xx = l1.x
-            yy = l1.y
+            yy = l1.y 
         } else if param > 1 {
             xx = l2.x
             yy = l2.y

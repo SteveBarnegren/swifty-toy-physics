@@ -48,6 +48,10 @@ class PhysicsSimulation {
         circles.append(circle)
     }
     
+    func remove(circle: PhysicsCircle) {
+        circles.removeAll(where: { $0 === circle })
+    }
+    
     // MARK: - Step
     
     func step(dt: Double) {

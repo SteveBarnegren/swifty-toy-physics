@@ -117,8 +117,9 @@ class InputHandlerEdit: InputHandler {
     }
     
     private func deleteItem(atLocation deleteLocation: Vector2D, simulation: PhysicsSimulation) {
-
+        
         let candidates = lineDeletionCandidates(location: deleteLocation, simultation: simulation)
+                + circleDeletionCandidates(location: deleteLocation, simulation: simulation)
         
         let candidate = candidates
             .sortedAscendingBy { $0.distance }
@@ -134,6 +135,14 @@ class InputHandlerEdit: InputHandler {
         return simultation.lines.map { line in
             DeletionCandidate(distance: Math.distanceFromPointToLine(point: location, start: line.start, end: line.end),
                               commit: { simultation.lines.removeAll(where: { $0 === line }) })
+        }
+    }
+    
+    private func circleDeletionCandidates(location: Vector2D, simulation: PhysicsSimulation) -> [DeletionCandidate] {
+        
+        return simulation.circles.map { circle in
+            DeletionCandidate(distance: circle.position.distance(to: location),
+                              commit: { simulation.remove(circle: circle) })
         }
     }
     
