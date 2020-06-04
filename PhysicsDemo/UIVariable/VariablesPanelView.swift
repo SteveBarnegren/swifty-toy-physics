@@ -18,9 +18,6 @@ class VariablesPanelView: NSView {
     
     override init(frame frameRect: NSRect) {
         super.init(frame: frameRect)
-        
-        self.wantsLayer = true
-        self.layer?.backgroundColor = NSColor.yellow.cgColor
     }
     
     required init?(coder: NSCoder) {

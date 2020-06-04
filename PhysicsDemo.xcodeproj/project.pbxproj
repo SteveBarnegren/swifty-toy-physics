@@ -23,6 +23,7 @@
 		675C64EC248819C600117869 /* InputHandlerAddStaticCircles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675C64EB248819C600117869 /* InputHandlerAddStaticCircles.swift */; };
 		676C4085248820F000D17BD8 /* UIVariableDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676C4084248820F000D17BD8 /* UIVariableDouble.swift */; };
 		676C40872488263600D17BD8 /* UIVariableViewDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676C40862488263600D17BD8 /* UIVariableViewDouble.swift */; };
+		678F0EE7248972E7002EC159 /* DrawCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678F0EE6248972E7002EC159 /* DrawCommand.swift */; };
 		67A9FA142483F68700116CC5 /* VectorMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A9FA132483F68700116CC5 /* VectorMath.swift */; };
 		67B234192401911100876EAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B234182401911100876EAC /* AppDelegate.swift */; };
 		67B2341B2401911100876EAC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B2341A2401911100876EAC /* ViewController.swift */; };
@@ -83,6 +84,7 @@
 		675C64EB248819C600117869 /* InputHandlerAddStaticCircles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHandlerAddStaticCircles.swift; sourceTree = "<group>"; };
 		676C4084248820F000D17BD8 /* UIVariableDouble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIVariableDouble.swift; sourceTree = "<group>"; };
 		676C40862488263600D17BD8 /* UIVariableViewDouble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIVariableViewDouble.swift; sourceTree = "<group>"; };
+		678F0EE6248972E7002EC159 /* DrawCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawCommand.swift; sourceTree = "<group>"; };
 		67A5C12D2488345D0065C9FF /* SBAutoLayout_macOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SBAutoLayout_macOS.framework; path = Carthage/Build/Mac/SBAutoLayout_macOS.framework; sourceTree = "<group>"; };
 		67A9FA132483F68700116CC5 /* VectorMath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VectorMath.swift; sourceTree = "<group>"; };
 		67B234152401911100876EAC /* PhysicsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhysicsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -184,6 +186,7 @@
 				67B2344A2401EC6400876EAC /* Input Handlers */,
 				676C40832488203F00D17BD8 /* UIVariable */,
 				67B2343F240196E900876EAC /* SimulationView.swift */,
+				678F0EE6248972E7002EC159 /* DrawCommand.swift */,
 				67B2341C2401911200876EAC /* Assets.xcassets */,
 				67B2341E2401911200876EAC /* Main.storyboard */,
 				67B234212401911200876EAC /* Info.plist */,
@@ -359,6 +362,7 @@
 				67B234192401911100876EAC /* AppDelegate.swift in Sources */,
 				67B2343C240196A000876EAC /* Boundary.swift in Sources */,
 				673D37DF24031EEF00453684 /* KeyboardKey.swift in Sources */,
+				678F0EE7248972E7002EC159 /* DrawCommand.swift in Sources */,
 				67B23440240196E900876EAC /* SimulationView.swift in Sources */,
 				676C40872488263600D17BD8 /* UIVariableViewDouble.swift in Sources */,
 				675C64EC248819C600117869 /* InputHandlerAddStaticCircles.swift in Sources */,

@@ -9,30 +9,6 @@
 import Foundation
 import AppKit
 
-enum DrawStyle {
-    case stroke
-    case fill
-}
-
-struct LineObject {
-    let from: NSPoint
-    let to: NSPoint
-    var color = NSColor.white
-    var strokeWidth = 1.0
-}
-
-struct CircleObject {
-    let position: NSPoint
-    let radius: Double
-    var color = NSColor.white
-    var drawStyle = DrawStyle.fill
-}
-
-enum DrawableObject {
-    case line(LineObject)
-    case circle(CircleObject)
-}
-
 protocol SimulationViewDelegate: class {
     func mouseDown(at location: Vector2D)
     func mouseDragged(to location: Vector2D)
@@ -48,24 +24,24 @@ class SimulationView: NSView {
     
     private var simulation: PhysicsSimulation?
     private var simulationSize = Vector2D.zero
-    private var objects = [DrawableObject]()
+    private var objects = [DrawCommand]()
     
     // MARK: - Render simulation
     
-    func render(simulation: PhysicsSimulation, simulationSize: Vector2D, additionalObjects: [DrawableObject]) {
+    func render(simulation: PhysicsSimulation, simulationSize: Vector2D, additionalObjects: [DrawCommand]) {
         self.simulation = simulation
         self.simulationSize = simulationSize
         
         objects.removeAll()
-        objects += additionalObjects
         objects += simulation.boundaries.map { makeObject(for: $0, simulationSize: simulationSize) }
         objects += simulation.lines.map(makeObject)
         objects += simulation.balls.map(makeObject)
+        objects += additionalObjects
         
         needsDisplay = true
     }
     
-    private func makeObject(for boundary: Boundary, simulationSize: Vector2D) -> DrawableObject {
+    private func makeObject(for boundary: Boundary, simulationSize: Vector2D) -> DrawCommand {
         
         let start: NSPoint
         let end: NSPoint
@@ -79,23 +55,22 @@ class SimulationView: NSView {
             end = NSPoint(x: simulationSize.width, y: boundary.value)
         }
         
-        let line = LineObject(from: start, to: end)
+        let line = LineDrawCommand(from: start, to: end)
         return .line(line)
     }
     
-    private func makeObject(for ball: Ball) -> DrawableObject {
+    private func makeObject(for ball: Ball) -> DrawCommand {
         
-        let pos = NSPoint(x: ball.position.x, y: ball.position.y)
-        let circle = CircleObject(position: pos, radius: ball.radius)
+        let circle = CircleDrawCommand(position: ball.position, radius: ball.radius)
         return .circle(circle)
     }
     
-    private func makeObject(for physicsLine: PhysicsLine) -> DrawableObject {
+    private func makeObject(for physicsLine: PhysicsLine) -> DrawCommand {
         
         let start = NSPoint(x: physicsLine.start.x, y: physicsLine.start.y)
         let end = NSPoint(x: physicsLine.end.x, y: physicsLine.end.y)
         
-        let line = LineObject(from: start, to: end, color: .white, strokeWidth: 1)
+        let line = LineDrawCommand(from: start, to: end, color: .white, strokeWidth: 1)
         return .line(line)
     }
     
@@ -121,16 +96,18 @@ class SimulationView: NSView {
         objects.forEach(draw)
     }
     
-    private func draw(object: DrawableObject) {
+    private func draw(object: DrawCommand) {
         switch object {
         case .line(let line):
             draw(line: line)
         case .circle(let circle):
             draw(circle: circle)
+        case .rect(let rect):
+            draw(rect: rect)
         }
     }
     
-    private func draw(line: LineObject) {
+    private func draw(line: LineDrawCommand) {
         
         let from = convertPoint(simToView: line.from)
         let to = convertPoint(simToView: line.to)
@@ -144,10 +121,10 @@ class SimulationView: NSView {
         path.stroke()
     }
     
-    private func draw(circle: CircleObject) {
+    private func draw(circle: CircleDrawCommand) {
         
-        let rect = NSRect(x: circle.position.x - circle.radius.cgf,
-                          y: circle.position.y - circle.radius.cgf,
+        let rect = NSRect(x: (circle.position.x - circle.radius).cgf,
+                          y: (circle.position.y - circle.radius).cgf,
                           width: circle.radius.cgf*2,
                           height: circle.radius.cgf*2)
         let convertedRect = convertRect(simToView: rect)
@@ -155,6 +132,24 @@ class SimulationView: NSView {
         circle.color.set()
         let path = NSBezierPath(ovalIn: convertedRect)
         switch circle.drawStyle {
+        case .stroke:
+            path.stroke()
+        case .fill:
+            path.fill()
+        }
+    }
+    
+    private func draw(rect: RectDrawCommand) {
+        
+        let nsRect = NSRect(x: rect.origin.x,
+                            y: rect.origin.y,
+                            width: rect.size.width,
+                            height: rect.size.height)
+        let convertedRect = convertRect(simToView: nsRect)
+
+        rect.color.set()
+        let path = NSBezierPath(rect: convertedRect)
+        switch rect.drawStyle {
         case .stroke:
             path.stroke()
         case .fill:

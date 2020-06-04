@@ -68,7 +68,7 @@ class InputHandlerPlacePhysicsLine: InputHandler {
         }
     }
     
-    override func objectsToRender(context: InputHandlerContext) -> [DrawableObject] {
+    override func objectsToRender(context: InputHandlerContext) -> [DrawCommand] {
         
         guard let state = self.state else {
             return []
@@ -77,7 +77,7 @@ class InputHandlerPlacePhysicsLine: InputHandler {
         let start = NSPoint(x: state.start.x, y: state.start.y)
         let end = NSPoint(x: state.end.x, y: state.end.y)
         
-        let line = LineObject(from: start,
+        let line = LineDrawCommand(from: start,
                               to: end,
                               color: .white,
                               strokeWidth: 1)

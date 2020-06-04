@@ -16,10 +16,12 @@ class InputHandlerAddStaticCircles: InputHandler {
     
     private var radius = 15.0
     private var circlePosition: Vector2D?
+    private var drawExampleCircle = false
 
     // MARK: - Mouse
     
     override func mouseDown(at position: Vector2D, context: InputHandlerContext) {
+        drawExampleCircle = false
         circlePosition = position
     }
     
@@ -53,26 +55,55 @@ class InputHandlerAddStaticCircles: InputHandler {
     }
     
     private func escapePressed() {
-        if circlePosition == nil {
-            self.delegate?.inputHandlerDidFinish(handler: self)
-        } else {
+        
+        if drawExampleCircle {
+            drawExampleCircle = false
+            return
+        } else if circlePosition != nil {
             circlePosition = nil
+        } else {
+            self.delegate?.inputHandlerDidFinish(handler: self)
         }
     }
     
     // MARK: - Render
     
-    override func objectsToRender(context: InputHandlerContext) -> [DrawableObject] {
-        
+    override func objectsToRender(context: InputHandlerContext) -> [DrawCommand] {
+        return placeCircleDrawCommands() + exampleCircleDrawCommands(forSimulationSize: context.simulationSize)
+    }
+    
+    private func placeCircleDrawCommands() -> [DrawCommand] {
         guard let position = circlePosition else {
             return []
         }
         
-        let circle = CircleObject(position: position.nsPoint,
-                                  radius: radius,
-                                  color: .orange,
-                                  drawStyle: .stroke)
+        let circle = CircleDrawCommand(position: position,
+                                       radius: radius,
+                                       color: .orange,
+                                       drawStyle: .stroke)
+        
         return [.circle(circle)]
+    }
+    
+    private func exampleCircleDrawCommands(forSimulationSize simSize: Vector2D) -> [DrawCommand] {
+        
+        if drawExampleCircle == false {
+            return []
+        }
+       
+        let padding = 4.0
+        let rectSize = padding*2 + radius*2
+        let backingRect = RectDrawCommand(origin: Vector2D(simSize.width - rectSize, simSize.height - rectSize),
+                                          size: Vector2D(rectSize, rectSize),
+                                          color: .gray,
+                                          drawStyle: .fill)
+        
+        let circle = CircleDrawCommand(position: Vector2D(simSize.width - padding - radius, simSize.height - padding - radius),
+                                       radius: radius,
+                                       color: .white,
+                                       drawStyle: .stroke)
+        
+        return [.rect(backingRect), .circle(circle)]
     }
     
     // MARK: - Variables
@@ -82,7 +113,10 @@ class InputHandlerAddStaticCircles: InputHandler {
                                               min: 3,
                                               max: 100,
                                               get: { [unowned self] in self.radius },
-                                              set: { [unowned self] in self.radius = $0 })
+                                              set: { [unowned self] in
+                                                self.radius = $0
+                                                self.drawExampleCircle = true
+        })
         return [radiusVariable]
     }
 }

@@ -72,6 +72,7 @@ class ViewController: NSViewController {
     
     override func viewDidLayout() {
         super.viewDidLayout()
+        variablesPanelView?.frame = rightPanelContainerView.frame
         render()
     }
     
@@ -153,6 +154,7 @@ class ViewController: NSViewController {
         variablesPanelView = nil
         
         if variables.isEmpty {
+            rightPanelContainerView.isHidden = false
             return
         }
         
@@ -160,8 +162,8 @@ class ViewController: NSViewController {
         let panelView = VariablesPanelView(frame: .zero)
         panelView.set(variableViews: variableViews)
         
-        rightPanelContainerView.addSubview(panelView)
-        panelView.pinToSuperviewEdges()
+        view.addSubview(panelView)
+        rightPanelContainerView.isHidden = true
         
         self.variablesPanelView = panelView
     }

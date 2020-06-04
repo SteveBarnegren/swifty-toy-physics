@@ -49,13 +49,13 @@ class InputHandlerFlingBall: InputHandler {
         self.fling = nil
     }
     
-    override func objectsToRender(context: InputHandlerContext) -> [DrawableObject] {
+    override func objectsToRender(context: InputHandlerContext) -> [DrawCommand] {
         
         guard let fling = fling else {
             return []
         }
         
-        var line = LineObject(from: NSPoint(x: fling.ball.position.x, y: fling.ball.position.y),
+        var line = LineDrawCommand(from: NSPoint(x: fling.ball.position.x, y: fling.ball.position.y),
                               to: NSPoint(x: fling.flingPos.x, y: fling.flingPos.y))
         line.color = .lightGray
         return [.line(line)]

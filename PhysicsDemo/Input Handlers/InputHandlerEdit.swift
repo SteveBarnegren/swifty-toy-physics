@@ -133,13 +133,13 @@ class InputHandlerEdit: InputHandler {
     
     // MARK: - Objects to render
     
-    override func objectsToRender(context: InputHandlerContext) -> [DrawableObject] {
+    override func objectsToRender(context: InputHandlerContext) -> [DrawCommand] {
         
         // Draw a handles at each edit point
         let points = context.simulation.lines.map { [$0.start, $0.end] }.joined()
         
         return points.map {
-            var circle = CircleObject(position: NSPoint(x: $0.x, y: $0.y), radius: 2)
+            var circle = CircleDrawCommand(position: $0, radius: 2)
             circle.color = .magenta
             return .circle(circle)
         }
