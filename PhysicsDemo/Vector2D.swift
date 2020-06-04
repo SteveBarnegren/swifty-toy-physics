@@ -26,12 +26,3 @@ extension Vector2D {
         NSPoint(x: self.x, y: self.y)
     }
 }
-
-extension Vector2D {
-    
-    func adding(x: Double) -> Vector2D {
-        return Vector2D(self.x + x, self.y)
-    }
-    
-}
-

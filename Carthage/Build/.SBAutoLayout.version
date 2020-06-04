@@ -3,7 +3,7 @@
   "Mac" : [
     {
       "name" : "SBAutoLayout",
-      "hash" : "e6053f1a1ee6efd5c2e13740383900a8ca5358f5084e8a9e448823a62a73673c",
+      "hash" : "9c085fd4594a1ac774ddac4e3df7db57dc0731cbe048bb76ae6fc276d6116d43",
       "swiftToolchainVersion" : "5.1.2 (swiftlang-1100.0.278 clang-1100.0.33.9)"
     }
   ]
