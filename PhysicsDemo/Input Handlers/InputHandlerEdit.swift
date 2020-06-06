@@ -33,27 +33,27 @@ class InputHandlerEdit: InputHandler {
     
     // MARK: - Left mouse (move handles)
 
-    override func mouseDown(at position: Vector2D, context: InputHandlerContext) {
+    override func mouseDown(at position: InputPosition, context: InputHandlerContext) {
         
         let closestHandle = getHandles(simulation: context.simulation)
-            .sortedAscendingBy { $0.point.distance(to: position) }
+            .sortedAscendingBy { $0.point.distance(to: position.position) }
             .first
         
         guard let handle = closestHandle else {
             return
         }
         
-        if handle.point.distance(to: position) <= grabDistance {
+        if handle.point.distance(to: position.position) <= grabDistance {
             self.currentHandle = handle
         }
     }
     
-    override func mouseDragged(to position: Vector2D, context: InputHandlerContext) {
-        currentHandle?.setter(position)
+    override func mouseDragged(to position: InputPosition, context: InputHandlerContext) {
+        currentHandle?.setter(position.gridPosition)
     }
     
-    override func mouseUp(at position: Vector2D, context: InputHandlerContext) {
-        currentHandle?.setter(position)
+    override func mouseUp(at position: InputPosition, context: InputHandlerContext) {
+        currentHandle?.setter(position.gridPosition)
         currentHandle = nil
     }
     

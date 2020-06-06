@@ -19,21 +19,21 @@ class InputHandlerFlingBall: InputHandler {
 
     private var fling: Fling?
     
-    override func mouseDown(at position: Vector2D, context: InputHandlerContext) {
+    override func mouseDown(at position: InputPosition, context: InputHandlerContext) {
         
         let ball = Ball(radius: ballRadius)
-        ball.position = position
+        ball.position = position.position
         ball.affectedByPhysics = false
         context.simulation.add(ball: ball)
         
-        fling = Fling(ball: ball, flingPos: position)
+        fling = Fling(ball: ball, flingPos: position.position)
     }
     
-    override func mouseDragged(to position: Vector2D, context: InputHandlerContext) {
-        fling?.ball.position = position
+    override func mouseDragged(to position: InputPosition, context: InputHandlerContext) {
+        fling?.ball.position = position.position
     }
     
-    override func mouseUp(at position: Vector2D, context: InputHandlerContext) {
+    override func mouseUp(at position: InputPosition, context: InputHandlerContext) {
         
         guard let fling = self.fling else {
             return

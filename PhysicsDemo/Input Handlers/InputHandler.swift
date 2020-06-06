@@ -17,6 +17,11 @@ protocol InputHandlerDelegate: class {
     func inputHandlerDidFinish(handler: InputHandler)
 }
 
+struct InputPosition {
+    let position: Vector2D
+    let gridPosition: Vector2D
+}
+
 class InputHandler {
     
     weak var delegate: InputHandlerDelegate?
@@ -24,9 +29,9 @@ class InputHandler {
     var instruction: String? { return nil }
     var uiVariables: [UIVariable] { [] }
     
-    func mouseDown(at position: Vector2D, context: InputHandlerContext) {}
-    func mouseDragged(to position: Vector2D, context: InputHandlerContext) {}
-    func mouseUp(at position: Vector2D, context: InputHandlerContext) {}
+    func mouseDown(at position: InputPosition, context: InputHandlerContext) {}
+    func mouseDragged(to position: InputPosition, context: InputHandlerContext) {}
+    func mouseUp(at position: InputPosition, context: InputHandlerContext) {}
     func rightMouseDown(at position: Vector2D, context: InputHandlerContext) {}
     func rightMouseDragged(to position: Vector2D, context: InputHandlerContext) {}
     func rightMouseUp(at position: Vector2D, context: InputHandlerContext) {}

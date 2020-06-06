@@ -12,22 +12,22 @@ class InputHandlerPlaceBall: InputHandler {
     
     private var ball: Ball?
     
-    override func mouseDown(at position: Vector2D, context: InputHandlerContext) {
+    override func mouseDown(at position: InputPosition, context: InputHandlerContext) {
                 
         let ball = Ball(radius: 5)
-        ball.position = constrainLocation(position)
+        ball.position = constrainLocation(position.position)
         ball.affectedByPhysics = false
         context.simulation.add(ball: ball)
         
         self.ball = ball
     }
     
-    override func mouseDragged(to position: Vector2D, context: InputHandlerContext) {
-        ball?.position = constrainLocation(position)
+    override func mouseDragged(to position: InputPosition, context: InputHandlerContext) {
+        ball?.position = constrainLocation(position.position)
     }
     
-    override func mouseUp(at position: Vector2D, context: InputHandlerContext) {
-        ball?.position = constrainLocation(position)
+    override func mouseUp(at position: InputPosition, context: InputHandlerContext) {
+        ball?.position = constrainLocation(position.position)
         ball?.affectedByPhysics = true
         ball = nil
     }

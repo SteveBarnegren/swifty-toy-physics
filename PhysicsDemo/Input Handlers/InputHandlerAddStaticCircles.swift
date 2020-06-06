@@ -20,19 +20,19 @@ class InputHandlerAddStaticCircles: InputHandler {
 
     // MARK: - Mouse
     
-    override func mouseDown(at position: Vector2D, context: InputHandlerContext) {
+    override func mouseDown(at position: InputPosition, context: InputHandlerContext) {
         drawExampleCircle = false
-        circlePosition = position
+        circlePosition = position.gridPosition
     }
     
-    override func mouseDragged(to position: Vector2D, context: InputHandlerContext) {
+    override func mouseDragged(to position: InputPosition, context: InputHandlerContext) {
     
         if circlePosition != nil {
-            circlePosition = position
+            circlePosition = position.gridPosition
         }
     }
     
-    override func mouseUp(at position: Vector2D, context: InputHandlerContext) {
+    override func mouseUp(at position: InputPosition, context: InputHandlerContext) {
         
         if let circlePosition = circlePosition {
             let physicsCircle = PhysicsCircle(position: circlePosition, radius: radius)

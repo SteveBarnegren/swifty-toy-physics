@@ -22,15 +22,15 @@ class InputHandlerSwitch: InputHandler {
         return handlers[currentIndex()]
     }
     
-    override func mouseDown(at position: Vector2D, context: InputHandlerContext) {
+    override func mouseDown(at position: InputPosition, context: InputHandlerContext) {
         currentHandler.mouseDown(at: position, context: context)
     }
     
-    override func mouseDragged(to position: Vector2D, context: InputHandlerContext) {
+    override func mouseDragged(to position: InputPosition, context: InputHandlerContext) {
         currentHandler.mouseDragged(to: position, context: context)
     }
     
-    override func mouseUp(at position: Vector2D, context: InputHandlerContext) {
+    override func mouseUp(at position: InputPosition, context: InputHandlerContext) {
         currentHandler.mouseUp(at: position, context: context)
     }
 }

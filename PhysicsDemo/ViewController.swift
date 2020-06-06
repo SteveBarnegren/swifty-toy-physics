@@ -192,15 +192,15 @@ extension ViewController: SimulationViewDelegate {
     }
     
     func mouseDown(at location: Vector2D) {
-        inputHandler.mouseDown(at: location, context: inputHandlerContext)
+        inputHandler.mouseDown(at: inputPosition(for: location), context: inputHandlerContext)
     }
     
     func mouseDragged(to location: Vector2D) {
-        inputHandler.mouseDragged(to: location, context: inputHandlerContext)
+        inputHandler.mouseDragged(to: inputPosition(for: location), context: inputHandlerContext)
     }
     
     func mouseUp(at location: Vector2D) {
-        inputHandler.mouseUp(at: location, context: inputHandlerContext)
+        inputHandler.mouseUp(at: inputPosition(for: location), context: inputHandlerContext)
     }
     
     func rightMouseDown(at location: Vector2D) {
@@ -213,6 +213,20 @@ extension ViewController: SimulationViewDelegate {
     
     func rightMouseUp(at location: Vector2D) {
         inputHandler.rightMouseUp(at: location, context: inputHandlerContext)
+    }
+    
+    private func inputPosition(for position: Vector2D) -> InputPosition {
+        let gridPosition: Vector2D
+        
+        if GridManager.shared.gridEnabled {
+            gridPosition = GridManager.shared.gridPosition(forPosition: position,
+                                                           simulationSize: simulationSize)
+        } else {
+            gridPosition = position
+        }
+        
+        return InputPosition(position: position,
+                             gridPosition: gridPosition)
     }
 }
 

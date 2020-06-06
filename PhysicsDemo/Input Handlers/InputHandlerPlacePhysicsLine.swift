@@ -23,15 +23,15 @@ class InputHandlerPlacePhysicsLine: InputHandler {
     
     // MARK: - Mouse handling
     
-    override func mouseDown(at position: Vector2D, context: InputHandlerContext) {
-        self.state = State(start: position, end: position)
+    override func mouseDown(at position: InputPosition, context: InputHandlerContext) {
+        self.state = State(start: position.gridPosition, end: position.gridPosition)
     }
     
-    override func mouseDragged(to position: Vector2D, context: InputHandlerContext) {
-        self.state?.end = position
+    override func mouseDragged(to position: InputPosition, context: InputHandlerContext) {
+        self.state?.end = position.gridPosition
     }
     
-    override func mouseUp(at position: Vector2D, context: InputHandlerContext) {
+    override func mouseUp(at position: InputPosition, context: InputHandlerContext) {
         guard let state = self.state else {
             return
         }
