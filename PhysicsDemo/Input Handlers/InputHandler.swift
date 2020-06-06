@@ -22,13 +22,39 @@ struct InputPosition {
     let gridPosition: Vector2D
 }
 
+
+
 class InputHandler {
+    
+    private struct MouseEvent {
+        let position: InputPosition
+        let context: InputHandlerContext
+    }
+    
+    private var disableGrid = false
+    
+    private var lastLeftMouseEvent: MouseEvent?
     
     weak var delegate: InputHandlerDelegate?
     
     var instruction: String? { return nil }
     var uiVariables: [UIVariable] { [] }
     
+    // Mouse methods for base class to process
+    func processMouseDown(at position: InputPosition, context: InputHandlerContext) {
+        mouseDown(at: processedInputPosition(position), context: context)
+        lastLeftMouseEvent = MouseEvent(position: position, context: context)
+    }
+    func processMouseDragged(to position: InputPosition, context: InputHandlerContext) {
+        mouseDragged(to: processedInputPosition(position), context: context)
+        lastLeftMouseEvent = MouseEvent(position: position, context: context)
+    }
+    func processMouseUp(at position: InputPosition, context: InputHandlerContext) {
+        mouseUp(at: processedInputPosition(position), context: context)
+        lastLeftMouseEvent = nil
+    }
+
+    // Mouse methods for subclasses to override
     func mouseDown(at position: InputPosition, context: InputHandlerContext) {}
     func mouseDragged(to position: InputPosition, context: InputHandlerContext) {}
     func mouseUp(at position: InputPosition, context: InputHandlerContext) {}
@@ -37,6 +63,35 @@ class InputHandler {
     func rightMouseUp(at position: Vector2D, context: InputHandlerContext) {}
     
     func keyDown(key: KeyboardKey) {}
+    func modifierKeysChanged(keys: [ModifierKey]) {
+        
+        if keys.contains(.control) {
+            setGridDisabled(gridDisabled: true)
+        } else {
+            setGridDisabled(gridDisabled: false)
+        }
+    }
     
     func objectsToRender(context: InputHandlerContext) -> [DrawCommand] { [] }
+    
+    // MARK: - Grid defeat
+    
+    private func setGridDisabled(gridDisabled: Bool) {
+        if gridDisabled == self.disableGrid { return }
+        
+        self.disableGrid = gridDisabled
+        if let mouseEvent = lastLeftMouseEvent {
+            processMouseDragged(to: mouseEvent.position, context: mouseEvent.context)
+        }
+    }
+    
+    // MARK: - Helpers
+    
+    private func processedInputPosition(_ position: InputPosition) -> InputPosition {
+        if disableGrid {
+            return InputPosition(position: position.position, gridPosition: position.position)
+        } else {
+            return position
+        }
+    }
 }

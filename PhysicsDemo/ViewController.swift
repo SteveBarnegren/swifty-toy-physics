@@ -121,6 +121,29 @@ class ViewController: NSViewController {
         }
     }
     
+    override func flagsChanged(with event: NSEvent) {
+        
+        var modifierKeys = [ModifierKey]()
+        
+        if event.modifierFlags.contains(.control) {
+            modifierKeys.append(.control)
+        }
+        
+        if event.modifierFlags.contains(.command) {
+            modifierKeys.append(.command)
+        }
+        
+        if event.modifierFlags.contains(.option) {
+            modifierKeys.append(.option)
+        }
+        
+        if event.modifierFlags.contains(.shift) {
+            modifierKeys.append(.shift)
+        }
+        
+        inputHandler.modifierKeysChanged(keys: modifierKeys)
+    }
+    
     // MARK: - Input Handlers
     
     private func pushInputHandler(_ handler: InputHandler) {
@@ -192,15 +215,15 @@ extension ViewController: SimulationViewDelegate {
     }
     
     func mouseDown(at location: Vector2D) {
-        inputHandler.mouseDown(at: inputPosition(for: location), context: inputHandlerContext)
+        inputHandler.processMouseDown(at: inputPosition(for: location), context: inputHandlerContext)
     }
     
     func mouseDragged(to location: Vector2D) {
-        inputHandler.mouseDragged(to: inputPosition(for: location), context: inputHandlerContext)
+        inputHandler.processMouseDragged(to: inputPosition(for: location), context: inputHandlerContext)
     }
     
     func mouseUp(at location: Vector2D) {
-        inputHandler.mouseUp(at: inputPosition(for: location), context: inputHandlerContext)
+        inputHandler.processMouseUp(at: inputPosition(for: location), context: inputHandlerContext)
     }
     
     func rightMouseDown(at location: Vector2D) {

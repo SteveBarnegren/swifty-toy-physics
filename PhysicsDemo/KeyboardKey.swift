@@ -12,13 +12,19 @@ enum KeyboardKey {
     case esc
     
     init?(keyCode: UInt16) {
-        
         switch keyCode {
         case 53: self = .esc
         default:
             return nil
         }
     }
+}
+
+enum ModifierKey {
+    case control
+    case command
+    case option
+    case shift
 }
 
 

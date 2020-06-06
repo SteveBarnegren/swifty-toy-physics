@@ -11,6 +11,7 @@ import AppKit
 
 protocol KeyHandler: class {
     func keyDown(with event: NSEvent)
+    func flagsChanged(with event: NSEvent)
     func cancelOperation(_ sender: Any?)
 }
 
@@ -26,5 +27,9 @@ class MainView: NSView {
     
     override func keyDown(with event: NSEvent) {
         keyHandler?.keyDown(with: event)
+    }
+    
+    override func flagsChanged(with event: NSEvent) {
+        keyHandler?.flagsChanged(with: event)
     }
 }

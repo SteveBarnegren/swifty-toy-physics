@@ -154,6 +154,8 @@ class InputHandlerEdit: InputHandler {
         }
     }
     
+    
+    
     private func escapePressed() {
         if currentHandle == nil {
             delegate?.inputHandlerDidFinish(handler: self)
