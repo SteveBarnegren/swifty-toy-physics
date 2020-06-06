@@ -25,6 +25,9 @@
 		676C40872488263600D17BD8 /* UIVariableViewDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676C40862488263600D17BD8 /* UIVariableViewDouble.swift */; };
 		678F0EE7248972E7002EC159 /* DrawCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678F0EE6248972E7002EC159 /* DrawCommand.swift */; };
 		678F0EE924898E2F002EC159 /* PhysicsCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 678F0EE824898E2F002EC159 /* PhysicsCircle.swift */; };
+		679314F1248BD3F300C4C202 /* GridPanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679314EF248BD3F300C4C202 /* GridPanelViewController.swift */; };
+		679314F2248BD3F300C4C202 /* GridPanelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 679314F0248BD3F300C4C202 /* GridPanelViewController.xib */; };
+		679314F4248BD77700C4C202 /* GridManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679314F3248BD77700C4C202 /* GridManager.swift */; };
 		67A9FA142483F68700116CC5 /* VectorMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A9FA132483F68700116CC5 /* VectorMath.swift */; };
 		67B234192401911100876EAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B234182401911100876EAC /* AppDelegate.swift */; };
 		67B2341B2401911100876EAC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B2341A2401911100876EAC /* ViewController.swift */; };
@@ -87,6 +90,9 @@
 		676C40862488263600D17BD8 /* UIVariableViewDouble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIVariableViewDouble.swift; sourceTree = "<group>"; };
 		678F0EE6248972E7002EC159 /* DrawCommand.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawCommand.swift; sourceTree = "<group>"; };
 		678F0EE824898E2F002EC159 /* PhysicsCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsCircle.swift; sourceTree = "<group>"; };
+		679314EF248BD3F300C4C202 /* GridPanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridPanelViewController.swift; sourceTree = "<group>"; };
+		679314F0248BD3F300C4C202 /* GridPanelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GridPanelViewController.xib; sourceTree = "<group>"; };
+		679314F3248BD77700C4C202 /* GridManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridManager.swift; sourceTree = "<group>"; };
 		67A5C12D2488345D0065C9FF /* SBAutoLayout_macOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SBAutoLayout_macOS.framework; path = Carthage/Build/Mac/SBAutoLayout_macOS.framework; sourceTree = "<group>"; };
 		67A9FA132483F68700116CC5 /* VectorMath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VectorMath.swift; sourceTree = "<group>"; };
 		67B234152401911100876EAC /* PhysicsDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhysicsDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -183,6 +189,9 @@
 				67B234362401965500876EAC /* Physics System */,
 				67B234182401911100876EAC /* AppDelegate.swift */,
 				67B2341A2401911100876EAC /* ViewController.swift */,
+				679314F3248BD77700C4C202 /* GridManager.swift */,
+				679314EF248BD3F300C4C202 /* GridPanelViewController.swift */,
+				679314F0248BD3F300C4C202 /* GridPanelViewController.xib */,
 				673D37DE24031EEF00453684 /* KeyboardKey.swift */,
 				673D37DC2403126E00453684 /* MainView.swift */,
 				67B2344A2401EC6400876EAC /* Input Handlers */,
@@ -325,6 +334,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				679314F2248BD3F300C4C202 /* GridPanelViewController.xib in Resources */,
 				67B2341D2401911200876EAC /* Assets.xcassets in Resources */,
 				67B234202401911200876EAC /* Main.storyboard in Resources */,
 			);
@@ -353,6 +363,7 @@
 				673D37E32405C68800453684 /* Array+Sorting.swift in Sources */,
 				67B234432401973800876EAC /* Double+Extensions.swift in Sources */,
 				67B2344524019BA900876EAC /* DisplayLink.swift in Sources */,
+				679314F4248BD77700C4C202 /* GridManager.swift in Sources */,
 				673D37DB2403085A00453684 /* InputHandlerSwitch.swift in Sources */,
 				67B2343E240196B600876EAC /* Ball.swift in Sources */,
 				673D37E12405C09F00453684 /* InputHandlerEdit.swift in Sources */,
@@ -363,6 +374,7 @@
 				67B2341B2401911100876EAC /* ViewController.swift in Sources */,
 				678F0EE924898E2F002EC159 /* PhysicsCircle.swift in Sources */,
 				67B234382401966B00876EAC /* Vector2D.swift in Sources */,
+				679314F1248BD3F300C4C202 /* GridPanelViewController.swift in Sources */,
 				67B234192401911100876EAC /* AppDelegate.swift in Sources */,
 				67B2343C240196A000876EAC /* Boundary.swift in Sources */,
 				673D37DF24031EEF00453684 /* KeyboardKey.swift in Sources */,

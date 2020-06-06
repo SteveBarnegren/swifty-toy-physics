@@ -1,9 +1,9 @@
 {
-  "commitish" : "b1436f7ec2753b562ec10c45600bf9b014480761",
+  "commitish" : "263d29773c535a4a72787eea00d7f4311922f529",
   "Mac" : [
     {
       "name" : "SBSwiftUtils",
-      "hash" : "db889e4c069295553d3eb3410ddb16f2a6fe5c78d94162d74a6e558610ea28e8",
+      "hash" : "b06759509a40f8067da44765603de2f76521521549fa29be2df62d80ea1915f3",
       "swiftToolchainVersion" : "5.1.2 (swiftlang-1100.0.278 clang-1100.0.33.9)"
     }
   ]

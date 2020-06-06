@@ -17,6 +17,7 @@ class ViewController: NSViewController {
     @IBOutlet private var rightPanelContainerView: NSView!
     @IBOutlet private var placementStyleSegmentedControl: NSSegmentedControl!
     @IBOutlet private var instructionLabel: NSTextField!
+    @IBOutlet private var gridPanelContainerView: NSView!
     
     private var variablesPanelView: VariablesPanelView?
     
@@ -34,6 +35,12 @@ class ViewController: NSViewController {
         
         simulationView.delegate = self
         (view as! MainView).keyHandler = self
+        
+        // Add the grid panel
+        let gridPanel = GridPanelViewController()
+        gridPanelContainerView.addSubview(gridPanel.view)
+        addChild(gridPanel)
+        gridPanel.view.pinToSuperviewEdges()
         
         // Create physics simulation
         simulation = PhysicsSimulation()

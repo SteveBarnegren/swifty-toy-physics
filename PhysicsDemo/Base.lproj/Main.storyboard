@@ -729,10 +729,10 @@
                                 </constraints>
                             </customView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="amn-N5-L65">
-                                <rect key="frame" x="663" y="20" width="150" height="416"/>
+                                <rect key="frame" x="663" y="136" width="150" height="300"/>
                                 <subviews>
                                     <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vTu-0F-pPZ">
-                                        <rect key="frame" x="0.0" y="272" width="150" height="144"/>
+                                        <rect key="frame" x="0.0" y="156" width="150" height="144"/>
                                         <subviews>
                                             <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pg9-L7-Uij">
                                                 <rect key="frame" x="3" y="121" width="145" height="24"/>
@@ -799,18 +799,25 @@
                                     <constraint firstAttribute="trailing" secondItem="vTu-0F-pPZ" secondAttribute="trailing" id="Why-ee-ejL"/>
                                 </constraints>
                             </customView>
+                            <customView placeholderIntrinsicWidth="150" placeholderIntrinsicHeight="96" translatesAutoresizingMaskIntoConstraints="NO" id="8Ge-eB-9eF">
+                                <rect key="frame" x="663" y="20" width="150" height="96"/>
+                            </customView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="8Ge-eB-9eF" firstAttribute="bottom" secondItem="OxH-LR-f9k" secondAttribute="bottom" id="2xa-Ex-Twe"/>
+                            <constraint firstItem="8Ge-eB-9eF" firstAttribute="trailing" secondItem="amn-N5-L65" secondAttribute="trailing" id="Bhd-uV-2Nw"/>
                             <constraint firstItem="amn-N5-L65" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="FJi-nG-Iog"/>
                             <constraint firstAttribute="bottom" secondItem="OxH-LR-f9k" secondAttribute="bottom" constant="20" id="IVf-sZ-gFA"/>
-                            <constraint firstAttribute="bottom" secondItem="amn-N5-L65" secondAttribute="bottom" constant="20" id="OwB-8l-SPV"/>
                             <constraint firstItem="OxH-LR-f9k" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="aoK-hg-c1l"/>
                             <constraint firstItem="OxH-LR-f9k" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="d7A-kf-0o9"/>
                             <constraint firstAttribute="trailing" secondItem="amn-N5-L65" secondAttribute="trailing" constant="20" id="f49-tb-ucG"/>
+                            <constraint firstItem="8Ge-eB-9eF" firstAttribute="top" secondItem="amn-N5-L65" secondAttribute="bottom" constant="20" id="uED-9A-8PS"/>
                             <constraint firstItem="amn-N5-L65" firstAttribute="leading" secondItem="OxH-LR-f9k" secondAttribute="trailing" constant="20" id="xhN-Ji-bXf"/>
+                            <constraint firstItem="8Ge-eB-9eF" firstAttribute="leading" secondItem="amn-N5-L65" secondAttribute="leading" id="zKG-75-8CW"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="gridPanelContainerView" destination="8Ge-eB-9eF" id="FEI-VE-ulE"/>
                         <outlet property="instructionLabel" destination="gTf-Cq-QUb" id="F1l-3U-39P"/>
                         <outlet property="placementStyleSegmentedControl" destination="pg9-L7-Uij" id="1UP-9i-IjG"/>
                         <outlet property="rightPanelContainerView" destination="amn-N5-L65" id="XuD-eU-dO7"/>

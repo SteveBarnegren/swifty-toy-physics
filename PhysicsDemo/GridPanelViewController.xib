@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15505" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15505"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="GridPanelViewController" customModule="PhysicsDemo" customModuleProvider="target">
+            <connections>
+                <outlet property="divisionsReadoutTextField" destination="1qs-Xr-PaQ" id="4FK-b9-c0h"/>
+                <outlet property="toggleGridCheckbox" destination="FaB-4c-pch" id="30m-NL-egM"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="185"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SBW-Jc-9b0">
+                    <rect key="frame" x="225" y="169" width="30" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Grid" id="hlB-5R-iN0">
+                        <font key="font" usesAppearanceFont="YES"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1qs-Xr-PaQ">
+                    <rect key="frame" x="200" y="143" width="80" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Divisions: 10" id="l3M-dS-cuv">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <stackView distribution="fillEqually" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xqd-z6-ruA">
+                    <rect key="frame" x="201" y="118" width="78" height="21"/>
+                    <subviews>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lqR-Sc-cXY">
+                            <rect key="frame" x="-6" y="-7" width="47" height="32"/>
+                            <buttonCell key="cell" type="push" title="-" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="pHf-1y-53R">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="miniSystem"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="decreaseDivisionsButtonPressedWithSender:" target="-2" id="Bmd-7S-OCA"/>
+                            </connections>
+                        </button>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7H5-rd-APV">
+                            <rect key="frame" x="37" y="-7" width="47" height="32"/>
+                            <buttonCell key="cell" type="push" title="+" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="tr7-TQ-tjS">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="miniSystem"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="increaseDivisionsButtonPressedWithSender:" target="-2" id="rDI-W6-OSE"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FaB-4c-pch">
+                    <rect key="frame" x="460" y="168" width="22" height="18"/>
+                    <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="iIE-xg-bWM">
+                        <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="toggleGridCheckBoxPressedWithSender:" target="-2" id="f5Q-6O-otM"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="1qs-Xr-PaQ" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="1Ha-dx-3uv"/>
+                <constraint firstItem="FaB-4c-pch" firstAttribute="centerY" secondItem="SBW-Jc-9b0" secondAttribute="centerY" id="KdG-Ts-RVB"/>
+                <constraint firstItem="xqd-z6-ruA" firstAttribute="top" secondItem="1qs-Xr-PaQ" secondAttribute="bottom" constant="4" id="NeH-R5-uHr"/>
+                <constraint firstItem="SBW-Jc-9b0" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="TjQ-dA-WTo"/>
+                <constraint firstItem="xqd-z6-ruA" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="Wby-hY-itd"/>
+                <constraint firstAttribute="bottom" secondItem="xqd-z6-ruA" secondAttribute="bottom" priority="249" id="YR2-Ly-QgA"/>
+                <constraint firstItem="SBW-Jc-9b0" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="iiQ-Sb-cfd"/>
+                <constraint firstItem="1qs-Xr-PaQ" firstAttribute="top" secondItem="SBW-Jc-9b0" secondAttribute="bottom" constant="10" id="v4L-yd-plD"/>
+                <constraint firstAttribute="trailing" secondItem="FaB-4c-pch" secondAttribute="trailing" id="xTG-h5-MJF"/>
+            </constraints>
+            <point key="canvasLocation" x="140" y="238.5"/>
+        </customView>
+    </objects>
+</document>

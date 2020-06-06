@@ -40,6 +40,7 @@ class SimulationView: NSView {
         objects += simulation.balls.map(makeObject)
         objects += simulation.circles.map(makeObject)
         objects += additionalObjects
+        objects += GridManager.shared.drawCommands(forSimulationSize: simulationSize)
         
         needsDisplay = true
     }
