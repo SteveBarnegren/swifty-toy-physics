@@ -715,7 +715,7 @@
                                 <subviews>
                                     <textField horizontalHuggingPriority="1" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="gTf-Cq-QUb">
                                         <rect key="frame" x="18" y="394" width="587" height="16"/>
-                                        <textFieldCell key="cell" selectable="YES" alignment="center" title="Instruction" id="rny-FT-KLN">
+                                        <textFieldCell key="cell" enabled="NO" alignment="center" title="Instruction" id="rny-FT-KLN">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
