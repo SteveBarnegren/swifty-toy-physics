@@ -56,7 +56,7 @@ class PhysicsSimulation {
     
     func step(dt: Double) {
         
-        for ball in balls where ball.affectedByPhysics {
+        for (ball, otherBalls) in balls.eachWithRemaining() where ball.affectedByPhysics {
             // Add gravity
             ball.velocity.y += gravity
             
@@ -76,8 +76,51 @@ class PhysicsSimulation {
                 circles.forEach { resolveCollision(ball: ball, previousBallPos: prevPos, physicsCircle: $0) }
             }
             
+            // Resolve ball collisions
+            for otherBall in otherBalls {
+                resolveCollision(ball1: ball, ball2: otherBall)
+            }
+            
             ball.previousPosition = ball.position
         }
+    }
+    
+    // MARK: - Ball Collisions
+        
+    private func resolveCollision(ball1: Ball, ball2: Ball) {
+        
+        let ball1Mass = 1.0
+        let ball2Mass = 1.0
+        
+        let distance = ball1.position.distance(to: ball2.position)
+        if distance > ball1.radius + ball2.radius {
+            return
+        }
+        
+        // Get the normal and tangent vectors
+        let normal = (ball2.position - ball1.position).normalized()
+        let tangent = self.normals(for: normal).second
+        
+        // Move the balls apart so that they no longer overlap
+        let contactPoint = (ball1.position + ball2.position) / 2
+        ball1.position = contactPoint - normal.with(magnitude: ball1.radius)
+        ball2.position = contactPoint + normal.with(magnitude: ball2.radius)
+        
+        
+        let ball1TangentDp = tangent.dotProduct(with: ball1.velocity)
+        let ball2TangentDp = tangent.dotProduct(with: ball2.velocity)
+        
+        let ball1NormalDp = normal.dotProduct(with: ball1.velocity)
+        let ball2NormalDp = normal.dotProduct(with: ball2.velocity)
+        
+        // Conservation of momentum
+        let m1 = (ball1NormalDp * (ball1Mass - ball2Mass) + 2.0 * ball2Mass * ball2NormalDp) / (ball1Mass + ball2Mass)
+        let m2 = (ball2NormalDp * (ball2Mass - ball1Mass) + 2.0 * ball1Mass * ball1NormalDp) / (ball1Mass + ball2Mass)
+
+        
+        ball1.velocity = tangent * ball1TangentDp + normal * m1
+        ball2.velocity = tangent * ball2TangentDp + normal * m2
+        
     }
     
     // MARK: - Boundary Collisions
