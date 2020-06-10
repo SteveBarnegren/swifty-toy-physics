@@ -14,7 +14,7 @@ class PhysicsCircle {
     var radius: Double
     var elasticity: Double
     
-    init(position: Vector2D, radius: Double, elasticity: Double = 0.7) {
+    init(position: Vector2D, radius: Double, elasticity: Double = 1.0) {
         self.position = position
         self.radius = radius
         self.elasticity = elasticity

@@ -78,7 +78,7 @@ class PhysicsSimulation {
             
             // Resolve ball collisions
             for otherBall in otherBalls {
-                resolveCollision(ball1: ball, ball2: otherBall)
+                //resolveCollision(ball1: ball, ball2: otherBall)
             }
             
             ball.previousPosition = ball.position
@@ -130,12 +130,12 @@ class PhysicsSimulation {
         case .maxX:
             if ball.maxX > boundary.value {
                 ball.position.x = boundary.value - ball.radius
-                ball.velocity.x = -abs(ball.velocity.x) * boundary.elasticity
+                ball.velocity.x = -abs(ball.velocity.x) * boundary.elasticity * ball.elasticity
             }
         case .minY:
             if ball.minY < boundary.value {
                 ball.position.y = boundary.value + ball.radius
-                ball.velocity.y = abs(ball.velocity.y) * boundary.elasticity
+                ball.velocity.y = abs(ball.velocity.y) * boundary.elasticity * ball.elasticity
             }
         case .maxY:
             fatalError()
@@ -152,11 +152,17 @@ class PhysicsSimulation {
         
         let ballLine = LineSegment(start: previousBallPos, end: ball.position)
         let collidingLine = LineSegment(start: line.start, end: line.end)
-        updateBallPositionAndVelocity(line: collidingLine, ballLine: ballLine, ball: ball, elasticity: line.elasticity)
+        updateBallPositionAndVelocity(line: collidingLine,
+                                      ballLine: ballLine,
+                                      ball: ball,
+                                      elasticity: ball.elasticity)
         
         for lineEnd in [line.start, line.end] {
             let circle = Circle(center: lineEnd, radius: ball.radius)
-            resolveCollision(ball: ball, previousBallPos: previousBallPos, circle: circle, elasticity: line.elasticity)
+            resolveCollision(ball: ball,
+                             previousBallPos: previousBallPos,
+                             circle: circle,
+                             elasticity: ball.elasticity)
         }
     }
     
@@ -210,7 +216,7 @@ class PhysicsSimulation {
     
     private func resolveCollision(ball: Ball, previousBallPos: Vector2D, physicsCircle: PhysicsCircle) {
         let circle = Circle(center: physicsCircle.position, radius: physicsCircle.radius + ball.radius)
-        resolveCollision(ball: ball, previousBallPos: previousBallPos, circle: circle, elasticity: physicsCircle.elasticity)
+        resolveCollision(ball: ball, previousBallPos: previousBallPos, circle: circle, elasticity: ball.elasticity)
     }
     
     private func resolveCollision(ball: Ball, previousBallPos: Vector2D, circle: Circle, elasticity: Double) {

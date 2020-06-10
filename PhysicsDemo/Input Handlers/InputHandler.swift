@@ -22,8 +22,6 @@ struct InputPosition {
     let gridPosition: Vector2D
 }
 
-
-
 class InputHandler {
     
     private struct MouseEvent {

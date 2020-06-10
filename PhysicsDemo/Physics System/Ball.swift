@@ -15,6 +15,7 @@ class Ball {
     var velocity = Vector2D.zero
     var radius: Double
     var affectedByPhysics = false
+    var elasticity = 0.7
     
     var minY: Double { position.y - radius }
     var maxY: Double { position.y + radius }

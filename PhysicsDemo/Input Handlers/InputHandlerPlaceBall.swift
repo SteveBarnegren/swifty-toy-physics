@@ -10,11 +10,13 @@ import Foundation
 
 protocol BallPlacementInputHandler: InputHandler {
     var ballRadius: Double { get set }
+    var ballElasticity: Double { get set }
 }
 
 class InputHandlerPlaceBall: InputHandler, BallPlacementInputHandler {
-    
+        
     var ballRadius = 5.0
+    var ballElasticity = 0.7
     
     private var ball: Ball?
     
@@ -35,6 +37,7 @@ class InputHandlerPlaceBall: InputHandler, BallPlacementInputHandler {
     override func mouseUp(at position: InputPosition, context: InputHandlerContext) {
         ball?.position = constrainLocation(position.position)
         ball?.affectedByPhysics = true
+        ball?.elasticity = ballElasticity
         ball = nil
     }
     

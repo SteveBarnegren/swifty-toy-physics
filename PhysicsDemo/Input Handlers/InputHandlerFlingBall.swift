@@ -18,6 +18,7 @@ private struct Fling {
 class InputHandlerFlingBall: InputHandler, BallPlacementInputHandler {
     
     var ballRadius = 5.0
+    var ballElasticity = 0.7
     
     private var fling: Fling?
     
@@ -46,6 +47,7 @@ class InputHandlerFlingBall: InputHandler, BallPlacementInputHandler {
         
         fling.ball.velocity.x += xOffset * flingStrength
         fling.ball.velocity.y += yOffset * flingStrength
+        fling.ball.elasticity = ballElasticity
         fling.ball.affectedByPhysics = true
 
         self.fling = nil

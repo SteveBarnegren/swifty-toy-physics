@@ -806,6 +806,35 @@
                                             <constraint firstItem="SDT-3J-jEH" firstAttribute="top" secondItem="Djk-4H-HbX" secondAttribute="top" id="hAh-eg-25U"/>
                                         </constraints>
                                     </customView>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="jzr-Rt-vQD">
+                                        <rect key="frame" x="0.0" y="187" width="150" height="41"/>
+                                        <subviews>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gTA-QP-7FJ">
+                                                <rect key="frame" x="-2" y="25" width="154" height="16"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Elasticity" id="1d9-jz-2Ki">
+                                                    <font key="font" usesAppearanceFont="YES"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Nqe-fC-KbB">
+                                                <rect key="frame" x="-2" y="4" width="154" height="19"/>
+                                                <sliderCell key="cell" state="on" alignment="left" maxValue="1" doubleValue="0.69999999999999996" tickMarkPosition="above" sliderType="linear" id="JlS-4l-G1F"/>
+                                                <connections>
+                                                    <action selector="elasticitySliderValueChangedWithSender:" target="XfG-lQ-9wD" id="T9R-Dk-dRV"/>
+                                                </connections>
+                                            </slider>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="Nqe-fC-KbB" secondAttribute="trailing" id="C0L-bR-YBI"/>
+                                            <constraint firstItem="gTA-QP-7FJ" firstAttribute="top" secondItem="jzr-Rt-vQD" secondAttribute="top" id="OaU-ad-Rn5"/>
+                                            <constraint firstItem="gTA-QP-7FJ" firstAttribute="leading" secondItem="jzr-Rt-vQD" secondAttribute="leading" id="STe-bb-jG4"/>
+                                            <constraint firstAttribute="trailing" secondItem="gTA-QP-7FJ" secondAttribute="trailing" id="hwk-Fn-idn"/>
+                                            <constraint firstItem="Nqe-fC-KbB" firstAttribute="top" secondItem="gTA-QP-7FJ" secondAttribute="bottom" constant="4" id="klI-yz-Z9t"/>
+                                            <constraint firstItem="Nqe-fC-KbB" firstAttribute="leading" secondItem="jzr-Rt-vQD" secondAttribute="leading" id="lPS-cz-MV3"/>
+                                            <constraint firstAttribute="bottom" secondItem="Nqe-fC-KbB" secondAttribute="bottom" constant="6" id="p52-hF-pNr"/>
+                                        </constraints>
+                                    </customView>
                                 </subviews>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="dBb-7w-M6v" secondAttribute="bottom" id="7HG-uV-0jg"/>
@@ -819,7 +848,10 @@
                                     <constraint firstItem="FUO-rN-e7B" firstAttribute="centerX" secondItem="amn-N5-L65" secondAttribute="centerX" id="TPd-pp-hI8"/>
                                     <constraint firstAttribute="trailing" secondItem="Djk-4H-HbX" secondAttribute="trailing" id="Vlc-BS-2BA"/>
                                     <constraint firstItem="dBb-7w-M6v" firstAttribute="top" secondItem="9gD-2B-zok" secondAttribute="bottom" constant="16" id="Yst-KP-gs2"/>
+                                    <constraint firstItem="jzr-Rt-vQD" firstAttribute="top" secondItem="Djk-4H-HbX" secondAttribute="bottom" constant="2" id="deE-uB-PwG"/>
                                     <constraint firstItem="dBb-7w-M6v" firstAttribute="centerX" secondItem="amn-N5-L65" secondAttribute="centerX" id="jem-vK-doU"/>
+                                    <constraint firstAttribute="trailing" secondItem="jzr-Rt-vQD" secondAttribute="trailing" id="tER-GU-mT6"/>
+                                    <constraint firstItem="jzr-Rt-vQD" firstAttribute="leading" secondItem="amn-N5-L65" secondAttribute="leading" id="vQo-pc-8Qo"/>
                                 </constraints>
                             </customView>
                         </subviews>

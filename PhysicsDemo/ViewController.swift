@@ -118,6 +118,11 @@ class ViewController: NSViewController {
         ballPlacementHandlers.forEach { $0.ballRadius = sender.doubleValue }
     }
     
+    @IBAction private func elasticitySliderValueChanged(sender: NSSlider) {
+        print("Elasticity: \(sender.doubleValue)")
+        ballPlacementHandlers.forEach { $0.ballElasticity = sender.doubleValue }
+    }
+    
     // MARK: - Key handling
     
     override func keyDown(with event: NSEvent) {

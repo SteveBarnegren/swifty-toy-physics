@@ -11,7 +11,7 @@ import Foundation
 class PhysicsLine {
     var start: Vector2D
     var end: Vector2D
-    var elasticity = 0.9
+    var elasticity = 1.0
     
     init(start: Vector2D, end: Vector2D) {
         self.start = start
