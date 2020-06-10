@@ -728,79 +728,99 @@
                                     <constraint firstAttribute="trailing" secondItem="gTf-Cq-QUb" secondAttribute="trailing" constant="20" id="lbB-U1-Okp"/>
                                 </constraints>
                             </customView>
+                            <customView placeholderIntrinsicWidth="150" placeholderIntrinsicHeight="96" translatesAutoresizingMaskIntoConstraints="NO" id="8Ge-eB-9eF">
+                                <rect key="frame" x="663" y="20" width="150" height="96"/>
+                            </customView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="amn-N5-L65">
                                 <rect key="frame" x="663" y="136" width="150" height="300"/>
                                 <subviews>
-                                    <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="20" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vTu-0F-pPZ">
-                                        <rect key="frame" x="0.0" y="156" width="150" height="144"/>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dBb-7w-M6v">
+                                        <rect key="frame" x="43" y="-7" width="64" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Edit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OvT-mh-PTA">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="editButtonPressedWithSender:" target="XfG-lQ-9wD" id="385-Be-3ZS"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9gD-2B-zok">
+                                        <rect key="frame" x="20" y="30" width="110" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Add Circles" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="37h-e1-Uzi">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="addStaticCircleButtonPressedWithSender:" target="XfG-lQ-9wD" id="Cgg-zK-iWE"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FUO-rN-e7B">
+                                        <rect key="frame" x="25" y="67" width="100" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Add Lines" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6U8-3V-Upr">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="addLineButtonPressedWithSender:" target="XfG-lQ-9wD" id="eiV-FC-y5y"/>
+                                        </connections>
+                                    </button>
+                                    <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pg9-L7-Uij">
+                                        <rect key="frame" x="3" y="277" width="145" height="24"/>
+                                        <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="YIG-Xy-Qyw">
+                                            <font key="font" metaFont="system"/>
+                                            <segments>
+                                                <segment label="Drop" width="69" selected="YES"/>
+                                                <segment label="Fling" width="69" tag="1"/>
+                                            </segments>
+                                        </segmentedCell>
+                                        <connections>
+                                            <action selector="placementStyleSegmentedControlChangedWithSender:" target="XfG-lQ-9wD" id="Ce8-S7-WEa"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Djk-4H-HbX">
+                                        <rect key="frame" x="0.0" y="230" width="150" height="41"/>
                                         <subviews>
-                                            <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pg9-L7-Uij">
-                                                <rect key="frame" x="3" y="121" width="145" height="24"/>
-                                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="YIG-Xy-Qyw">
-                                                    <font key="font" metaFont="system"/>
-                                                    <segments>
-                                                        <segment label="Drop" width="69" selected="YES"/>
-                                                        <segment label="Fling" width="69" tag="1"/>
-                                                    </segments>
-                                                </segmentedCell>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SDT-3J-jEH">
+                                                <rect key="frame" x="-2" y="25" width="154" height="16"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Ball size" id="Fgt-PH-nue">
+                                                    <font key="font" usesAppearanceFont="YES"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZnJ-X5-L0w">
+                                                <rect key="frame" x="-2" y="4" width="154" height="19"/>
+                                                <sliderCell key="cell" state="on" alignment="left" minValue="2" maxValue="100" doubleValue="5" tickMarkPosition="above" sliderType="linear" id="uDA-l7-xjO"/>
                                                 <connections>
-                                                    <action selector="placementStyleSegmentedControlChangedWithSender:" target="XfG-lQ-9wD" id="Ce8-S7-WEa"/>
+                                                    <action selector="ballRadiusSliderValueChangedWithSender:" target="XfG-lQ-9wD" id="ebv-EQ-REi"/>
                                                 </connections>
-                                            </segmentedControl>
-                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FUO-rN-e7B">
-                                                <rect key="frame" x="25" y="75" width="100" height="32"/>
-                                                <buttonCell key="cell" type="push" title="Add Lines" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6U8-3V-Upr">
-                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="system"/>
-                                                </buttonCell>
-                                                <connections>
-                                                    <action selector="addLineButtonPressedWithSender:" target="XfG-lQ-9wD" id="eiV-FC-y5y"/>
-                                                </connections>
-                                            </button>
-                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9gD-2B-zok">
-                                                <rect key="frame" x="20" y="34" width="110" height="32"/>
-                                                <buttonCell key="cell" type="push" title="Add Circles" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="37h-e1-Uzi">
-                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="system"/>
-                                                </buttonCell>
-                                                <connections>
-                                                    <action selector="addStaticCircleButtonPressedWithSender:" target="XfG-lQ-9wD" id="Cgg-zK-iWE"/>
-                                                </connections>
-                                            </button>
-                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dBb-7w-M6v">
-                                                <rect key="frame" x="43" y="-7" width="64" height="32"/>
-                                                <buttonCell key="cell" type="push" title="Edit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="OvT-mh-PTA">
-                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                    <font key="font" metaFont="system"/>
-                                                </buttonCell>
-                                                <connections>
-                                                    <action selector="editButtonPressedWithSender:" target="XfG-lQ-9wD" id="385-Be-3ZS"/>
-                                                </connections>
-                                            </button>
+                                            </slider>
                                         </subviews>
-                                        <visibilityPriorities>
-                                            <integer value="1000"/>
-                                            <integer value="1000"/>
-                                            <integer value="1000"/>
-                                            <integer value="1000"/>
-                                        </visibilityPriorities>
-                                        <customSpacing>
-                                            <real value="3.4028234663852886e+38"/>
-                                            <real value="3.4028234663852886e+38"/>
-                                            <real value="3.4028234663852886e+38"/>
-                                            <real value="3.4028234663852886e+38"/>
-                                        </customSpacing>
-                                    </stackView>
+                                        <constraints>
+                                            <constraint firstItem="SDT-3J-jEH" firstAttribute="leading" secondItem="Djk-4H-HbX" secondAttribute="leading" id="0DX-jw-ibi"/>
+                                            <constraint firstAttribute="trailing" secondItem="SDT-3J-jEH" secondAttribute="trailing" id="BCA-ue-wuI"/>
+                                            <constraint firstItem="ZnJ-X5-L0w" firstAttribute="leading" secondItem="Djk-4H-HbX" secondAttribute="leading" id="JsQ-us-iUG"/>
+                                            <constraint firstItem="ZnJ-X5-L0w" firstAttribute="top" secondItem="SDT-3J-jEH" secondAttribute="bottom" constant="4" id="MOR-3h-ufv"/>
+                                            <constraint firstAttribute="bottom" secondItem="ZnJ-X5-L0w" secondAttribute="bottom" constant="6" id="PMu-pB-q7H"/>
+                                            <constraint firstAttribute="trailing" secondItem="ZnJ-X5-L0w" secondAttribute="trailing" id="dd4-6y-Eck"/>
+                                            <constraint firstItem="SDT-3J-jEH" firstAttribute="top" secondItem="Djk-4H-HbX" secondAttribute="top" id="hAh-eg-25U"/>
+                                        </constraints>
+                                    </customView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="vTu-0F-pPZ" firstAttribute="leading" secondItem="amn-N5-L65" secondAttribute="leading" id="3Ia-th-1vc"/>
+                                    <constraint firstAttribute="bottom" secondItem="dBb-7w-M6v" secondAttribute="bottom" id="7HG-uV-0jg"/>
+                                    <constraint firstItem="Djk-4H-HbX" firstAttribute="leading" secondItem="amn-N5-L65" secondAttribute="leading" id="9Er-n1-wNZ"/>
                                     <constraint firstAttribute="width" constant="150" id="C9o-jl-b39"/>
-                                    <constraint firstItem="vTu-0F-pPZ" firstAttribute="top" secondItem="amn-N5-L65" secondAttribute="top" id="K0b-Ft-XCb"/>
-                                    <constraint firstAttribute="trailing" secondItem="vTu-0F-pPZ" secondAttribute="trailing" id="Why-ee-ejL"/>
+                                    <constraint firstItem="Djk-4H-HbX" firstAttribute="top" secondItem="pg9-L7-Uij" secondAttribute="bottom" constant="8" id="F4P-Hd-jJa"/>
+                                    <constraint firstItem="9gD-2B-zok" firstAttribute="top" secondItem="FUO-rN-e7B" secondAttribute="bottom" constant="16" id="Gfg-53-71Y"/>
+                                    <constraint firstItem="9gD-2B-zok" firstAttribute="centerX" secondItem="amn-N5-L65" secondAttribute="centerX" id="NKV-hD-WgI"/>
+                                    <constraint firstItem="pg9-L7-Uij" firstAttribute="centerX" secondItem="amn-N5-L65" secondAttribute="centerX" id="P4L-st-KMP"/>
+                                    <constraint firstItem="pg9-L7-Uij" firstAttribute="top" secondItem="amn-N5-L65" secondAttribute="top" id="PeW-M6-3xM"/>
+                                    <constraint firstItem="FUO-rN-e7B" firstAttribute="centerX" secondItem="amn-N5-L65" secondAttribute="centerX" id="TPd-pp-hI8"/>
+                                    <constraint firstAttribute="trailing" secondItem="Djk-4H-HbX" secondAttribute="trailing" id="Vlc-BS-2BA"/>
+                                    <constraint firstItem="dBb-7w-M6v" firstAttribute="top" secondItem="9gD-2B-zok" secondAttribute="bottom" constant="16" id="Yst-KP-gs2"/>
+                                    <constraint firstItem="dBb-7w-M6v" firstAttribute="centerX" secondItem="amn-N5-L65" secondAttribute="centerX" id="jem-vK-doU"/>
                                 </constraints>
-                            </customView>
-                            <customView placeholderIntrinsicWidth="150" placeholderIntrinsicHeight="96" translatesAutoresizingMaskIntoConstraints="NO" id="8Ge-eB-9eF">
-                                <rect key="frame" x="663" y="20" width="150" height="96"/>
                             </customView>
                         </subviews>
                         <constraints>

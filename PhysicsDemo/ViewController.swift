@@ -9,7 +9,6 @@
 import Cocoa
 
 let simulationSize = Vector2D(400, 300)
-let ballRadius = 5.0
 
 class ViewController: NSViewController {
     
@@ -29,6 +28,8 @@ class ViewController: NSViewController {
     private var inputHandler: InputHandler {
         return inputHandlerStack.last!
     }
+    
+    private var ballPlacementHandlers = [BallPlacementInputHandler]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,10 +58,10 @@ class ViewController: NSViewController {
         simulation.add(boundary: rightBoundary)
         
         // Setup input handlers
-        let baseInputHandler = InputHandlerSwitch(handlers: [
-            InputHandlerPlaceBall(),
-            InputHandlerFlingBall()
-        ], currentIndex: { [unowned self] in self.placementStyleSegmentedControl.indexOfSelectedItem })
+        ballPlacementHandlers = [InputHandlerPlaceBall(), InputHandlerFlingBall()]
+        let baseInputHandler = InputHandlerSwitch(handlers: ballPlacementHandlers,
+                                                  currentIndex: { [unowned self] in self.placementStyleSegmentedControl.indexOfSelectedItem
+        })
         
         pushInputHandler(baseInputHandler)
     }
@@ -111,6 +112,10 @@ class ViewController: NSViewController {
     
     @IBAction private func editButtonPressed(sender: NSButton) {
         pushInputHandler(InputHandlerEdit())
+    }
+    
+    @IBAction private func ballRadiusSliderValueChanged(sender: NSSlider) {
+        ballPlacementHandlers.forEach { $0.ballRadius = sender.doubleValue }
     }
     
     // MARK: - Key handling

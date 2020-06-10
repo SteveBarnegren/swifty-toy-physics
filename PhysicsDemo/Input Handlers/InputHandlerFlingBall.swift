@@ -15,8 +15,10 @@ private struct Fling {
     var flingPos: Vector2D
 }
 
-class InputHandlerFlingBall: InputHandler {
-
+class InputHandlerFlingBall: InputHandler, BallPlacementInputHandler {
+    
+    var ballRadius = 5.0
+    
     private var fling: Fling?
     
     override func mouseDown(at position: InputPosition, context: InputHandlerContext) {

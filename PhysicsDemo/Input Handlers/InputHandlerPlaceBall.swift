@@ -8,13 +8,19 @@
 
 import Foundation
 
-class InputHandlerPlaceBall: InputHandler {
+protocol BallPlacementInputHandler: InputHandler {
+    var ballRadius: Double { get set }
+}
+
+class InputHandlerPlaceBall: InputHandler, BallPlacementInputHandler {
+    
+    var ballRadius = 5.0
     
     private var ball: Ball?
     
     override func mouseDown(at position: InputPosition, context: InputHandlerContext) {
                 
-        let ball = Ball(radius: 5)
+        let ball = Ball(radius: ballRadius)
         ball.position = constrainLocation(position.position)
         ball.affectedByPhysics = false
         context.simulation.add(ball: ball)

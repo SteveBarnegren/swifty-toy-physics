@@ -102,10 +102,9 @@ class PhysicsSimulation {
         let tangent = self.normals(for: normal).second
         
         // Move the balls apart so that they no longer overlap
-        let contactPoint = (ball1.position + ball2.position) / 2
+        let contactPoint = ball1.position + (ball2.position - ball1.position) * (ball1.radius / distance)
         ball1.position = contactPoint - normal.with(magnitude: ball1.radius)
         ball2.position = contactPoint + normal.with(magnitude: ball2.radius)
-        
         
         let ball1TangentDp = tangent.dotProduct(with: ball1.velocity)
         let ball2TangentDp = tangent.dotProduct(with: ball2.velocity)
@@ -117,10 +116,8 @@ class PhysicsSimulation {
         let m1 = (ball1NormalDp * (ball1Mass - ball2Mass) + 2.0 * ball2Mass * ball2NormalDp) / (ball1Mass + ball2Mass)
         let m2 = (ball2NormalDp * (ball2Mass - ball1Mass) + 2.0 * ball1Mass * ball1NormalDp) / (ball1Mass + ball2Mass)
 
-        
         ball1.velocity = tangent * ball1TangentDp + normal * m1
         ball2.velocity = tangent * ball2TangentDp + normal * m2
-        
     }
     
     // MARK: - Boundary Collisions
@@ -171,7 +168,7 @@ class PhysicsSimulation {
         let reflectionNormal = self.reflectingNormal(forLine: line, ballLine: ballLine)
         
         // Shift the line so that it extends to the ball radius
-        let lineAdjustment = reflectionNormal.with(magnitude: ballRadius)
+        let lineAdjustment = reflectionNormal.with(magnitude: ball.radius)
         line.start += lineAdjustment
         line.end += lineAdjustment
         
