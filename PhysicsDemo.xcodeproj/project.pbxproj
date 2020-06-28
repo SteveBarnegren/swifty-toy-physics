@@ -19,7 +19,6 @@
 		673D37DF24031EEF00453684 /* KeyboardKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673D37DE24031EEF00453684 /* KeyboardKey.swift */; };
 		673D37E12405C09F00453684 /* InputHandlerEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673D37E02405C09F00453684 /* InputHandlerEdit.swift */; };
 		673D37E32405C68800453684 /* Array+Sorting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673D37E22405C68800453684 /* Array+Sorting.swift */; };
-		673D381324086BC600453684 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673D381224086BC600453684 /* Math.swift */; };
 		675C64EC248819C600117869 /* InputHandlerAddStaticCircles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675C64EB248819C600117869 /* InputHandlerAddStaticCircles.swift */; };
 		676C4085248820F000D17BD8 /* UIVariableDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676C4084248820F000D17BD8 /* UIVariableDouble.swift */; };
 		676C40872488263600D17BD8 /* UIVariableViewDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676C40862488263600D17BD8 /* UIVariableViewDouble.swift */; };
@@ -84,7 +83,6 @@
 		673D37DE24031EEF00453684 /* KeyboardKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardKey.swift; sourceTree = "<group>"; };
 		673D37E02405C09F00453684 /* InputHandlerEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHandlerEdit.swift; sourceTree = "<group>"; };
 		673D37E22405C68800453684 /* Array+Sorting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Sorting.swift"; sourceTree = "<group>"; };
-		673D381224086BC600453684 /* Math.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
 		675C64EB248819C600117869 /* InputHandlerAddStaticCircles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHandlerAddStaticCircles.swift; sourceTree = "<group>"; };
 		676C4084248820F000D17BD8 /* UIVariableDouble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIVariableDouble.swift; sourceTree = "<group>"; };
 		676C40862488263600D17BD8 /* UIVariableViewDouble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIVariableViewDouble.swift; sourceTree = "<group>"; };
@@ -182,7 +180,6 @@
 			isa = PBXGroup;
 			children = (
 				67B2344424019BA900876EAC /* DisplayLink.swift */,
-				673D381224086BC600453684 /* Math.swift */,
 				67B234372401966B00876EAC /* Vector2D.swift */,
 				67A9FA132483F68700116CC5 /* VectorMath.swift */,
 				67B234412401972800876EAC /* Extensions */,
@@ -370,7 +367,6 @@
 				673D37D9240305C100453684 /* InputHandlerPlacePhysicsLine.swift in Sources */,
 				67B2343A2401969300876EAC /* PhysicsSimulation.swift in Sources */,
 				676C4085248820F000D17BD8 /* UIVariableDouble.swift in Sources */,
-				673D381324086BC600453684 /* Math.swift in Sources */,
 				67B2341B2401911100876EAC /* ViewController.swift in Sources */,
 				678F0EE924898E2F002EC159 /* PhysicsCircle.swift in Sources */,
 				67B234382401966B00876EAC /* Vector2D.swift in Sources */,

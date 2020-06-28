@@ -133,8 +133,11 @@ class InputHandlerEdit: InputHandler {
     private func lineDeletionCandidates(location: Vector2D, simultation: PhysicsSimulation) -> [DeletionCandidate] {
         
         return simultation.lines.map { line in
-            DeletionCandidate(distance: Math.distanceFromPointToLine(point: location, start: line.start, end: line.end),
-                              commit: { simultation.lines.removeAll(where: { $0 === line }) })
+            let distance = VectorMath.distanceFromPointToLineSegment(point: location,
+                                                                     start: line.start,
+                                                                     end: line.end)
+            return DeletionCandidate(distance: distance,
+                                     commit: { simultation.lines.removeAll(where: { $0 === line }) })
         }
     }
     

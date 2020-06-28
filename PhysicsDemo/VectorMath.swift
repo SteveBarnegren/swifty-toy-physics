@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SBSwiftUtils
 
 struct Line {
     let constant: Double
@@ -19,6 +20,8 @@ struct Line {
     func y(forX x: Double) -> Double {
         return multiplier*x + constant
     }
+    
+    
 }
 
 struct LineSegment {
@@ -48,6 +51,31 @@ struct Circle {
 }
 
 class VectorMath {
+    
+    static func distanceFromPointToLineSegment(point p: Vector2D, start l1: Vector2D, end l2: Vector2D) -> Double {
+        let line = lineFromSegment(p1: l1, p2: l2)
+        
+        // Work out the perpendicular line
+        let yDiff = l2.y - l1.y
+        let xDiff = l2.x - l1.x
+        let normalSlope = xDiff / -yDiff
+        let yIntercept = p.y - p.x*normalSlope
+        let perpendicularLine = Line(constant: yIntercept, multiplier: normalSlope)
+        
+        // Check the distance to the intersection
+        guard let intersection = self.intersectionOfLines(l1: line, l2: perpendicularLine) else {
+            fatalError("Perpendicular lines should intersect")
+        }
+        
+        let segment = LineSegment(start: l1, end: l2)
+        if segment.xRange.contains(intersection.x) && segment.yRange.contains(intersection.y) {
+            return intersection.distance(to: p)
+        }
+        
+        // If outside the segment, check the distance to the ends
+        return sqrt(min(l1.distanceSquared(to: p), l2.distanceSquared(to: p)))
+    }
+
     
     static func intersectionOfLineSegments(start1: Vector2D,
                                            end1: Vector2D,
