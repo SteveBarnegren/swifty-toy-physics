@@ -78,7 +78,7 @@ class PhysicsSimulation {
             
             // Resolve ball collisions
             for otherBall in otherBalls {
-                //resolveCollision(ball1: ball, ball2: otherBall)
+                resolveCollision(ball1: ball, ball2: otherBall)
             }
             
             ball.previousPosition = ball.position
