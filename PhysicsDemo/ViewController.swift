@@ -18,6 +18,7 @@ class ViewController: NSViewController {
     @IBOutlet private var instructionLabel: NSTextField!
     @IBOutlet private var gridPanelContainerView: NSView!
     
+    
     private var variablesPanelView: VariablesPanelView?
     
     private var simulation: PhysicsSimulation!
@@ -148,6 +149,10 @@ class ViewController: NSViewController {
     
     @IBAction private func enableBallCollisionsCheckboxChanged(sender: NSButton) {
         simulation.enableBallCollisions = (sender.state == .on)
+    }
+    
+    @IBAction private func gravitySliderValueChanged(sender: NSSlider) {
+        simulation.gravity = -sender.doubleValue
     }
     
     // MARK: - Key handling

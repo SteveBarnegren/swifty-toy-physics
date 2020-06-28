@@ -835,6 +835,35 @@
                                             <constraint firstAttribute="bottom" secondItem="Nqe-fC-KbB" secondAttribute="bottom" constant="6" id="p52-hF-pNr"/>
                                         </constraints>
                                     </customView>
+                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="Cvj-oi-NGs">
+                                        <rect key="frame" x="0.0" y="461" width="150" height="41"/>
+                                        <subviews>
+                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aAX-16-Yij">
+                                                <rect key="frame" x="-2" y="25" width="154" height="16"/>
+                                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Gravity" id="hV9-JR-IpP">
+                                                    <font key="font" usesAppearanceFont="YES"/>
+                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                </textFieldCell>
+                                            </textField>
+                                            <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="snM-5S-oig">
+                                                <rect key="frame" x="-2" y="4" width="154" height="19"/>
+                                                <sliderCell key="cell" state="on" alignment="left" maxValue="20" doubleValue="10" tickMarkPosition="above" sliderType="linear" id="vqu-Eg-HY1"/>
+                                                <connections>
+                                                    <action selector="gravitySliderValueChangedWithSender:" target="XfG-lQ-9wD" id="aMF-tI-eIU"/>
+                                                </connections>
+                                            </slider>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="snM-5S-oig" firstAttribute="leading" secondItem="Cvj-oi-NGs" secondAttribute="leading" id="5ok-si-awZ"/>
+                                            <constraint firstItem="aAX-16-Yij" firstAttribute="leading" secondItem="Cvj-oi-NGs" secondAttribute="leading" id="62R-e9-wiN"/>
+                                            <constraint firstItem="aAX-16-Yij" firstAttribute="top" secondItem="Cvj-oi-NGs" secondAttribute="top" id="ISS-Ab-TCK"/>
+                                            <constraint firstAttribute="trailing" secondItem="snM-5S-oig" secondAttribute="trailing" id="fTQ-BP-GPZ"/>
+                                            <constraint firstItem="snM-5S-oig" firstAttribute="top" secondItem="aAX-16-Yij" secondAttribute="bottom" constant="4" id="gNl-4h-qJQ"/>
+                                            <constraint firstAttribute="bottom" secondItem="snM-5S-oig" secondAttribute="bottom" constant="6" id="qyO-ww-9sU"/>
+                                            <constraint firstAttribute="trailing" secondItem="aAX-16-Yij" secondAttribute="trailing" id="uaG-ca-16T"/>
+                                        </constraints>
+                                    </customView>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8fK-38-Smb">
                                         <rect key="frame" x="23" y="508" width="104" height="18"/>
                                         <buttonCell key="cell" type="check" title="Ball collisions" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="fv6-Sc-tQ0">
@@ -853,6 +882,7 @@
                                     <constraint firstAttribute="width" constant="150" id="C9o-jl-b39"/>
                                     <constraint firstItem="Djk-4H-HbX" firstAttribute="top" secondItem="pg9-L7-Uij" secondAttribute="bottom" constant="8" id="F4P-Hd-jJa"/>
                                     <constraint firstItem="9gD-2B-zok" firstAttribute="top" secondItem="FUO-rN-e7B" secondAttribute="bottom" constant="16" id="Gfg-53-71Y"/>
+                                    <constraint firstAttribute="trailing" secondItem="Cvj-oi-NGs" secondAttribute="trailing" id="Ggz-2c-aaR"/>
                                     <constraint firstItem="9gD-2B-zok" firstAttribute="centerX" secondItem="amn-N5-L65" secondAttribute="centerX" id="NKV-hD-WgI"/>
                                     <constraint firstItem="pg9-L7-Uij" firstAttribute="centerX" secondItem="amn-N5-L65" secondAttribute="centerX" id="P4L-st-KMP"/>
                                     <constraint firstItem="pg9-L7-Uij" firstAttribute="top" secondItem="amn-N5-L65" secondAttribute="top" id="PeW-M6-3xM"/>
@@ -860,10 +890,12 @@
                                     <constraint firstItem="8fK-38-Smb" firstAttribute="top" secondItem="jzr-Rt-vQD" secondAttribute="bottom" constant="8" id="TpK-MU-nDV"/>
                                     <constraint firstAttribute="trailing" secondItem="Djk-4H-HbX" secondAttribute="trailing" id="Vlc-BS-2BA"/>
                                     <constraint firstItem="dBb-7w-M6v" firstAttribute="top" secondItem="9gD-2B-zok" secondAttribute="bottom" constant="16" id="Yst-KP-gs2"/>
+                                    <constraint firstItem="Cvj-oi-NGs" firstAttribute="top" secondItem="8fK-38-Smb" secondAttribute="bottom" constant="8" id="dRd-vV-ShT"/>
                                     <constraint firstItem="jzr-Rt-vQD" firstAttribute="top" secondItem="Djk-4H-HbX" secondAttribute="bottom" constant="2" id="deE-uB-PwG"/>
                                     <constraint firstItem="dBb-7w-M6v" firstAttribute="centerX" secondItem="amn-N5-L65" secondAttribute="centerX" id="jem-vK-doU"/>
                                     <constraint firstAttribute="trailing" secondItem="jzr-Rt-vQD" secondAttribute="trailing" id="tER-GU-mT6"/>
                                     <constraint firstItem="jzr-Rt-vQD" firstAttribute="leading" secondItem="amn-N5-L65" secondAttribute="leading" id="vQo-pc-8Qo"/>
+                                    <constraint firstItem="Cvj-oi-NGs" firstAttribute="leading" secondItem="amn-N5-L65" secondAttribute="leading" id="ya9-61-b0T"/>
                                 </constraints>
                             </customView>
                         </subviews>
