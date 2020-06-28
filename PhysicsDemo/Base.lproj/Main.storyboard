@@ -707,14 +707,14 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="PhysicsDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl" customClass="MainView" customModule="PhysicsDemo" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="833" height="456"/>
+                        <rect key="frame" x="0.0" y="0.0" width="833" height="801"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="OxH-LR-f9k" customClass="SimulationView" customModule="PhysicsDemo" customModuleProvider="target">
-                                <rect key="frame" x="20" y="20" width="623" height="416"/>
+                                <rect key="frame" x="20" y="20" width="623" height="761"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="1" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="gTf-Cq-QUb">
-                                        <rect key="frame" x="18" y="394" width="587" height="16"/>
+                                        <rect key="frame" x="18" y="739" width="587" height="16"/>
                                         <textFieldCell key="cell" enabled="NO" alignment="center" title="Instruction" id="rny-FT-KLN">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
@@ -732,7 +732,7 @@
                                 <rect key="frame" x="663" y="20" width="150" height="96"/>
                             </customView>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="amn-N5-L65">
-                                <rect key="frame" x="663" y="136" width="150" height="300"/>
+                                <rect key="frame" x="663" y="136" width="150" height="645"/>
                                 <subviews>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dBb-7w-M6v">
                                         <rect key="frame" x="43" y="-7" width="64" height="32"/>
@@ -765,7 +765,7 @@
                                         </connections>
                                     </button>
                                     <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pg9-L7-Uij">
-                                        <rect key="frame" x="3" y="277" width="145" height="24"/>
+                                        <rect key="frame" x="3" y="622" width="145" height="24"/>
                                         <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="YIG-Xy-Qyw">
                                             <font key="font" metaFont="system"/>
                                             <segments>
@@ -778,7 +778,7 @@
                                         </connections>
                                     </segmentedControl>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="Djk-4H-HbX">
-                                        <rect key="frame" x="0.0" y="230" width="150" height="41"/>
+                                        <rect key="frame" x="0.0" y="575" width="150" height="41"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SDT-3J-jEH">
                                                 <rect key="frame" x="-2" y="25" width="154" height="16"/>
@@ -807,7 +807,7 @@
                                         </constraints>
                                     </customView>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="jzr-Rt-vQD">
-                                        <rect key="frame" x="0.0" y="187" width="150" height="41"/>
+                                        <rect key="frame" x="0.0" y="532" width="150" height="41"/>
                                         <subviews>
                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gTA-QP-7FJ">
                                                 <rect key="frame" x="-2" y="25" width="154" height="16"/>
@@ -835,8 +835,19 @@
                                             <constraint firstAttribute="bottom" secondItem="Nqe-fC-KbB" secondAttribute="bottom" constant="6" id="p52-hF-pNr"/>
                                         </constraints>
                                     </customView>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8fK-38-Smb">
+                                        <rect key="frame" x="23" y="508" width="104" height="18"/>
+                                        <buttonCell key="cell" type="check" title="Ball collisions" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="fv6-Sc-tQ0">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="enableBallCollisionsCheckboxChangedWithSender:" target="XfG-lQ-9wD" id="f8y-eV-Q2W"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="8fK-38-Smb" firstAttribute="centerX" secondItem="amn-N5-L65" secondAttribute="centerX" id="3xj-70-dPa"/>
                                     <constraint firstAttribute="bottom" secondItem="dBb-7w-M6v" secondAttribute="bottom" id="7HG-uV-0jg"/>
                                     <constraint firstItem="Djk-4H-HbX" firstAttribute="leading" secondItem="amn-N5-L65" secondAttribute="leading" id="9Er-n1-wNZ"/>
                                     <constraint firstAttribute="width" constant="150" id="C9o-jl-b39"/>
@@ -846,6 +857,7 @@
                                     <constraint firstItem="pg9-L7-Uij" firstAttribute="centerX" secondItem="amn-N5-L65" secondAttribute="centerX" id="P4L-st-KMP"/>
                                     <constraint firstItem="pg9-L7-Uij" firstAttribute="top" secondItem="amn-N5-L65" secondAttribute="top" id="PeW-M6-3xM"/>
                                     <constraint firstItem="FUO-rN-e7B" firstAttribute="centerX" secondItem="amn-N5-L65" secondAttribute="centerX" id="TPd-pp-hI8"/>
+                                    <constraint firstItem="8fK-38-Smb" firstAttribute="top" secondItem="jzr-Rt-vQD" secondAttribute="bottom" constant="8" id="TpK-MU-nDV"/>
                                     <constraint firstAttribute="trailing" secondItem="Djk-4H-HbX" secondAttribute="trailing" id="Vlc-BS-2BA"/>
                                     <constraint firstItem="dBb-7w-M6v" firstAttribute="top" secondItem="9gD-2B-zok" secondAttribute="bottom" constant="16" id="Yst-KP-gs2"/>
                                     <constraint firstItem="jzr-Rt-vQD" firstAttribute="top" secondItem="Djk-4H-HbX" secondAttribute="bottom" constant="2" id="deE-uB-PwG"/>
@@ -878,7 +890,7 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="121.5" y="840"/>
+            <point key="canvasLocation" x="121.5" y="1012.5"/>
         </scene>
     </scenes>
 </document>

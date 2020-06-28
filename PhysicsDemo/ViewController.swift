@@ -123,6 +123,10 @@ class ViewController: NSViewController {
         ballPlacementHandlers.forEach { $0.ballElasticity = sender.doubleValue }
     }
     
+    @IBAction private func enableBallCollisionsCheckboxChanged(sender: NSButton) {
+        simulation.enableBallCollisions = (sender.state == .on)
+    }
+    
     // MARK: - Key handling
     
     override func keyDown(with event: NSEvent) {

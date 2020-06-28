@@ -17,6 +17,7 @@ class PhysicsSimulation {
     var lines = [PhysicsLine]()
     var circles = [PhysicsCircle]()
     var gravity = Double.zero
+    var enableBallCollisions = true
     
     func add(boundary: Boundary) {
         self.boundaries.append(boundary)
@@ -77,8 +78,10 @@ class PhysicsSimulation {
             }
             
             // Resolve ball collisions
-            for otherBall in otherBalls {
-                resolveCollision(ball1: ball, ball2: otherBall)
+            if enableBallCollisions {
+                for otherBall in otherBalls {
+                    resolveCollision(ball1: ball, ball2: otherBall)
+                }
             }
             
             ball.previousPosition = ball.position
