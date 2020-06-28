@@ -129,7 +129,10 @@ class PhysicsSimulation {
         
         switch boundary.orientation {
         case .minX:
-            fatalError()
+            if ball.minX < boundary.value {
+                ball.position.x = boundary.value + ball.radius
+                ball.velocity.x = abs(ball.velocity.x) * boundary.elasticity * ball.elasticity
+            }
         case .maxX:
             if ball.maxX > boundary.value {
                 ball.position.x = boundary.value - ball.radius
@@ -141,7 +144,10 @@ class PhysicsSimulation {
                 ball.velocity.y = abs(ball.velocity.y) * boundary.elasticity * ball.elasticity
             }
         case .maxY:
-            fatalError()
+            if ball.maxY > boundary.value {
+                ball.position.y = boundary.value - ball.radius
+                ball.velocity.y = -abs(ball.velocity.y) * boundary.elasticity * ball.elasticity
+            }
         }
     }
     

@@ -47,15 +47,8 @@ class ViewController: NSViewController {
         simulation = PhysicsSimulation()
         simulation.gravity = -10
         
-        // Add bottom Boundary
-        let bottomBoundary = Boundary(orientation: .minY)
-        bottomBoundary.value = 20
-        simulation.add(boundary: bottomBoundary)
-        
-        // Add right Boundary
-        let rightBoundary = Boundary(orientation: .maxX)
-        rightBoundary.value = simulationSize.width - 20
-        simulation.add(boundary: rightBoundary)
+        // Add boundaries
+        addSimulationBoundaries()
         
         // Setup input handlers
         ballPlacementHandlers = [InputHandlerPlaceBall(), InputHandlerFlingBall()]
@@ -64,6 +57,31 @@ class ViewController: NSViewController {
         })
         
         pushInputHandler(baseInputHandler)
+    }
+    
+    func addSimulationBoundaries() {
+        
+        let inset = 20.0
+        
+        // Bottom
+        let bottomBoundary = Boundary(orientation: .minY)
+        bottomBoundary.value = inset
+        simulation.add(boundary: bottomBoundary)
+        
+        // Right
+        let rightBoundary = Boundary(orientation: .maxX)
+        rightBoundary.value = simulationSize.width - inset
+        simulation.add(boundary: rightBoundary)
+        
+        // Top
+        let topBoundary = Boundary(orientation: .maxY)
+        topBoundary.value = simulationSize.height - inset
+        simulation.add(boundary: topBoundary)
+        
+        // Left
+        let leftBoundary = Boundary(orientation: .minX)
+        leftBoundary.value = inset
+        simulation.add(boundary: leftBoundary)
     }
     
     override func viewDidAppear() {
