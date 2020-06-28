@@ -35,7 +35,7 @@ class SimulationView: NSView {
         self.simulationSize = simulationSize
         
         objects.removeAll()
-        objects += simulation.boundaries.map { makeObject(for: $0, simulationSize: simulationSize) }
+        objects += simulation.boundaries.compactMap { makeObject(for: $0, simulationSize: simulationSize) }
         objects += simulation.lines.map(makeObject)
         objects += simulation.balls.map(makeObject)
         objects += simulation.circles.map(makeObject)
@@ -45,7 +45,9 @@ class SimulationView: NSView {
         needsDisplay = true
     }
     
-    private func makeObject(for boundary: Boundary, simulationSize: Vector2D) -> DrawCommand {
+    private func makeObject(for boundary: Boundary, simulationSize: Vector2D) -> DrawCommand? {
+        
+        if boundary.isEnabled == false { return nil }
         
         let start: NSPoint
         let end: NSPoint

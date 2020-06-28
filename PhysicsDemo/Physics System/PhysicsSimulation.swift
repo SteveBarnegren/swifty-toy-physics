@@ -127,6 +127,8 @@ class PhysicsSimulation {
     
     private func resolveCollision(ball: Ball, boundary: Boundary) {
         
+        if boundary.isEnabled == false { return }
+        
         switch boundary.orientation {
         case .minX:
             if ball.minX < boundary.value {

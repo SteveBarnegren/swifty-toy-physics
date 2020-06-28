@@ -11,10 +11,21 @@ import AppKit
 
 private let grabDistance = 5.0
 
-private struct EditHandle {
+private protocol EditPoint {
+    var point: Vector2D { get }
+}
+
+private struct EditHandle: EditPoint {
     let point: Vector2D
     let setter: (Vector2D) -> Void
     var color = NSColor.magenta
+}
+
+private struct EditButton: EditPoint {
+    let point: Vector2D
+    let isEnabled: Bool
+    let setter: (Bool) -> Void
+    var color = NSColor.yellow
 }
 
 private struct DeletionCandidate {
@@ -24,37 +35,75 @@ private struct DeletionCandidate {
 
 class InputHandlerEdit: InputHandler {
     
+    private enum State {
+        case idle
+        case draggingHandle(EditHandle)
+        case pressingButton(EditButton)
+    }
+    
     override var instruction: String? {
         "Drag handles to move. Right click to delete."
     }
     
-    private var currentHandle: EditHandle?
+    private var state = State.idle
     private var deleteLocation: Vector2D?
+    private var boundaries: [Boundary]
+    
+    init(boundaries: [Boundary]) {
+        self.boundaries = boundaries
+    }
     
     // MARK: - Left mouse (move handles)
 
     override func mouseDown(at position: InputPosition, context: InputHandlerContext) {
         
-        let closestHandle = getHandles(simulation: context.simulation)
+        let allEditPoints: [EditPoint] = getHandles(simulation: context.simulation)
+                + getBoundaryToggleButtons(simSize: simulationSize)
+        
+        let closestEditPoint = allEditPoints
             .sortedAscendingBy { $0.point.distance(to: position.position) }
             .first
         
-        guard let handle = closestHandle else {
+        guard let editPoint = closestEditPoint else {
             return
         }
         
-        if handle.point.distance(to: position.position) <= grabDistance {
-            self.currentHandle = handle
+        guard editPoint.point.distance(to: position.position) <= grabDistance else {
+            self.state = .idle
+            return
+        }
+        
+        if let handle = editPoint as? EditHandle {
+            self.state = .draggingHandle(handle)
+        } else if let button = editPoint as? EditButton {
+            self.state = .pressingButton(button)
         }
     }
     
     override func mouseDragged(to position: InputPosition, context: InputHandlerContext) {
-        currentHandle?.setter(position.gridPosition)
+        
+        switch self.state {
+        case .idle:
+            return
+        case .draggingHandle(let handle):
+            handle.setter(position.gridPosition)
+        case .pressingButton:
+            return
+        }
     }
     
     override func mouseUp(at position: InputPosition, context: InputHandlerContext) {
-        currentHandle?.setter(position.gridPosition)
-        currentHandle = nil
+        
+        switch self.state {
+        case .idle:
+            return
+        case .draggingHandle(let handle):
+            return
+        case .pressingButton(let button):
+            button.setter(!button.isEnabled)
+        }
+        
+        self.state = .idle
     }
     
     // MARK: - Create handles
@@ -95,6 +144,35 @@ class InputHandlerEdit: InputHandler {
         }
         
         return handles
+    }
+    
+    private func getBoundaryToggleButtons(simSize: Vector2D) -> [EditButton] {
+        var buttons = [EditButton]()
+        
+        for boundary in boundaries {
+            let button = EditButton(point: toggleLocation(forBoundary: boundary, simSize: simSize),
+                                    isEnabled: boundary.isEnabled,
+                                    setter: { boundary.isEnabled = $0 },
+                                    color: .yellow)
+            buttons.append(button)
+        }
+        return buttons
+    }
+    
+    // MARK: - Create toggle buttons
+    
+    private func toggleLocation(forBoundary boundary: Boundary, simSize: Vector2D) -> Vector2D {
+        
+        switch boundary.orientation {
+        case .minX:
+            return Vector2D(boundary.value/2, simSize.height/2)
+        case .maxX:
+            return Vector2D((simSize.width + boundary.value)/2, simSize.height/2)
+        case .minY:
+            return Vector2D(simSize.width/2, boundary.value/2)
+        case .maxY:
+            return Vector2D(simSize.width/2, (simSize.height + boundary.value)/2)
+        }
     }
     
     // MARK: - Right Mouse (delete items)
@@ -160,10 +238,12 @@ class InputHandlerEdit: InputHandler {
     
     
     private func escapePressed() {
-        if currentHandle == nil {
+        
+        switch state {
+        case .idle:
             delegate?.inputHandlerDidFinish(handler: self)
-        } else {
-            currentHandle = nil
+        default:
+            self.state = .idle
         }
     }
     
@@ -171,10 +251,24 @@ class InputHandlerEdit: InputHandler {
     
     override func objectsToRender(context: InputHandlerContext) -> [DrawCommand] {
         
-        return getHandles(simulation: context.simulation).map {
+        // Edit handles
+        let handleCommands: [DrawCommand] = getHandles(simulation: context.simulation).map {
             var circle = CircleDrawCommand(position: $0.point, radius: 2)
             circle.color = $0.color
             return .circle(circle)
         }
+        
+        // Buttons
+        var buttonCommands = [DrawCommand]()
+        for button in getBoundaryToggleButtons(simSize: context.simulationSize) {
+            var circle = CircleDrawCommand(position: button.point,
+                                           radius: 2,
+                                           drawStyle: button.isEnabled ? .fill : .stroke)
+            circle.color = button.color
+            
+            buttonCommands.append(.circle(circle))
+        }
+        
+        return handleCommands + buttonCommands
     }
 }

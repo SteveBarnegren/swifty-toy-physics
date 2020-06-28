@@ -21,6 +21,7 @@ class ViewController: NSViewController {
     private var variablesPanelView: VariablesPanelView?
     
     private var simulation: PhysicsSimulation!
+    private var boundaries = [Boundary]()
     
     private var isObservingDisplayLink = false
     
@@ -67,21 +68,25 @@ class ViewController: NSViewController {
         let bottomBoundary = Boundary(orientation: .minY)
         bottomBoundary.value = inset
         simulation.add(boundary: bottomBoundary)
+        boundaries.append(bottomBoundary)
         
         // Right
         let rightBoundary = Boundary(orientation: .maxX)
         rightBoundary.value = simulationSize.width - inset
         simulation.add(boundary: rightBoundary)
+        boundaries.append(rightBoundary)
         
         // Top
         let topBoundary = Boundary(orientation: .maxY)
         topBoundary.value = simulationSize.height - inset
         simulation.add(boundary: topBoundary)
+        boundaries.append(topBoundary)
         
         // Left
         let leftBoundary = Boundary(orientation: .minX)
         leftBoundary.value = inset
         simulation.add(boundary: leftBoundary)
+        boundaries.append(leftBoundary)
     }
     
     override func viewDidAppear() {
@@ -129,7 +134,7 @@ class ViewController: NSViewController {
     }
     
     @IBAction private func editButtonPressed(sender: NSButton) {
-        pushInputHandler(InputHandlerEdit())
+        pushInputHandler(InputHandlerEdit(boundaries: self.boundaries))
     }
     
     @IBAction private func ballRadiusSliderValueChanged(sender: NSSlider) {

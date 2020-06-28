@@ -20,6 +20,7 @@ class Boundary {
     let orientation: Orientation
     var value: Double = 0
     var elasticity = 1.0
+    var isEnabled = true
     
     init(orientation: Orientation) {
         self.orientation = orientation
