@@ -874,6 +874,26 @@
                                             <action selector="enableBallCollisionsCheckboxChangedWithSender:" target="XfG-lQ-9wD" id="f8y-eV-Q2W"/>
                                         </connections>
                                     </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wSi-G7-69z">
+                                        <rect key="frame" x="16" y="425" width="118" height="32"/>
+                                        <buttonCell key="cell" type="push" title="🗑️ Balls" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="yWA-Vr-lWX">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" size="13" name=".AppleColorEmojiUI"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="clearBallsButtonPressedWithSender:" target="XfG-lQ-9wD" id="Chu-PR-n9c"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="GZK-it-Zhi">
+                                        <rect key="frame" x="16" y="396" width="118" height="32"/>
+                                        <buttonCell key="cell" type="push" title="🗑️ Scene" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="M2W-Kt-Ad8">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" size="13" name=".AppleColorEmojiUI"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="clearSceneButtonPressedWithSender:" target="XfG-lQ-9wD" id="Zlc-VP-ntd"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="8fK-38-Smb" firstAttribute="centerX" secondItem="amn-N5-L65" secondAttribute="centerX" id="3xj-70-dPa"/>
@@ -887,12 +907,16 @@
                                     <constraint firstItem="pg9-L7-Uij" firstAttribute="centerX" secondItem="amn-N5-L65" secondAttribute="centerX" id="P4L-st-KMP"/>
                                     <constraint firstItem="pg9-L7-Uij" firstAttribute="top" secondItem="amn-N5-L65" secondAttribute="top" id="PeW-M6-3xM"/>
                                     <constraint firstItem="FUO-rN-e7B" firstAttribute="centerX" secondItem="amn-N5-L65" secondAttribute="centerX" id="TPd-pp-hI8"/>
+                                    <constraint firstItem="wSi-G7-69z" firstAttribute="centerX" secondItem="amn-N5-L65" secondAttribute="centerX" id="Tdn-Dq-Bjv"/>
                                     <constraint firstItem="8fK-38-Smb" firstAttribute="top" secondItem="jzr-Rt-vQD" secondAttribute="bottom" constant="8" id="TpK-MU-nDV"/>
                                     <constraint firstAttribute="trailing" secondItem="Djk-4H-HbX" secondAttribute="trailing" id="Vlc-BS-2BA"/>
                                     <constraint firstItem="dBb-7w-M6v" firstAttribute="top" secondItem="9gD-2B-zok" secondAttribute="bottom" constant="16" id="Yst-KP-gs2"/>
+                                    <constraint firstItem="GZK-it-Zhi" firstAttribute="top" secondItem="wSi-G7-69z" secondAttribute="bottom" constant="8" id="ZY5-X7-hWn"/>
                                     <constraint firstItem="Cvj-oi-NGs" firstAttribute="top" secondItem="8fK-38-Smb" secondAttribute="bottom" constant="8" id="dRd-vV-ShT"/>
                                     <constraint firstItem="jzr-Rt-vQD" firstAttribute="top" secondItem="Djk-4H-HbX" secondAttribute="bottom" constant="2" id="deE-uB-PwG"/>
+                                    <constraint firstItem="GZK-it-Zhi" firstAttribute="centerX" secondItem="amn-N5-L65" secondAttribute="centerX" id="gTk-i7-wW3"/>
                                     <constraint firstItem="dBb-7w-M6v" firstAttribute="centerX" secondItem="amn-N5-L65" secondAttribute="centerX" id="jem-vK-doU"/>
+                                    <constraint firstItem="wSi-G7-69z" firstAttribute="top" secondItem="Cvj-oi-NGs" secondAttribute="bottom" constant="8" id="t2O-jw-PM1"/>
                                     <constraint firstAttribute="trailing" secondItem="jzr-Rt-vQD" secondAttribute="trailing" id="tER-GU-mT6"/>
                                     <constraint firstItem="jzr-Rt-vQD" firstAttribute="leading" secondItem="amn-N5-L65" secondAttribute="leading" id="vQo-pc-8Qo"/>
                                     <constraint firstItem="Cvj-oi-NGs" firstAttribute="leading" secondItem="amn-N5-L65" secondAttribute="leading" id="ya9-61-b0T"/>

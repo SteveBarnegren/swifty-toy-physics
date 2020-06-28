@@ -155,6 +155,14 @@ class ViewController: NSViewController {
         simulation.gravity = -sender.doubleValue
     }
     
+    @IBAction private func clearBallsButtonPressed(sender: NSButton) {
+        simulation.removeAllBalls()
+    }
+    
+    @IBAction private func clearSceneButtonPressed(sender: NSButton) {
+        simulation.clearAll()
+    }
+    
     // MARK: - Key handling
     
     override func keyDown(with event: NSEvent) {

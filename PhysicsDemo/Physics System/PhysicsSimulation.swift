@@ -53,6 +53,18 @@ class PhysicsSimulation {
         circles.removeAll(where: { $0 === circle })
     }
     
+    func removeAllCircles() {
+        circles.removeAll()
+    }
+    
+    // MARK: - Clear all
+    
+    func clearAll() {
+        removeAllBalls()
+        removeAllLines()
+        removeAllCircles()
+    }
+    
     // MARK: - Step
     
     func step(dt: Double) {
