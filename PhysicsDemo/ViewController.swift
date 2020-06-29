@@ -63,7 +63,7 @@ class ViewController: NSViewController {
     
     func addSimulationBoundaries() {
         
-        let inset = 20.0
+        let inset = 10.0
         
         // Bottom
         let bottomBoundary = Boundary(orientation: .minY)

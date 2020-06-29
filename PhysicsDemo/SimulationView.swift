@@ -8,6 +8,7 @@
 
 import Foundation
 import AppKit
+import SBSwiftUtils
 
 private let lineThickness = 2.0
 
@@ -35,7 +36,7 @@ class SimulationView: NSView {
         self.simulationSize = simulationSize
         
         objects.removeAll()
-        objects += simulation.boundaries.compactMap { makeObject(for: $0, simulationSize: simulationSize) }
+        objects += makeDrawCommands(forBoundaries: simulation.boundaries, simulationSize: simulationSize)
         objects += simulation.lines.map(makeObject)
         objects += simulation.balls.map(makeObject)
         objects += simulation.circles.map(makeObject)
@@ -45,24 +46,35 @@ class SimulationView: NSView {
         needsDisplay = true
     }
     
-    private func makeObject(for boundary: Boundary, simulationSize: Vector2D) -> DrawCommand? {
+    private func makeDrawCommands(forBoundaries boundaries: [Boundary], simulationSize: Vector2D) -> [DrawCommand] {
         
-        if boundary.isEnabled == false { return nil }
+        let boundaries = boundaries.filter { $0.isEnabled }
         
-        let start: NSPoint
-        let end: NSPoint
+        let minX = boundaries.first { $0.orientation == .minX }?.value ?? 0
+        let maxX = boundaries.first { $0.orientation == .maxX }?.value ?? simulationSize.width
+        let minY = boundaries.first { $0.orientation == .minY }?.value ?? 0
+        let maxY = boundaries.first { $0.orientation == .maxY }?.value ?? simulationSize.height
         
-        switch boundary.orientation {
-        case .minX, .maxX:
-            start = NSPoint(x: boundary.value, y: 0)
-            end = NSPoint(x: boundary.value, y: simulationSize.height)
-        case .minY, .maxY:
-            start = NSPoint(x: 0, y: boundary.value)
-            end = NSPoint(x: simulationSize.width, y: boundary.value)
+        var commands = [DrawCommand]()
+        
+        for boundary in boundaries {
+            let start: NSPoint
+            let end: NSPoint
+            
+            switch boundary.orientation {
+            case .minX, .maxX:
+                start = NSPoint(x: boundary.value, y: minY)
+                end = NSPoint(x: boundary.value, y: maxY)
+            case .minY, .maxY:
+                start = NSPoint(x: minX, y: boundary.value)
+                end = NSPoint(x: maxX, y: boundary.value)
+            }
+            
+            let line = LineDrawCommand(from: start, to: end)
+            commands.append(.line(line))
         }
         
-        let line = LineDrawCommand(from: start, to: end)
-        return .line(line)
+        return commands
     }
     
     private func makeObject(for ball: Ball) -> DrawCommand {
