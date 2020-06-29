@@ -54,7 +54,6 @@ class InputHandlerFlingBall: InputHandler, BallPlacementInputHandler {
     }
     
     override func objectsToRender(context: InputHandlerContext) -> [DrawCommand] {
-        
         guard let fling = fling else {
             return []
         }

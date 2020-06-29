@@ -33,4 +33,8 @@ class InputHandlerSwitch: InputHandler {
     override func mouseUp(at position: InputPosition, context: InputHandlerContext) {
         currentHandler.mouseUp(at: position, context: context)
     }
+    
+    override func objectsToRender(context: InputHandlerContext) -> [DrawCommand] {
+        return currentHandler.objectsToRender(context: context)
+    }
 }
