@@ -31,14 +31,17 @@ class SimulationView: NSView {
     
     // MARK: - Render simulation
     
-    func render(simulation: PhysicsSimulation, simulationSize: Vector2D, additionalObjects: [DrawCommand]) {
+    func render(simulation: PhysicsSimulation,
+                simulationSize: Vector2D,
+                additionalObjects: [DrawCommand],
+                remainingInterpolationTime: Double) {
         self.simulation = simulation
         self.simulationSize = simulationSize
         
         objects.removeAll()
         objects += makeDrawCommands(forBoundaries: simulation.boundaries, simulationSize: simulationSize)
         objects += simulation.lines.map(makeObject)
-        objects += simulation.balls.map(makeObject)
+        objects += simulation.balls.map { makeObject(for: $0, interploationTime: remainingInterpolationTime) }
         objects += simulation.circles.map(makeObject)
         objects += additionalObjects
         objects += GridManager.shared.drawCommands(forSimulationSize: simulationSize)
@@ -77,9 +80,11 @@ class SimulationView: NSView {
         return commands
     }
     
-    private func makeObject(for ball: Ball) -> DrawCommand {
+    private func makeObject(for ball: Ball, interploationTime: Double) -> DrawCommand {
         
-        let circle = CircleDrawCommand(position: ball.position, radius: ball.radius)
+        let ballPosition = ball.position + (ball.velocity * interploationTime)
+        
+        let circle = CircleDrawCommand(position: ballPosition, radius: ball.radius)
         return .circle(circle)
     }
     

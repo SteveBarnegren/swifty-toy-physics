@@ -71,7 +71,7 @@ class PhysicsSimulation {
         
         for (ball, otherBalls) in balls.eachWithRemaining() where ball.affectedByPhysics {
             // Add gravity
-            ball.velocity.y += gravity
+            ball.velocity.y += gravity * dt
             
             // Move ball
             ball.position += ball.velocity * dt

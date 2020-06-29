@@ -18,6 +18,7 @@ class ViewController: NSViewController {
     @IBOutlet private var instructionLabel: NSTextField!
     @IBOutlet private var gridPanelContainerView: NSView!
     
+    private var timeStepper: TimeStepper = TimeStepperFixed()
     
     private var variablesPanelView: VariablesPanelView?
     
@@ -47,7 +48,7 @@ class ViewController: NSViewController {
         
         // Create physics simulation
         simulation = PhysicsSimulation()
-        simulation.gravity = -10
+        simulation.gravity = -600
         
         // Add boundaries
         addSimulationBoundaries()
@@ -110,14 +111,19 @@ class ViewController: NSViewController {
     
     private func tick(dt: Double) {
         
-        simulation.step(dt: dt)
+        timeStepper.consume(time: dt)
+        timeStepper.stepSimulation { (stepTime) in
+            simulation.step(dt: stepTime)
+        }
+        
         render()
     }
     
     private func render() {
         simulationView.render(simulation: simulation,
                            simulationSize: simulationSize,
-                           additionalObjects: inputHandler.objectsToRender(context: inputHandlerContext))
+                           additionalObjects: inputHandler.objectsToRender(context: inputHandlerContext),
+                           remainingInterpolationTime: timeStepper.renderFrameInterpolationTime)
     }
     
     // MARK: - Actions

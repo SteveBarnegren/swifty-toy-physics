@@ -848,7 +848,7 @@
                                             </textField>
                                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="snM-5S-oig">
                                                 <rect key="frame" x="-2" y="4" width="154" height="19"/>
-                                                <sliderCell key="cell" state="on" alignment="left" maxValue="20" doubleValue="10" tickMarkPosition="above" sliderType="linear" id="vqu-Eg-HY1"/>
+                                                <sliderCell key="cell" state="on" alignment="left" maxValue="1200" doubleValue="600" tickMarkPosition="above" sliderType="linear" id="vqu-Eg-HY1"/>
                                                 <connections>
                                                     <action selector="gravitySliderValueChangedWithSender:" target="XfG-lQ-9wD" id="aMF-tI-eIU"/>
                                                 </connections>
