@@ -17,6 +17,10 @@ class Ball {
     var affectedByPhysics = false
     var elasticity = 0.7
     
+    var mass: Double {
+        radius*radius / 5.0*5.0
+    }
+    
     var minY: Double { position.y - radius }
     var maxY: Double { position.y + radius }
     var minX: Double { position.x - radius }

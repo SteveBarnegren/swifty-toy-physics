@@ -103,10 +103,7 @@ class PhysicsSimulation {
     // MARK: - Ball Collisions
         
     private func resolveCollision(ball1: Ball, ball2: Ball) {
-        
-        let ball1Mass = 1.0
-        let ball2Mass = 1.0
-        
+                
         let distance = ball1.position.distance(to: ball2.position)
         if distance > ball1.radius + ball2.radius {
             return
@@ -128,8 +125,8 @@ class PhysicsSimulation {
         let ball2NormalDp = normal.dotProduct(with: ball2.velocity)
         
         // Conservation of momentum
-        let m1 = (ball1NormalDp * (ball1Mass - ball2Mass) + 2.0 * ball2Mass * ball2NormalDp) / (ball1Mass + ball2Mass)
-        let m2 = (ball2NormalDp * (ball2Mass - ball1Mass) + 2.0 * ball1Mass * ball1NormalDp) / (ball1Mass + ball2Mass)
+        let m1 = (ball1NormalDp * (ball1.mass - ball2.mass) + 2.0 * ball2.mass * ball2NormalDp) / (ball1.mass + ball2.mass)
+        let m2 = (ball2NormalDp * (ball2.mass - ball1.mass) + 2.0 * ball1.mass * ball1NormalDp) / (ball1.mass + ball2.mass)
 
         ball1.velocity = tangent * ball1TangentDp + normal * m1
         ball2.velocity = tangent * ball2TangentDp + normal * m2
