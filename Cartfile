@@ -1,2 +1,1 @@
-github "SteveBarnegren/SBSwiftUtils" "master"
 github "SteveBarnegren/SBAutoLayout" "feature/mac-carthage-support"

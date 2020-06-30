@@ -3,15 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		67127DE4248835240069C670 /* SBAutoLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67127DE3248835240069C670 /* SBAutoLayout.framework */; };
 		67127DE5248835240069C670 /* SBAutoLayout.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 67127DE3248835240069C670 /* SBAutoLayout.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		67127DE7248837390069C670 /* VariablesPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67127DE6248837390069C670 /* VariablesPanelView.swift */; };
-		672FED392483F11900912BCF /* SBSwiftUtils.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 672FED382483F11900912BCF /* SBSwiftUtils.framework */; };
-		672FED3A2483F11900912BCF /* SBSwiftUtils.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 672FED382483F11900912BCF /* SBSwiftUtils.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		673D37D7240304E700453684 /* PhysicsLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673D37D6240304E700453684 /* PhysicsLine.swift */; };
 		673D37D9240305C100453684 /* InputHandlerPlacePhysicsLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673D37D8240305C100453684 /* InputHandlerPlacePhysicsLine.swift */; };
 		673D37DB2403085A00453684 /* InputHandlerSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673D37DA2403085A00453684 /* InputHandlerSwitch.swift */; };
@@ -46,6 +44,7 @@
 		67B2344C2401ECAA00876EAC /* InputHandlerPlaceBall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B2344B2401ECAA00876EAC /* InputHandlerPlaceBall.swift */; };
 		67B2344E2401EFE900876EAC /* InputHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B2344D2401EFE900876EAC /* InputHandler.swift */; };
 		67B234502401F04D00876EAC /* InputHandlerFlingBall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B2344F2401F04D00876EAC /* InputHandlerFlingBall.swift */; };
+		67E38F4124ABE77B008570DC /* SBSwiftUtils in Frameworks */ = {isa = PBXBuildFile; productRef = 67E38F4024ABE77B008570DC /* SBSwiftUtils */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,7 +65,6 @@
 			dstSubfolderSpec = 10;
 			files = (
 				67127DE5248835240069C670 /* SBAutoLayout.framework in Embed Frameworks */,
-				672FED3A2483F11900912BCF /* SBSwiftUtils.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -125,7 +123,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				67127DE4248835240069C670 /* SBAutoLayout.framework in Frameworks */,
-				672FED392483F11900912BCF /* SBSwiftUtils.framework in Frameworks */,
+				67E38F4124ABE77B008570DC /* SBSwiftUtils in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +267,9 @@
 			dependencies = (
 			);
 			name = PhysicsDemo;
+			packageProductDependencies = (
+				67E38F4024ABE77B008570DC /* SBSwiftUtils */,
+			);
 			productName = PhysicsDemo;
 			productReference = 67B234152401911100876EAC /* PhysicsDemo.app */;
 			productType = "com.apple.product-type.application";
@@ -319,6 +320,9 @@
 				Base,
 			);
 			mainGroup = 67B2340C2401911100876EAC;
+			packageReferences = (
+				67E38F3F24ABE77B008570DC /* XCRemoteSwiftPackageReference "SBSwiftUtils" */,
+			);
 			productRefGroup = 67B234162401911100876EAC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -654,6 +658,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		67E38F3F24ABE77B008570DC /* XCRemoteSwiftPackageReference "SBSwiftUtils" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SteveBarnegren/SBSwiftUtils";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		67E38F4024ABE77B008570DC /* SBSwiftUtils */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 67E38F3F24ABE77B008570DC /* XCRemoteSwiftPackageReference "SBSwiftUtils" */;
+			productName = SBSwiftUtils;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 67B2340D2401911100876EAC /* Project object */;
 }
