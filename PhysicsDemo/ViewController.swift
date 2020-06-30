@@ -10,6 +10,23 @@ import Cocoa
 
 let simulationSize = Vector2D(400, 300)
 
+enum TimeStepType: CaseIterable {
+    case variable
+    case semifixed
+    case fixed
+    
+    var name: String {
+        switch self {
+        case .variable:
+            return "Variable"
+        case .semifixed:
+            return "Semi-Fixed"
+        case .fixed:
+            return "Fixed"
+        }
+    }
+}
+
 class ViewController: NSViewController {
     
     @IBOutlet private var simulationView: SimulationView!
@@ -17,13 +34,21 @@ class ViewController: NSViewController {
     @IBOutlet private var placementStyleSegmentedControl: NSSegmentedControl!
     @IBOutlet private var instructionLabel: NSTextField!
     @IBOutlet private var gridPanelContainerView: NSView!
+    @IBOutlet private var timestepTypePopupButton: NSPopUpButton!
+    @IBOutlet private var framerateTitleLabel: NSTextField!
+    @IBOutlet private var framerateTextField: NSTextField!
+    @IBOutlet private var interpolationCheckbox: NSButton!
     
     private var timeStepper: TimeStepper = TimeStepperFixed()
+    private var useRenderFrameInterpolation = true
     
     private var variablesPanelView: VariablesPanelView?
     
     private var simulation: PhysicsSimulation!
     private var boundaries = [Boundary]()
+    
+    private var fps = 120.0
+    private var stepSize: Double { 1 / fps }
     
     private var isObservingDisplayLink = false
     
@@ -39,6 +64,12 @@ class ViewController: NSViewController {
         
         simulationView.delegate = self
         (view as! MainView).keyHandler = self
+        
+        self.timestepTypePopupButton.removeAllItems()
+        TimeStepType.allCases.forEach {
+            self.timestepTypePopupButton.addItem(withTitle: $0.name)
+        }
+        self.timestepTypePopupButton.selectItem(at: TimeStepType.allCases.count-1)
         
         // Add the grid panel
         let gridPanel = GridPanelViewController()
@@ -60,6 +91,8 @@ class ViewController: NSViewController {
         })
         
         pushInputHandler(baseInputHandler)
+        
+        updateTimeStepperForCurrentSelection()
     }
     
     func addSimulationBoundaries() {
@@ -120,10 +153,12 @@ class ViewController: NSViewController {
     }
     
     private func render() {
+        
+        let interpolationDt = useRenderFrameInterpolation ? timeStepper.renderFrameInterpolationTime : 0
         simulationView.render(simulation: simulation,
                            simulationSize: simulationSize,
                            additionalObjects: inputHandler.objectsToRender(context: inputHandlerContext),
-                           remainingInterpolationTime: timeStepper.renderFrameInterpolationTime)
+                           remainingInterpolationTime: interpolationDt)
     }
     
     // MARK: - Actions
@@ -167,6 +202,55 @@ class ViewController: NSViewController {
     
     @IBAction private func clearSceneButtonPressed(sender: NSButton) {
         simulation.clearAll()
+    }
+    
+    @IBAction private func timeStepTypeChanged(sender: NSPopUpButton) {
+        updateTimeStepperForCurrentSelection()
+    }
+    
+    @IBAction private func framerateTextFieldChanged(sender: NSTextField) {
+        let newFrameRate = sender.doubleValue.constrained(min: 1)
+        print("New Framerate: \(newFrameRate)")
+        fps = newFrameRate
+        updateTimeStepperForCurrentSelection()
+    }
+    
+    @IBAction private func useInterpolationCheckboxvalueChanged(sender: NSButton) {
+        useRenderFrameInterpolation = sender.state == .on
+        updateTimeStepperForCurrentSelection()
+    }
+    
+    // MARK: - Time step
+    
+    private func updateTimeStepperForCurrentSelection() {
+        let stepType = TimeStepType.allCases[timestepTypePopupButton.indexOfSelectedItem]
+        
+        let showFramerateEntry: Bool
+        let showInterpolationCheckbox: Bool
+        
+        switch stepType {
+        case .variable:
+            self.timeStepper = TimeStepperVariable()
+            showFramerateEntry = false
+            showInterpolationCheckbox = false
+        case .semifixed:
+            let semiFixed = TimeStepperSemiFixed()
+            semiFixed.stepSize = self.stepSize
+            self.timeStepper = semiFixed
+            showFramerateEntry = true
+            showInterpolationCheckbox = false
+        case .fixed:
+            let fixed = TimeStepperFixed()
+            fixed.stepSize = self.stepSize
+            fixed.useInterpolation = self.useRenderFrameInterpolation
+            self.timeStepper = fixed
+            showFramerateEntry = true
+            showInterpolationCheckbox = true
+        }
+        
+        framerateTextField.isHidden = !showFramerateEntry
+        framerateTitleLabel.isHidden = !showFramerateEntry
+        interpolationCheckbox.isHidden = !showInterpolationCheckbox
     }
     
     // MARK: - Key handling

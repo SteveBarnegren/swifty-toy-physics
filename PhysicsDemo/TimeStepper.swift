@@ -77,6 +77,7 @@ class TimeStepperFixed: TimeStepper {
 
     private var remainingTime = 0.0
     var stepSize = 1.0 / 240
+    var useInterpolation = true
 
     func consume(time: Double) {
         remainingTime += time
@@ -92,10 +93,10 @@ class TimeStepperFixed: TimeStepper {
             remainingTime -= stepSize
         }
         
-        log(steps: recordedSteps, interpolate: remainingTime)
+        log(steps: recordedSteps, interpolate: renderFrameInterpolationTime)
     }
     
     var renderFrameInterpolationTime: Double {
-        return remainingTime
+        return useInterpolation ? remainingTime : 0
     }
 }
