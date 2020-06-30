@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		67127DE4248835240069C670 /* SBAutoLayout.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67127DE3248835240069C670 /* SBAutoLayout.framework */; };
-		67127DE5248835240069C670 /* SBAutoLayout.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 67127DE3248835240069C670 /* SBAutoLayout.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		670DAC4E24ABEA6600510E80 /* SBAutoLayout in Frameworks */ = {isa = PBXBuildFile; productRef = 670DAC4D24ABEA6600510E80 /* SBAutoLayout */; };
 		67127DE7248837390069C670 /* VariablesPanelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67127DE6248837390069C670 /* VariablesPanelView.swift */; };
 		673D37D7240304E700453684 /* PhysicsLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673D37D6240304E700453684 /* PhysicsLine.swift */; };
 		673D37D9240305C100453684 /* InputHandlerPlacePhysicsLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673D37D8240305C100453684 /* InputHandlerPlacePhysicsLine.swift */; };
@@ -56,20 +55,6 @@
 			remoteInfo = PhysicsDemo;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		672FED3B2483F11900912BCF /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				67127DE5248835240069C670 /* SBAutoLayout.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		67127DE3248835240069C670 /* SBAutoLayout.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SBAutoLayout.framework; path = Carthage/Build/Mac/SBAutoLayout.framework; sourceTree = "<group>"; };
@@ -122,7 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				67127DE4248835240069C670 /* SBAutoLayout.framework in Frameworks */,
+				670DAC4E24ABEA6600510E80 /* SBAutoLayout in Frameworks */,
 				67E38F4124ABE77B008570DC /* SBSwiftUtils in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -260,7 +245,6 @@
 				67B234112401911100876EAC /* Sources */,
 				67B234122401911100876EAC /* Frameworks */,
 				67B234132401911100876EAC /* Resources */,
-				672FED3B2483F11900912BCF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -269,6 +253,7 @@
 			name = PhysicsDemo;
 			packageProductDependencies = (
 				67E38F4024ABE77B008570DC /* SBSwiftUtils */,
+				670DAC4D24ABEA6600510E80 /* SBAutoLayout */,
 			);
 			productName = PhysicsDemo;
 			productReference = 67B234152401911100876EAC /* PhysicsDemo.app */;
@@ -322,6 +307,7 @@
 			mainGroup = 67B2340C2401911100876EAC;
 			packageReferences = (
 				67E38F3F24ABE77B008570DC /* XCRemoteSwiftPackageReference "SBSwiftUtils" */,
+				670DAC4C24ABEA6600510E80 /* XCRemoteSwiftPackageReference "SBAutoLayout" */,
 			);
 			productRefGroup = 67B234162401911100876EAC /* Products */;
 			projectDirPath = "";
@@ -660,6 +646,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		670DAC4C24ABEA6600510E80 /* XCRemoteSwiftPackageReference "SBAutoLayout" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SteveBarnegren/SBAutoLayout";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.1;
+			};
+		};
 		67E38F3F24ABE77B008570DC /* XCRemoteSwiftPackageReference "SBSwiftUtils" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SteveBarnegren/SBSwiftUtils";
@@ -671,6 +665,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		670DAC4D24ABEA6600510E80 /* SBAutoLayout */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 670DAC4C24ABEA6600510E80 /* XCRemoteSwiftPackageReference "SBAutoLayout" */;
+			productName = SBAutoLayout;
+		};
 		67E38F4024ABE77B008570DC /* SBSwiftUtils */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 67E38F3F24ABE77B008570DC /* XCRemoteSwiftPackageReference "SBSwiftUtils" */;

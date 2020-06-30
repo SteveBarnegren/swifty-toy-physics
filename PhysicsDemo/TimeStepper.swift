@@ -8,7 +8,7 @@
 
 import Foundation
 
-private let loggingEnabled = true
+private let loggingEnabled = false
 private func log(steps: [Double], interpolate: Double = 0) {
     if loggingEnabled {
         var output = "[" + steps.map { String(format: "%.4f", $0) }.joined(separator: ", ") + "]"
