@@ -93,6 +93,17 @@ class ViewController: NSViewController {
         pushInputHandler(baseInputHandler)
         
         updateTimeStepperForCurrentSelection()
+        
+        // Monitor keyboard
+        NSEvent.addLocalMonitorForEvents(matching: .keyDown) { (event) -> NSEvent? in
+            self.keyDownEventReceived(event: event)
+            return event
+        }
+        
+        NSEvent.addLocalMonitorForEvents(matching: .flagsChanged) { (event) -> NSEvent? in
+            self.flagsChangedEventReceived(event: event)
+            return event
+        }
     }
     
     func addSimulationBoundaries() {
@@ -259,13 +270,14 @@ class ViewController: NSViewController {
     
     // MARK: - Key handling
     
-    override func keyDown(with event: NSEvent) {
+    private func keyDownEventReceived(event: NSEvent) {
+        print("view controller key down")
         if let key = KeyboardKey(keyCode: event.keyCode) {
             inputHandler.keyDown(key: key, simulation: self.simulation)
         }
     }
     
-    override func flagsChanged(with event: NSEvent) {
+    private func flagsChangedEventReceived(event: NSEvent) {
         
         var modifierKeys = [ModifierKey]()
         

@@ -277,6 +277,13 @@ class SimulationView: NSView {
         return Vector2D(point)
     }
     
+    override func keyDown(with event: NSEvent) {
+        super.keyDown(with: event)
+        print("simulation view key down")
+    }
+    
+    
+    
     // MARK: - Coordinate conversion
     
     func convertPoint(viewToSim p: NSPoint) -> NSPoint {
