@@ -8,7 +8,7 @@
 
 import Foundation
 
-class PhysicsLine {
+class PhysicsLine: Codable {
     var start: Vector2D
     var end: Vector2D
     var elasticity = 1.0

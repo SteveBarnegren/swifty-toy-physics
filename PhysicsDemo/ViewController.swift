@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import SBSwiftUtils
 
 let simulationSize = Vector2D(400, 300)
 
@@ -104,6 +105,8 @@ class ViewController: NSViewController {
             self.flagsChangedEventReceived(event: event)
             return event
         }
+        
+        NotificationDispatcher.shared.register(observer: self, as: SceneMenuListener.self)
     }
     
     func addSimulationBoundaries() {
@@ -418,4 +421,35 @@ extension ViewController: InputHandlerDelegate {
     func inputHandlerDidFinish(handler: InputHandler) {
         popInputHandler()
     }
+}
+
+extension ViewController: SceneMenuListener {
+    func sceneMenuSaveSceneSelected() {
+        
+        let json = try! JSONEncoder().encode(self.simulation)
+        
+        let savePanel = NSSavePanel()
+        savePanel.allowedFileTypes = ["json"]
+        savePanel.begin { (result) in
+            if result.rawValue == NSApplication.ModalResponse.OK.rawValue, let url = savePanel.url {
+                try? json.write(to: url)
+            }
+        }
+    }
+    
+    func sceneMenuLoadSceneSelected() {
+        
+        let openPanel = NSOpenPanel()
+        openPanel.allowsMultipleSelection = false
+        openPanel.allowedFileTypes = ["json"]
+        openPanel.begin { (result) in
+            if result.rawValue == NSApplication.ModalResponse.OK.rawValue,
+                let url = openPanel.url,
+                let data = try? Data(contentsOf: url),
+                let loadedSimulation = try? JSONDecoder().decode(PhysicsSimulation.self, from: data) {
+                self.simulation = loadedSimulation
+            }
+        }
+    }
+    
 }

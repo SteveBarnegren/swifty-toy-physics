@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Ball {
+class Ball: Codable {
     
     var position = Vector2D.zero
     var previousPosition: Vector2D?

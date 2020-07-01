@@ -9,7 +9,7 @@
 import Foundation
 import SBSwiftUtils
 
-class PhysicsPolyline {
+class PhysicsPolyline: Codable {
     
     var points: [Vector2D]
     

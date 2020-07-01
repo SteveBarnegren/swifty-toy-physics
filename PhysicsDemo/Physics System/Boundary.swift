@@ -8,9 +8,9 @@
 
 import Foundation
 
-class Boundary {
+class Boundary: Codable {
     
-    enum Orientation {
+    enum Orientation: Int, Codable {
         case minX
         case maxX
         case minY

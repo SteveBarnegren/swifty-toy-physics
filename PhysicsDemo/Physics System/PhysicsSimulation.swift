@@ -9,7 +9,7 @@
 import Foundation
 import SBSwiftUtils
 
-class PhysicsSimulation {
+class PhysicsSimulation: Codable {
     
     var boundaries = [Boundary]()
     

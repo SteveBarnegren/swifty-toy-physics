@@ -7,6 +7,12 @@
 //
 
 import Cocoa
+import SBSwiftUtils
+
+protocol SceneMenuListener {
+    func sceneMenuSaveSceneSelected()
+    func sceneMenuLoadSceneSelected()
+}
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -17,6 +23,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
+    }
+    
+    // MARK: - Menu actions
+    
+    @IBAction private func loadScene(sender: NSMenuItem) {
+        print("Load scene")
+        NotificationDispatcher.shared.notify(SceneMenuListener.self) {
+            $0.sceneMenuLoadSceneSelected()
+        }
+    }
+    
+    @IBAction private func saveScene(sender: NSMenuItem) {
+        print("Save scene")
+        NotificationDispatcher.shared.notify(SceneMenuListener.self) {
+            $0.sceneMenuSaveSceneSelected()
+        }
     }
 }
 

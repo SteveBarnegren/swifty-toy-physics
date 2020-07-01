@@ -9,7 +9,7 @@
 import Foundation
 import SBSwiftUtils
 
-class PhysicsCircle {
+class PhysicsCircle: Codable {
     var position: Vector2D
     var radius: Double
     var elasticity: Double
