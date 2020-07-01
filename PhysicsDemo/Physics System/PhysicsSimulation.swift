@@ -16,6 +16,7 @@ class PhysicsSimulation {
     var balls = [Ball]()
     var lines = [PhysicsLine]()
     var circles = [PhysicsCircle]()
+    var polyLines = [PhysicsPolyline]()
     var gravity = Double.zero
     var enableBallCollisions = true
     
@@ -57,12 +58,23 @@ class PhysicsSimulation {
         circles.removeAll()
     }
     
+    // MARK: - Manage Polylines
+    
+    func add(polyline: PhysicsPolyline) {
+        polyLines.append(polyline)
+    }
+    
+    func removeAllPolylines() {
+        polyLines.removeAll()
+    }
+    
     // MARK: - Clear all
     
     func clearAll() {
         removeAllBalls()
         removeAllLines()
         removeAllCircles()
+        removeAllPolylines()
     }
     
     // MARK: - Step
@@ -87,6 +99,11 @@ class PhysicsSimulation {
             // Resolve circle collisions
             if let prevPos = ball.previousPosition {
                 circles.forEach { resolveCollision(ball: ball, previousBallPos: prevPos, physicsCircle: $0) }
+            }
+            
+            // Resolve polyline collisions
+            if let prevPos = ball.previousPosition {
+                polyLines.forEach { resolveCollision(ball: ball, previousBallPos: prevPos, polyline: $0) }
             }
             
             // Resolve ball collisions
@@ -298,6 +315,18 @@ class PhysicsSimulation {
         
         return intersection
     }
+    
+    // MARK: - Polyline Collisions
+    
+    private func resolveCollision(ball: Ball, previousBallPos: Vector2D, polyline: PhysicsPolyline) {
+        
+        for (point, nextPoint) in zip(polyline.points, polyline.points.dropFirst()) {
+            let line = PhysicsLine(start: point, end: nextPoint)
+            resolveCollision(ball: ball, previousBallPos: previousBallPos, line: line)
+        }
+    }
+    
+    // MARK: - Helpers
     
     private func normals(for vector: Vector2D) -> (first: Vector2D, second: Vector2D) {
          return (Vector2D(x: -vector.y, y: vector.x), Vector2D(x: vector.y, y: -vector.x))

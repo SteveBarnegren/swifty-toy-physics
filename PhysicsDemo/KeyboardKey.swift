@@ -10,10 +10,12 @@ import Foundation
 
 enum KeyboardKey {
     case esc
+    case enter
     
     init?(keyCode: UInt16) {
         switch keyCode {
         case 53: self = .esc
+        case 36, 76: self = .enter
         default:
             return nil
         }

@@ -19,6 +19,7 @@ protocol SimulationViewDelegate: class {
     func rightMouseDown(at location: Vector2D)
     func rightMouseDragged(to location: Vector2D)
     func rightMouseUp(at location: Vector2D)
+    func mouseMoved(to location: Vector2D)
 }
 
 class SimulationView: NSView {
@@ -28,6 +29,21 @@ class SimulationView: NSView {
     private var simulation: PhysicsSimulation?
     private var simulationSize = Vector2D.zero
     private var objects = [DrawCommand]()
+    private var trackingArea: NSTrackingArea?
+    
+    override init(frame frameRect: NSRect) {
+        super.init(frame: frameRect)
+        commonInit()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        commonInit()
+    }
+    
+    private func commonInit() {
+        updateTrackingAreas()
+    }
     
     // MARK: - Render simulation
     
@@ -43,6 +59,7 @@ class SimulationView: NSView {
         objects += simulation.lines.map(makeObject)
         objects += simulation.balls.map { makeObject(for: $0, interploationTime: remainingInterpolationTime) }
         objects += simulation.circles.map(makeObject)
+        objects += simulation.polyLines.map(makeDrawCommands).joined()
         objects += additionalObjects
         objects += GridManager.shared.drawCommands(forSimulationSize: simulationSize)
         
@@ -104,6 +121,17 @@ class SimulationView: NSView {
                                         color: .white,
                                         drawStyle: .stroke)
         return .circle(command)
+    }
+    
+    private func makeDrawCommands(for polyline: PhysicsPolyline) -> [DrawCommand] {
+        
+        var commands = [DrawCommand]()
+        
+        for (point, nextPoint) in zip(polyline.points, polyline.points.dropFirst()) {
+            let line = LineDrawCommand(from: point.nsPoint, to: nextPoint.nsPoint)
+            commands.append(.line(line))
+        }
+        return commands
     }
     
     // MARK: - Draw
@@ -191,6 +219,20 @@ class SimulationView: NSView {
         }
     }
     
+    override func updateTrackingAreas() {
+        if let trackingArea = self.trackingArea {
+            self.removeTrackingArea(trackingArea)
+            self.trackingArea = nil
+        }
+        
+        let ta = NSTrackingArea(rect: self.bounds,
+                                options: [.mouseEnteredAndExited, .mouseMoved, .activeInKeyWindow],
+                                owner: self,
+                                userInfo: nil)
+        addTrackingArea(ta)
+        self.trackingArea = ta
+    }
+        
     // MARK: - Mouse handling
     
     override func mouseDown(with event: NSEvent) {
@@ -221,6 +263,11 @@ class SimulationView: NSView {
     override func rightMouseUp(with event: NSEvent) {
         super.rightMouseUp(with: event)
         delegate?.rightMouseUp(at: simulationLocation(fromEvent: event))
+    }
+    
+    override func mouseMoved(with event: NSEvent) {
+        super.mouseMoved(with: event)
+        delegate?.mouseMoved(to: simulationLocation(fromEvent: event))
     }
     
     private func simulationLocation(fromEvent event: NSEvent) -> Vector2D {

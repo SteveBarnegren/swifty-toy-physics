@@ -51,6 +51,10 @@ class InputHandler {
         mouseUp(at: processedInputPosition(position), context: context)
         lastLeftMouseEvent = nil
     }
+    
+    func processMouseMoved(to position: InputPosition, context: InputHandlerContext) {
+        mouseMoved(to: processedInputPosition(position), context: context)
+    }
 
     // Mouse methods for subclasses to override
     func mouseDown(at position: InputPosition, context: InputHandlerContext) {}
@@ -59,8 +63,9 @@ class InputHandler {
     func rightMouseDown(at position: Vector2D, context: InputHandlerContext) {}
     func rightMouseDragged(to position: Vector2D, context: InputHandlerContext) {}
     func rightMouseUp(at position: Vector2D, context: InputHandlerContext) {}
+    func mouseMoved(to position: InputPosition, context: InputHandlerContext) {}
     
-    func keyDown(key: KeyboardKey) {}
+    func keyDown(key: KeyboardKey, simulation: PhysicsSimulation) {}
     func modifierKeysChanged(keys: [ModifierKey]) {
         
         if keys.contains(.control) {

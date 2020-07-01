@@ -229,7 +229,7 @@ class InputHandlerEdit: InputHandler {
     
     // MARK: - Key handling
     
-    override func keyDown(key: KeyboardKey) {
+    override func keyDown(key: KeyboardKey, simulation: PhysicsSimulation) {
         if key == .esc {
             escapePressed()
         }

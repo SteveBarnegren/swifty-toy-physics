@@ -44,6 +44,8 @@
 		67B2344E2401EFE900876EAC /* InputHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B2344D2401EFE900876EAC /* InputHandler.swift */; };
 		67B234502401F04D00876EAC /* InputHandlerFlingBall.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B2344F2401F04D00876EAC /* InputHandlerFlingBall.swift */; };
 		67E38F4124ABE77B008570DC /* SBSwiftUtils in Frameworks */ = {isa = PBXBuildFile; productRef = 67E38F4024ABE77B008570DC /* SBSwiftUtils */; };
+		67F3D16A24AD0FDE00B9AE1A /* PhysicsPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F3D16924AD0FDE00B9AE1A /* PhysicsPolyline.swift */; };
+		67F3D16C24AD106800B9AE1A /* InputHandlerAddPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F3D16B24AD106800B9AE1A /* InputHandlerAddPolyline.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +102,8 @@
 		67B2344B2401ECAA00876EAC /* InputHandlerPlaceBall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHandlerPlaceBall.swift; sourceTree = "<group>"; };
 		67B2344D2401EFE900876EAC /* InputHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHandler.swift; sourceTree = "<group>"; };
 		67B2344F2401F04D00876EAC /* InputHandlerFlingBall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHandlerFlingBall.swift; sourceTree = "<group>"; };
+		67F3D16924AD0FDE00B9AE1A /* PhysicsPolyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsPolyline.swift; sourceTree = "<group>"; };
+		67F3D16B24AD106800B9AE1A /* InputHandlerAddPolyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHandlerAddPolyline.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +210,7 @@
 				67B2343D240196B600876EAC /* Ball.swift */,
 				673D37D6240304E700453684 /* PhysicsLine.swift */,
 				678F0EE824898E2F002EC159 /* PhysicsCircle.swift */,
+				67F3D16924AD0FDE00B9AE1A /* PhysicsPolyline.swift */,
 			);
 			path = "Physics System";
 			sourceTree = "<group>";
@@ -230,6 +235,7 @@
 				67B2344F2401F04D00876EAC /* InputHandlerFlingBall.swift */,
 				673D37D8240305C100453684 /* InputHandlerPlacePhysicsLine.swift */,
 				675C64EB248819C600117869 /* InputHandlerAddStaticCircles.swift */,
+				67F3D16B24AD106800B9AE1A /* InputHandlerAddPolyline.swift */,
 				673D37E02405C09F00453684 /* InputHandlerEdit.swift */,
 			);
 			path = "Input Handlers";
@@ -354,6 +360,7 @@
 				673D37E32405C68800453684 /* Array+Sorting.swift in Sources */,
 				67B234432401973800876EAC /* Double+Extensions.swift in Sources */,
 				67B2344524019BA900876EAC /* DisplayLink.swift in Sources */,
+				67F3D16C24AD106800B9AE1A /* InputHandlerAddPolyline.swift in Sources */,
 				679314F4248BD77700C4C202 /* GridManager.swift in Sources */,
 				673D37DB2403085A00453684 /* InputHandlerSwitch.swift in Sources */,
 				67B2343E240196B600876EAC /* Ball.swift in Sources */,
@@ -375,6 +382,7 @@
 				67B2344E2401EFE900876EAC /* InputHandler.swift in Sources */,
 				67B234502401F04D00876EAC /* InputHandlerFlingBall.swift in Sources */,
 				67A9FA142483F68700116CC5 /* VectorMath.swift in Sources */,
+				67F3D16A24AD0FDE00B9AE1A /* PhysicsPolyline.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -718,7 +718,7 @@
                                         <textFieldCell key="cell" enabled="NO" alignment="center" title="Instruction" id="rny-FT-KLN">
                                             <font key="font" usesAppearanceFont="YES"/>
                                             <color key="textColor" name="systemOrangeColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
                                 </subviews>
@@ -734,18 +734,8 @@
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="amn-N5-L65">
                                 <rect key="frame" x="663" y="136" width="150" height="645"/>
                                 <subviews>
-                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9gD-2B-zok">
-                                        <rect key="frame" x="20" y="104" width="110" height="32"/>
-                                        <buttonCell key="cell" type="push" title="Add Circles" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="37h-e1-Uzi">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                        <connections>
-                                            <action selector="addStaticCircleButtonPressedWithSender:" target="XfG-lQ-9wD" id="Cgg-zK-iWE"/>
-                                        </connections>
-                                    </button>
                                     <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FUO-rN-e7B">
-                                        <rect key="frame" x="25" y="141" width="100" height="32"/>
+                                        <rect key="frame" x="25" y="178" width="100" height="32"/>
                                         <buttonCell key="cell" type="push" title="Add Lines" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6U8-3V-Upr">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" metaFont="system"/>
@@ -907,7 +897,7 @@
                                         <rect key="frame" x="37" y="391" width="77" height="25"/>
                                         <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="6Mz-MB-Ud3" id="jI6-N0-o8K">
                                             <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
+                                            <font key="font" metaFont="menu"/>
                                             <menu key="menu" id="ds4-E7-MDO">
                                                 <items>
                                                     <menuItem title="Item 1" state="on" id="6Mz-MB-Ud3"/>
@@ -961,8 +951,29 @@
                                             <action selector="useInterpolationCheckboxvalueChangedWithSender:" target="XfG-lQ-9wD" id="AAk-Ev-o1j"/>
                                         </connections>
                                     </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2aw-Dh-6e4">
+                                        <rect key="frame" x="18" y="104" width="115" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Add Polyline" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4Yh-cC-Q4R">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="addPolylineButtonPressedWithSender:" target="XfG-lQ-9wD" id="IWH-ST-eb5"/>
+                                        </connections>
+                                    </button>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="9gD-2B-zok">
+                                        <rect key="frame" x="20" y="141" width="110" height="32"/>
+                                        <buttonCell key="cell" type="push" title="Add Circles" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="37h-e1-Uzi">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="addStaticCircleButtonPressedWithSender:" target="XfG-lQ-9wD" id="Cgg-zK-iWE"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="dBb-7w-M6v" firstAttribute="top" secondItem="2aw-Dh-6e4" secondAttribute="bottom" constant="16" id="0jr-uT-7UV"/>
                                     <constraint firstItem="8fK-38-Smb" firstAttribute="centerX" secondItem="amn-N5-L65" secondAttribute="centerX" id="3xj-70-dPa"/>
                                     <constraint firstItem="OdU-sl-SrM" firstAttribute="width" secondItem="bhW-xw-T5J" secondAttribute="width" id="4BY-lf-S6R"/>
                                     <constraint firstItem="Djk-4H-HbX" firstAttribute="leading" secondItem="amn-N5-L65" secondAttribute="leading" id="9Er-n1-wNZ"/>
@@ -972,6 +983,7 @@
                                     <constraint firstItem="Djk-4H-HbX" firstAttribute="top" secondItem="pg9-L7-Uij" secondAttribute="bottom" constant="8" id="F4P-Hd-jJa"/>
                                     <constraint firstItem="9gD-2B-zok" firstAttribute="top" secondItem="FUO-rN-e7B" secondAttribute="bottom" constant="16" id="Gfg-53-71Y"/>
                                     <constraint firstAttribute="trailing" secondItem="Cvj-oi-NGs" secondAttribute="trailing" id="Ggz-2c-aaR"/>
+                                    <constraint firstItem="2aw-Dh-6e4" firstAttribute="top" secondItem="9gD-2B-zok" secondAttribute="bottom" constant="16" id="HoD-Pt-QK9"/>
                                     <constraint firstItem="JL3-Kh-HUx" firstAttribute="top" secondItem="74H-eF-rUG" secondAttribute="bottom" constant="4" id="KOn-XX-2MP"/>
                                     <constraint firstItem="9gD-2B-zok" firstAttribute="centerX" secondItem="amn-N5-L65" secondAttribute="centerX" id="NKV-hD-WgI"/>
                                     <constraint firstItem="pg9-L7-Uij" firstAttribute="centerX" secondItem="amn-N5-L65" secondAttribute="centerX" id="P4L-st-KMP"/>
@@ -984,10 +996,10 @@
                                     <constraint firstItem="74H-eF-rUG" firstAttribute="centerX" secondItem="amn-N5-L65" secondAttribute="centerX" id="WP8-Iy-ILs"/>
                                     <constraint firstItem="8nc-0F-mN5" firstAttribute="top" secondItem="H6Q-UY-mGM" secondAttribute="bottom" constant="4" id="Wgu-1c-PD7"/>
                                     <constraint firstItem="H6Q-UY-mGM" firstAttribute="centerX" secondItem="amn-N5-L65" secondAttribute="centerX" id="X65-Bn-2wk"/>
-                                    <constraint firstItem="dBb-7w-M6v" firstAttribute="top" secondItem="9gD-2B-zok" secondAttribute="bottom" constant="16" id="Yst-KP-gs2"/>
                                     <constraint firstItem="GZK-it-Zhi" firstAttribute="top" secondItem="wSi-G7-69z" secondAttribute="bottom" constant="8" id="ZY5-X7-hWn"/>
                                     <constraint firstItem="bhW-xw-T5J" firstAttribute="centerX" secondItem="amn-N5-L65" secondAttribute="centerX" id="bIH-wO-coS"/>
                                     <constraint firstItem="Bq5-2r-FA3" firstAttribute="centerX" secondItem="amn-N5-L65" secondAttribute="centerX" id="crx-LU-Zku"/>
+                                    <constraint firstItem="2aw-Dh-6e4" firstAttribute="centerX" secondItem="amn-N5-L65" secondAttribute="centerX" id="d2m-yK-DLg"/>
                                     <constraint firstItem="Cvj-oi-NGs" firstAttribute="top" secondItem="8fK-38-Smb" secondAttribute="bottom" constant="8" id="dRd-vV-ShT"/>
                                     <constraint firstItem="jzr-Rt-vQD" firstAttribute="top" secondItem="Djk-4H-HbX" secondAttribute="bottom" constant="2" id="deE-uB-PwG"/>
                                     <constraint firstItem="GZK-it-Zhi" firstAttribute="centerX" secondItem="amn-N5-L65" secondAttribute="centerX" id="gTk-i7-wW3"/>

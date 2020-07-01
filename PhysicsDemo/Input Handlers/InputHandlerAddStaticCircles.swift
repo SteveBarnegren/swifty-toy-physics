@@ -44,7 +44,7 @@ class InputHandlerAddStaticCircles: InputHandler {
     
     // MARK: - Keyboard
     
-    override func keyDown(key: KeyboardKey) {
+    override func keyDown(key: KeyboardKey, simulation: PhysicsSimulation) {
         
         switch key {
         case .esc:

@@ -175,6 +175,10 @@ class ViewController: NSViewController {
         pushInputHandler(InputHandlerAddStaticCircles())
     }
     
+    @IBAction private func addPolylineButtonPressed(sender: NSButton) {
+        pushInputHandler(InputHandlerAddPolyline())
+    }
+    
     @IBAction private func editButtonPressed(sender: NSButton) {
         pushInputHandler(InputHandlerEdit(boundaries: self.boundaries))
     }
@@ -257,7 +261,7 @@ class ViewController: NSViewController {
     
     override func keyDown(with event: NSEvent) {
         if let key = KeyboardKey(keyCode: event.keyCode) {
-            inputHandler.keyDown(key: key)
+            inputHandler.keyDown(key: key, simulation: self.simulation)
         }
     }
     
@@ -376,6 +380,10 @@ extension ViewController: SimulationViewDelegate {
     
     func rightMouseUp(at location: Vector2D) {
         inputHandler.rightMouseUp(at: location, context: inputHandlerContext)
+    }
+    
+    func mouseMoved(to location: Vector2D) {
+        inputHandler.processMouseMoved(to: inputPosition(for: location), context: inputHandlerContext)
     }
     
     private func inputPosition(for position: Vector2D) -> InputPosition {
