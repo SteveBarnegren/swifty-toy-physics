@@ -182,19 +182,19 @@ class ViewController: NSViewController {
     }
     
     @IBAction private func addLineButtonPressed(sender: NSButton) {
-        pushInputHandler(InputHandlerPlacePhysicsLine())
+        pushInputHandlerAtBottom(InputHandlerPlacePhysicsLine())
     }
     
     @IBAction private func addStaticCircleButtonPressed(sender: NSButton) {
-        pushInputHandler(InputHandlerAddStaticCircles())
+        pushInputHandlerAtBottom(InputHandlerAddStaticCircles())
     }
     
     @IBAction private func addPolylineButtonPressed(sender: NSButton) {
-        pushInputHandler(InputHandlerAddPolyline())
+        pushInputHandlerAtBottom(InputHandlerAddPolyline())
     }
     
     @IBAction private func editButtonPressed(sender: NSButton) {
-        pushInputHandler(InputHandlerEdit(boundaries: self.boundaries))
+        pushInputHandlerAtBottom(InputHandlerEdit(boundaries: self.boundaries))
     }
     
     @IBAction private func ballRadiusSliderValueChanged(sender: NSSlider) {
@@ -303,6 +303,11 @@ class ViewController: NSViewController {
     }
     
     // MARK: - Input Handlers
+    
+    private func pushInputHandlerAtBottom(_ handler: InputHandler) {
+        popToRootInputHandler()
+        pushInputHandler(handler)
+    }
     
     private func pushInputHandler(_ handler: InputHandler) {
         handler.delegate = self
