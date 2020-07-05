@@ -97,7 +97,7 @@ class InputHandlerEdit: InputHandler {
         switch self.state {
         case .idle:
             return
-        case .draggingHandle(let handle):
+        case .draggingHandle:
             return
         case .pressingButton(let button):
             button.setter(!button.isEnabled)
@@ -109,7 +109,9 @@ class InputHandlerEdit: InputHandler {
     // MARK: - Create handles
     
     private func getHandles(simulation: PhysicsSimulation) -> [EditHandle] {
-        return getLineHandles(simulation: simulation) + getCircleHandles(simulation: simulation)
+        return getLineHandles(simulation: simulation)
+            + getCircleHandles(simulation: simulation)
+            + getPolylineHandles(simulation: simulation)
     }
     
     private func getLineHandles(simulation: PhysicsSimulation) -> [EditHandle] {
@@ -141,6 +143,21 @@ class InputHandlerEdit: InputHandler {
                            setter: { circle.radius = ($0.x - circle.position.x).constrained(min: 2) },
                            color: .orange)
             )
+        }
+        
+        return handles
+    }
+    
+    private func getPolylineHandles(simulation: PhysicsSimulation) -> [EditHandle] {
+        
+        var handles = [EditHandle]()
+        
+        for polyline in simulation.polyLines {
+            for (pointIndex, point) in polyline.points.enumerated() {
+                handles.append(
+                    EditHandle(point: point, setter: { polyline.points[pointIndex] = $0 })
+                )
+            }
         }
         
         return handles

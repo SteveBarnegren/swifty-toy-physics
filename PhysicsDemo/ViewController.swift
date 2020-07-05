@@ -274,7 +274,6 @@ class ViewController: NSViewController {
     // MARK: - Key handling
     
     private func keyDownEventReceived(event: NSEvent) {
-        print("view controller key down")
         if let key = KeyboardKey(keyCode: event.keyCode) {
             inputHandler.keyDown(key: key, simulation: self.simulation)
         }
