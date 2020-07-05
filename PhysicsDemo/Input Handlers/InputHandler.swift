@@ -30,6 +30,7 @@ class InputHandler {
     }
     
     private var disableGrid = false
+    var allowsPushingEditHandler: Bool { true }
     
     private var lastLeftMouseEvent: MouseEvent?
     

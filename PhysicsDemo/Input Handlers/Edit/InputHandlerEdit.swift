@@ -51,6 +51,10 @@ class InputHandlerEdit: InputHandler {
         "Drag handles to move. Right click to delete."
     }
     
+    override var allowsPushingEditHandler: Bool {
+        return false
+    }
+    
     private var state = State.idle
     private var deleteLocation: Vector2D?
     private var boundaries: [Boundary]

@@ -53,6 +53,10 @@ class ViewController: NSViewController {
     
     private var isObservingDisplayLink = false
     
+    private var leftMouseButtonIsDown = false
+    private var rightMouseButtonIsDown = false
+    private var pushingEditHandler = false
+    
     private var inputHandlerStack = [InputHandler]()
     private var inputHandler: InputHandler {
         return inputHandlerStack.last!
@@ -300,6 +304,27 @@ class ViewController: NSViewController {
         }
         
         inputHandler.modifierKeysChanged(keys: modifierKeys)
+        self.modifierKeysChanged(keys: modifierKeys)
+    }
+    
+    private func modifierKeysChanged(keys: [ModifierKey]) {
+        
+        if leftMouseButtonIsDown || rightMouseButtonIsDown {
+            return
+        }
+        
+        // Push the edit handler
+        if keys.contains(.option) && !pushingEditHandler && inputHandler.allowsPushingEditHandler  {
+            let editHandler = InputHandlerEdit(boundaries: self.boundaries)
+            pushInputHandler(editHandler)
+            pushingEditHandler = true
+        }
+        
+        // Pop edit handler
+        if !keys.contains(.option) && pushingEditHandler {
+            pushingEditHandler = false
+            if (inputHandler is InputHandlerEdit) { popInputHandler() }
+        }
     }
     
     // MARK: - Input Handlers
@@ -378,6 +403,7 @@ extension ViewController: SimulationViewDelegate {
     }
     
     func mouseDown(at location: Vector2D) {
+        leftMouseButtonIsDown = true
         inputHandler.processMouseDown(at: inputPosition(for: location), context: inputHandlerContext)
     }
     
@@ -386,10 +412,12 @@ extension ViewController: SimulationViewDelegate {
     }
     
     func mouseUp(at location: Vector2D) {
+        leftMouseButtonIsDown = false
         inputHandler.processMouseUp(at: inputPosition(for: location), context: inputHandlerContext)
     }
     
     func rightMouseDown(at location: Vector2D) {
+        rightMouseButtonIsDown = true
         inputHandler.rightMouseDown(at: location, context: inputHandlerContext)
     }
     
@@ -398,6 +426,7 @@ extension ViewController: SimulationViewDelegate {
     }
     
     func rightMouseUp(at location: Vector2D) {
+        rightMouseButtonIsDown = false
         inputHandler.rightMouseUp(at: location, context: inputHandlerContext)
     }
     
