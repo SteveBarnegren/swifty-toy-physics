@@ -49,6 +49,7 @@
 		67FB373C24B2354300B9A99B /* TestScene2.json in Resources */ = {isa = PBXBuildFile; fileRef = 67FB373924B2354200B9A99B /* TestScene2.json */; };
 		67FB373D24B2354300B9A99B /* TestScene3.json in Resources */ = {isa = PBXBuildFile; fileRef = 67FB373A24B2354200B9A99B /* TestScene3.json */; };
 		67FB373E24B2354300B9A99B /* TestScene1.json in Resources */ = {isa = PBXBuildFile; fileRef = 67FB373B24B2354200B9A99B /* TestScene1.json */; };
+		67FB374024B2415900B9A99B /* PolylineInsertPointEditZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FB373F24B2415900B9A99B /* PolylineInsertPointEditZone.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +111,7 @@
 		67FB373924B2354200B9A99B /* TestScene2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TestScene2.json; sourceTree = "<group>"; };
 		67FB373A24B2354200B9A99B /* TestScene3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TestScene3.json; sourceTree = "<group>"; };
 		67FB373B24B2354200B9A99B /* TestScene1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TestScene1.json; sourceTree = "<group>"; };
+		67FB373F24B2415900B9A99B /* PolylineInsertPointEditZone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolylineInsertPointEditZone.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,7 +245,7 @@
 				673D37D8240305C100453684 /* InputHandlerPlacePhysicsLine.swift */,
 				675C64EB248819C600117869 /* InputHandlerAddStaticCircles.swift */,
 				67F3D16B24AD106800B9AE1A /* InputHandlerAddPolyline.swift */,
-				673D37E02405C09F00453684 /* InputHandlerEdit.swift */,
+				67FB374124B2415F00B9A99B /* Edit */,
 			);
 			path = "Input Handlers";
 			sourceTree = "<group>";
@@ -256,6 +258,15 @@
 				67FB373A24B2354200B9A99B /* TestScene3.json */,
 			);
 			path = "Example Scenes";
+			sourceTree = "<group>";
+		};
+		67FB374124B2415F00B9A99B /* Edit */ = {
+			isa = PBXGroup;
+			children = (
+				673D37E02405C09F00453684 /* InputHandlerEdit.swift */,
+				67FB373F24B2415900B9A99B /* PolylineInsertPointEditZone.swift */,
+			);
+			path = Edit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -401,6 +412,7 @@
 				675C64EC248819C600117869 /* InputHandlerAddStaticCircles.swift in Sources */,
 				67B2344E2401EFE900876EAC /* InputHandler.swift in Sources */,
 				67B234502401F04D00876EAC /* InputHandlerFlingBall.swift in Sources */,
+				67FB374024B2415900B9A99B /* PolylineInsertPointEditZone.swift in Sources */,
 				67A9FA142483F68700116CC5 /* VectorMath.swift in Sources */,
 				67F3D16A24AD0FDE00B9AE1A /* PhysicsPolyline.swift in Sources */,
 			);

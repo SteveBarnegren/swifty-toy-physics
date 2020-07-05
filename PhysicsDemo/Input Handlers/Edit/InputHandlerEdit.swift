@@ -21,6 +21,11 @@ private struct EditHandle: EditPoint {
     var color = NSColor.magenta
 }
 
+protocol EditZone {
+    func attemptToActivate(at location: Vector2D) -> Bool
+    func update(location: Vector2D)
+}
+
 private struct EditButton: EditPoint {
     let point: Vector2D
     let isEnabled: Bool
@@ -39,6 +44,7 @@ class InputHandlerEdit: InputHandler {
         case idle
         case draggingHandle(EditHandle)
         case pressingButton(EditButton)
+        case activatingEditZone(EditZone)
     }
     
     override var instruction: String? {
@@ -57,6 +63,7 @@ class InputHandlerEdit: InputHandler {
 
     override func mouseDown(at position: InputPosition, context: InputHandlerContext) {
         
+        // Check edit points
         let allEditPoints: [EditPoint] = getHandles(simulation: context.simulation)
                 + getBoundaryToggleButtons(simSize: simulationSize)
         
@@ -64,20 +71,24 @@ class InputHandlerEdit: InputHandler {
             .sortedAscendingBy { $0.point.distance(to: position.position) }
             .first
         
-        guard let editPoint = closestEditPoint else {
+        if let editPoint = closestEditPoint, editPoint.point.distance(to: position.position) <= grabDistance {
+            if let handle = editPoint as? EditHandle {
+                self.state = .draggingHandle(handle)
+                return
+            } else if let button = editPoint as? EditButton {
+                self.state = .pressingButton(button)
+                return
+            }
+        }
+        
+        // Check edit zones
+        if let zone = makeEditZones(simulation: context.simulation).first(where: { $0.attemptToActivate(at: position.position) }) {
+            self.state = .activatingEditZone(zone)
             return
         }
         
-        guard editPoint.point.distance(to: position.position) <= grabDistance else {
-            self.state = .idle
-            return
-        }
-        
-        if let handle = editPoint as? EditHandle {
-            self.state = .draggingHandle(handle)
-        } else if let button = editPoint as? EditButton {
-            self.state = .pressingButton(button)
-        }
+        // Otherwise, nothing selected
+        self.state = .idle
     }
     
     override func mouseDragged(to position: InputPosition, context: InputHandlerContext) {
@@ -89,6 +100,8 @@ class InputHandlerEdit: InputHandler {
             handle.setter(position.gridPosition)
         case .pressingButton:
             return
+        case .activatingEditZone(let editZone):
+            editZone.update(location: position.gridPosition)
         }
     }
     
@@ -101,6 +114,8 @@ class InputHandlerEdit: InputHandler {
             return
         case .pressingButton(let button):
             button.setter(!button.isEnabled)
+        case .activatingEditZone:
+            return
         }
         
         self.state = .idle
@@ -174,6 +189,12 @@ class InputHandlerEdit: InputHandler {
             buttons.append(button)
         }
         return buttons
+    }
+    
+    // MARK: - Create Edit Zones
+    
+    private func makeEditZones(simulation: PhysicsSimulation) -> [EditZone] {
+        return PolylineInsertPointEditZone.makeZones(for: simulation)
     }
     
     // MARK: - Create toggle buttons
