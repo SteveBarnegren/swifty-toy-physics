@@ -21,9 +21,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet private var exampleScenesMenu: NSMenu!
     
     let exampleNamesAndFiles: [(String, String)] = [
-        ("Test 1", "TestScene1"),
-        ("Test 2", "TestScene2"),
-        ("Test 3", "TestScene3")
+        ("Golf on the moon", "MoonGolf"),
+        ("Just lines", "Lines"),
+        ("Snooker", "Snooker"),
+        ("Tipping Point", "TippingPoint"),
     ]
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {

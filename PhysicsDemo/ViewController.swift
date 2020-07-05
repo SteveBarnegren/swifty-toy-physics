@@ -40,7 +40,7 @@ class ViewController: NSViewController {
     @IBOutlet private var framerateTextField: NSTextField!
     @IBOutlet private var interpolationCheckbox: NSButton!
     
-    private var timeStepper: TimeStepper = TimeStepperFixed()
+    private var timeStepper: TimeStepper = TimeStepperVariable()
     private var useRenderFrameInterpolation = true
     
     private var variablesPanelView: VariablesPanelView?
@@ -74,7 +74,7 @@ class ViewController: NSViewController {
         TimeStepType.allCases.forEach {
             self.timestepTypePopupButton.addItem(withTitle: $0.name)
         }
-        self.timestepTypePopupButton.selectItem(at: TimeStepType.allCases.count-1)
+        self.timestepTypePopupButton.selectItem(at: 0)
         
         // Add the grid panel
         let gridPanel = GridPanelViewController()
