@@ -214,7 +214,8 @@ class InputHandlerEdit: InputHandler {
     private func deleteItem(atLocation deleteLocation: Vector2D, simulation: PhysicsSimulation) {
         
         let candidates = lineDeletionCandidates(location: deleteLocation, simultation: simulation)
-                + circleDeletionCandidates(location: deleteLocation, simulation: simulation)
+            + circleDeletionCandidates(location: deleteLocation, simulation: simulation)
+            + polylineDeletionCandidates(location: deleteLocation, simulation: simulation)
         
         let candidate = candidates
             .sortedAscendingBy { $0.distance }
@@ -242,6 +243,27 @@ class InputHandlerEdit: InputHandler {
             DeletionCandidate(distance: circle.position.distance(to: location),
                               commit: { simulation.remove(circle: circle) })
         }
+    }
+    
+    private func polylineDeletionCandidates(location: Vector2D, simulation: PhysicsSimulation) -> [DeletionCandidate] {
+        
+        var candidates = [DeletionCandidate]()
+        
+        for polyline in simulation.polyLines {
+            for (pointIndex, point) in polyline.points.enumerated() {
+                candidates.append(
+                    DeletionCandidate(distance: point.distance(to: location), commit: {
+                        if polyline.points.count < 3 {
+                            simulation.remove(polyline: polyline)
+                        } else {
+                            polyline.points.remove(at: pointIndex)
+                        }
+                    })
+                )
+            }
+        }
+        
+        return candidates
     }
     
     // MARK: - Key handling

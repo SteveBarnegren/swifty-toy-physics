@@ -64,6 +64,10 @@ class PhysicsSimulation: Codable {
         polyLines.append(polyline)
     }
     
+    func remove(polyline: PhysicsPolyline) {
+        polyLines.removeAll(where: { $0 === polyline })
+    }
+    
     func removeAllPolylines() {
         polyLines.removeAll()
     }
