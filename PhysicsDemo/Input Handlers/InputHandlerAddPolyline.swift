@@ -11,7 +11,7 @@ import Foundation
 class InputHandlerAddPolyline: InputHandler {
     
     override var instruction: String? {
-        "Click to add points"
+        "Click to add points. Press enter to create polyline."
     }
     
     enum Model {
@@ -57,7 +57,6 @@ class InputHandlerAddPolyline: InputHandler {
     
     override func mouseMoved(to position: InputPosition, context: InputHandlerContext) {
         mousePosition = position.gridPosition
-        print("Mouse moved: \(position.gridPosition)")
     }
     
     // MARK: - Keyboard
