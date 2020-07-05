@@ -13,6 +13,7 @@
 		671AE48B24B252E20029F2D3 /* Snooker.json in Resources */ = {isa = PBXBuildFile; fileRef = 671AE48A24B252E10029F2D3 /* Snooker.json */; };
 		671AE48F24B2569A0029F2D3 /* Lines.json in Resources */ = {isa = PBXBuildFile; fileRef = 671AE48E24B2569A0029F2D3 /* Lines.json */; };
 		671AE49124B257550029F2D3 /* MoonGolf.json in Resources */ = {isa = PBXBuildFile; fileRef = 671AE49024B257540029F2D3 /* MoonGolf.json */; };
+		671AE49524B26B370029F2D3 /* Simple Scene.json in Resources */ = {isa = PBXBuildFile; fileRef = 671AE49424B26B370029F2D3 /* Simple Scene.json */; };
 		673D37D7240304E700453684 /* PhysicsLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673D37D6240304E700453684 /* PhysicsLine.swift */; };
 		673D37D9240305C100453684 /* InputHandlerPlacePhysicsLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673D37D8240305C100453684 /* InputHandlerPlacePhysicsLine.swift */; };
 		673D37DB2403085A00453684 /* InputHandlerSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673D37DA2403085A00453684 /* InputHandlerSwitch.swift */; };
@@ -70,6 +71,7 @@
 		671AE48A24B252E10029F2D3 /* Snooker.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Snooker.json; sourceTree = "<group>"; };
 		671AE48E24B2569A0029F2D3 /* Lines.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Lines.json; sourceTree = "<group>"; };
 		671AE49024B257540029F2D3 /* MoonGolf.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MoonGolf.json; sourceTree = "<group>"; };
+		671AE49424B26B370029F2D3 /* Simple Scene.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Simple Scene.json"; sourceTree = "<group>"; };
 		672FED382483F11900912BCF /* SBSwiftUtils.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SBSwiftUtils.framework; path = Carthage/Build/Mac/SBSwiftUtils.framework; sourceTree = "<group>"; };
 		673D37D6240304E700453684 /* PhysicsLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsLine.swift; sourceTree = "<group>"; };
 		673D37D8240305C100453684 /* InputHandlerPlacePhysicsLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHandlerPlacePhysicsLine.swift; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 			children = (
 				671AE48E24B2569A0029F2D3 /* Lines.json */,
 				671AE49024B257540029F2D3 /* MoonGolf.json */,
+				671AE49424B26B370029F2D3 /* Simple Scene.json */,
 				671AE48A24B252E10029F2D3 /* Snooker.json */,
 				671AE48824B24F640029F2D3 /* TippingPoint.json */,
 			);
@@ -362,6 +365,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				679314F2248BD3F300C4C202 /* GridPanelViewController.xib in Resources */,
+				671AE49524B26B370029F2D3 /* Simple Scene.json in Resources */,
 				671AE49124B257550029F2D3 /* MoonGolf.json in Resources */,
 				67B2341D2401911200876EAC /* Assets.xcassets in Resources */,
 				67B234202401911200876EAC /* Main.storyboard in Resources */,
