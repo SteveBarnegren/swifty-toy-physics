@@ -12,17 +12,31 @@ import SBSwiftUtils
 protocol SceneMenuListener {
     func sceneMenuSaveSceneSelected()
     func sceneMenuLoadSceneSelected()
+    func sceneMenuLoadExampleScene(fileName: String)
 }
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     
+    @IBOutlet private var exampleScenesMenu: NSMenu!
+    
+    let exampleNamesAndFiles: [(String, String)] = [
+        ("Test 1", "TestScene1"),
+        ("Test 2", "TestScene2"),
+        ("Test 3", "TestScene3")
+    ]
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // Insert code here to initialize your application
+        populateExampleScenesMenu()
     }
-
-    func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
+    
+    private func populateExampleScenesMenu() {
+        print("menu title: \(exampleScenesMenu.title)")
+        
+        for (name, _) in exampleNamesAndFiles {
+            let item = NSMenuItem(title: name, action: #selector(exampleSceneSelected), keyEquivalent: "")
+            exampleScenesMenu.addItem(item)
+        }
     }
     
     // MARK: - Menu actions
@@ -38,6 +52,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         print("Save scene")
         NotificationDispatcher.shared.notify(SceneMenuListener.self) {
             $0.sceneMenuSaveSceneSelected()
+        }
+    }
+    
+    @objc private func exampleSceneSelected(item: NSMenuItem) {
+        
+        let exampleSceneName = item.title
+        print("Example scene selected: \(exampleSceneName)")
+        
+        guard let example = exampleNamesAndFiles.first(where: { $0.0 == exampleSceneName }) else {
+            fatalError("Unable to find scene named: \(item.title)")
+        }
+        
+        NotificationDispatcher.shared.notify(SceneMenuListener.self) {
+            $0.sceneMenuLoadExampleScene(fileName: example.1)
         }
     }
 }

@@ -135,8 +135,9 @@
                                                 <action selector="saveSceneWithSender:" target="Voe-Tx-rLC" id="mdn-dF-8Xq"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Item 3" id="iMo-gg-pR7">
+                                        <menuItem title="Example" id="iMo-gg-pR7">
                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="Example" id="OUd-At-TvA" userLabel="Example"/>
                                         </menuItem>
                                     </items>
                                 </menu>
@@ -197,7 +198,11 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="PhysicsDemo" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="PhysicsDemo" customModuleProvider="target">
+                    <connections>
+                        <outlet property="exampleScenesMenu" destination="OUd-At-TvA" id="iqs-Uf-Ycd"/>
+                    </connections>
+                </customObject>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -443,13 +443,32 @@ extension ViewController: SceneMenuListener {
         openPanel.allowsMultipleSelection = false
         openPanel.allowedFileTypes = ["json"]
         openPanel.begin { (result) in
-            if result.rawValue == NSApplication.ModalResponse.OK.rawValue,
-                let url = openPanel.url,
-                let data = try? Data(contentsOf: url),
-                let loadedSimulation = try? JSONDecoder().decode(PhysicsSimulation.self, from: data) {
-                self.simulation = loadedSimulation
+            if result.rawValue == NSApplication.ModalResponse.OK.rawValue, let url = openPanel.url {
+                self.loadSimulation(fromURL: url)
             }
         }
+    }
+    
+    func sceneMenuLoadExampleScene(fileName: String) {
+        
+        guard let fileURL = Bundle.main.url(forResource: fileName, withExtension: "json") else {
+            fatalError("Unable to find file \(fileName).json")
+        }
+        
+        loadSimulation(fromURL: fileURL)
+    }
+    
+    private func loadSimulation(fromURL url: URL) {
+        
+        guard let data = try? Data(contentsOf: url) else {
+            return
+        }
+        
+        guard let loadedSimulation = try? JSONDecoder().decode(PhysicsSimulation.self, from: data) else {
+            return
+        }
+        
+        self.simulation = loadedSimulation
     }
     
 }

@@ -46,6 +46,9 @@
 		67E38F4124ABE77B008570DC /* SBSwiftUtils in Frameworks */ = {isa = PBXBuildFile; productRef = 67E38F4024ABE77B008570DC /* SBSwiftUtils */; };
 		67F3D16A24AD0FDE00B9AE1A /* PhysicsPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F3D16924AD0FDE00B9AE1A /* PhysicsPolyline.swift */; };
 		67F3D16C24AD106800B9AE1A /* InputHandlerAddPolyline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F3D16B24AD106800B9AE1A /* InputHandlerAddPolyline.swift */; };
+		67FB373C24B2354300B9A99B /* TestScene2.json in Resources */ = {isa = PBXBuildFile; fileRef = 67FB373924B2354200B9A99B /* TestScene2.json */; };
+		67FB373D24B2354300B9A99B /* TestScene3.json in Resources */ = {isa = PBXBuildFile; fileRef = 67FB373A24B2354200B9A99B /* TestScene3.json */; };
+		67FB373E24B2354300B9A99B /* TestScene1.json in Resources */ = {isa = PBXBuildFile; fileRef = 67FB373B24B2354200B9A99B /* TestScene1.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +107,9 @@
 		67B2344F2401F04D00876EAC /* InputHandlerFlingBall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHandlerFlingBall.swift; sourceTree = "<group>"; };
 		67F3D16924AD0FDE00B9AE1A /* PhysicsPolyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhysicsPolyline.swift; sourceTree = "<group>"; };
 		67F3D16B24AD106800B9AE1A /* InputHandlerAddPolyline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHandlerAddPolyline.swift; sourceTree = "<group>"; };
+		67FB373924B2354200B9A99B /* TestScene2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TestScene2.json; sourceTree = "<group>"; };
+		67FB373A24B2354200B9A99B /* TestScene3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TestScene3.json; sourceTree = "<group>"; };
+		67FB373B24B2354200B9A99B /* TestScene1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = TestScene1.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				67B234172401911100876EAC /* PhysicsDemo */,
+				67FB373824B2352900B9A99B /* Example Scenes */,
 				67B2342A2401911300876EAC /* PhysicsDemoTests */,
 				67B234162401911100876EAC /* Products */,
 				672FED372483F11800912BCF /* Frameworks */,
@@ -239,6 +246,16 @@
 				673D37E02405C09F00453684 /* InputHandlerEdit.swift */,
 			);
 			path = "Input Handlers";
+			sourceTree = "<group>";
+		};
+		67FB373824B2352900B9A99B /* Example Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				67FB373B24B2354200B9A99B /* TestScene1.json */,
+				67FB373924B2354200B9A99B /* TestScene2.json */,
+				67FB373A24B2354200B9A99B /* TestScene3.json */,
+			);
+			path = "Example Scenes";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -333,6 +350,9 @@
 				679314F2248BD3F300C4C202 /* GridPanelViewController.xib in Resources */,
 				67B2341D2401911200876EAC /* Assets.xcassets in Resources */,
 				67B234202401911200876EAC /* Main.storyboard in Resources */,
+				67FB373D24B2354300B9A99B /* TestScene3.json in Resources */,
+				67FB373E24B2354300B9A99B /* TestScene1.json in Resources */,
+				67FB373C24B2354300B9A99B /* TestScene2.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
