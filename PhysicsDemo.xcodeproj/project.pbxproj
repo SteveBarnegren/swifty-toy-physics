@@ -30,6 +30,7 @@
 		679314F2248BD3F300C4C202 /* GridPanelViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 679314F0248BD3F300C4C202 /* GridPanelViewController.xib */; };
 		679314F4248BD77700C4C202 /* GridManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679314F3248BD77700C4C202 /* GridManager.swift */; };
 		6796ADCB24B3A8A60084BD16 /* Rect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6796ADCA24B3A8A60084BD16 /* Rect.swift */; };
+		6796ADCD24B3B5280084BD16 /* LotsOfSmallCircles.json in Resources */ = {isa = PBXBuildFile; fileRef = 6796ADCC24B3B5280084BD16 /* LotsOfSmallCircles.json */; };
 		67A3B55B24AA839900A95F70 /* TimeStepper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A3B55A24AA839900A95F70 /* TimeStepper.swift */; };
 		67A9FA142483F68700116CC5 /* VectorMath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A9FA132483F68700116CC5 /* VectorMath.swift */; };
 		67B234192401911100876EAC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B234182401911100876EAC /* AppDelegate.swift */; };
@@ -90,6 +91,7 @@
 		679314F0248BD3F300C4C202 /* GridPanelViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GridPanelViewController.xib; sourceTree = "<group>"; };
 		679314F3248BD77700C4C202 /* GridManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridManager.swift; sourceTree = "<group>"; };
 		6796ADCA24B3A8A60084BD16 /* Rect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rect.swift; sourceTree = "<group>"; };
+		6796ADCC24B3B5280084BD16 /* LotsOfSmallCircles.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = LotsOfSmallCircles.json; sourceTree = "<group>"; };
 		67A3B55A24AA839900A95F70 /* TimeStepper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeStepper.swift; sourceTree = "<group>"; };
 		67A5C12D2488345D0065C9FF /* SBAutoLayout_macOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SBAutoLayout_macOS.framework; path = Carthage/Build/Mac/SBAutoLayout_macOS.framework; sourceTree = "<group>"; };
 		67A9FA132483F68700116CC5 /* VectorMath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VectorMath.swift; sourceTree = "<group>"; };
@@ -260,6 +262,7 @@
 		67FB373824B2352900B9A99B /* Example Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				6796ADCC24B3B5280084BD16 /* LotsOfSmallCircles.json */,
 				671AE48E24B2569A0029F2D3 /* Lines.json */,
 				671AE49024B257540029F2D3 /* MoonGolf.json */,
 				671AE49424B26B370029F2D3 /* Simple Scene.json */,
@@ -370,6 +373,7 @@
 				679314F2248BD3F300C4C202 /* GridPanelViewController.xib in Resources */,
 				671AE49524B26B370029F2D3 /* Simple Scene.json in Resources */,
 				671AE49124B257550029F2D3 /* MoonGolf.json in Resources */,
+				6796ADCD24B3B5280084BD16 /* LotsOfSmallCircles.json in Resources */,
 				67B2341D2401911200876EAC /* Assets.xcassets in Resources */,
 				67B234202401911200876EAC /* Main.storyboard in Resources */,
 				671AE48924B24F640029F2D3 /* TippingPoint.json in Resources */,

@@ -386,6 +386,7 @@
                                         <buttonCell key="cell" type="push" title="🗑️ Balls" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="yWA-Vr-lWX">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                             <font key="font" size="13" name=".AppleColorEmojiUI"/>
+                                            <string key="keyEquivalent">b</string>
                                         </buttonCell>
                                         <connections>
                                             <action selector="clearBallsButtonPressedWithSender:" target="XfG-lQ-9wD" id="Chu-PR-n9c"/>

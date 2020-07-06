@@ -26,6 +26,17 @@ enum TimeStepType: CaseIterable {
             return "Fixed"
         }
     }
+    
+    var keyEquivalent: String {
+        switch self {
+        case .variable:
+            return "v"
+        case .semifixed:
+            return "s"
+        case .fixed:
+            return "f"
+        }
+    }
 }
 
 class ViewController: NSViewController {
@@ -73,6 +84,7 @@ class ViewController: NSViewController {
         self.timestepTypePopupButton.removeAllItems()
         TimeStepType.allCases.forEach {
             self.timestepTypePopupButton.addItem(withTitle: $0.name)
+            self.timestepTypePopupButton.itemArray.last!.keyEquivalent = $0.keyEquivalent
         }
         self.timestepTypePopupButton.selectItem(at: 0)
         

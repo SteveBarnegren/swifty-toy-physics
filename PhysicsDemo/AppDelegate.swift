@@ -23,6 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let exampleNamesAndFiles: [(String, String)] = [
         ("Golf on the moon", "MoonGolf"),
         ("Just lines", "Lines"),
+        ("Better use small balls", "LotsOfSmallCircles"),
         ("Simple Scene", "Simple Scene"),
         ("Snooker", "Snooker"),
         ("Tipping Point", "TippingPoint"),
