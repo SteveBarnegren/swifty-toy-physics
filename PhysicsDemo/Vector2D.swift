@@ -29,6 +29,19 @@ extension Vector2D: Codable {
         try! container.encode(self.y, forKey: CodingKeys.y)
     }
 }
+
+extension Vector2D {
+    
+    mutating func removeNanValues() {
+        if self.x.isNaN {
+            self.x = 0
+        }
+        if self.y.isNaN {
+            self.y = 0
+        }
+    }
+}
+
 // MARK: - Conversions
 
 extension Vector2D {

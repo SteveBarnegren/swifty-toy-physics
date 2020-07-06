@@ -13,6 +13,18 @@ class PhysicsLine: Codable {
     var end: Vector2D
     var elasticity = 1.0
     
+    var boundingBox: Rect {
+        let minX = min(start.x, end.x)
+        let minY = min(start.y, end.y)
+        let maxX = max(start.x, end.x)
+        let maxY = max(start.y, end.y)
+        
+        return Rect(x: minX,
+                    y: minY,
+                    w: maxX - minX,
+                    h: maxY - minY)
+    }
+    
     init(start: Vector2D, end: Vector2D) {
         self.start = start
         self.end = end

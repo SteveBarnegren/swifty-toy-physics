@@ -26,6 +26,13 @@ class Ball: Codable {
     var minX: Double { position.x - radius }
     var maxX: Double { position.x + radius }
     
+    var boundingBox: Rect {
+        return Rect(x: position.x - radius,
+                    y: position.y - radius,
+                    w: radius*2,
+                    h: radius*2)
+    }
+    
     init(radius: Double) {
         self.radius = radius
     }

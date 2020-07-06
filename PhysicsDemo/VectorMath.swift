@@ -48,6 +48,13 @@ struct Circle {
     var yRange: ClosedRange<Double> {
         (center.y - radius)...(center.y + radius)
     }
+    
+    var boundingBox: Rect {
+        return Rect(x: center.x - radius,
+                    y: center.y - radius,
+                    w: radius*2,
+                    h: radius*2)
+    }
 }
 
 class VectorMath {

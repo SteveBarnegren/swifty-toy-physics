@@ -28,6 +28,7 @@ class PhysicsSimulation: Codable {
     
     func add(ball: Ball) {
         self.balls.append(ball)
+        print("Num balls: \(balls.count)")
     }
     
     func removeAllBalls() {
@@ -88,25 +89,32 @@ class PhysicsSimulation: Codable {
         for (ball, otherBalls) in balls.eachWithRemaining() where ball.affectedByPhysics {
             // Add gravity
             ball.velocity.y += gravity * dt
+            ball.velocity.removeNanValues()
             
             // Move ball
             ball.position += ball.velocity * dt
+            ball.position.removeNanValues()
             
             // Resolve boundary collisions
             boundaries.forEach { resolveCollision(ball: ball, boundary: $0) }
             
+            var prevBallPos = ball.previousPosition
+            if prevBallPos == ball.position {
+                prevBallPos = nil
+            }
+            
             // Resolve line collisions
-            if let prevPos = ball.previousPosition {
+            if let prevPos = prevBallPos {
                 lines.forEach { resolveCollision(ball: ball, previousBallPos: prevPos, line: $0) }
             }
             
             // Resolve circle collisions
-            if let prevPos = ball.previousPosition {
+            if let prevPos = prevBallPos {
                 circles.forEach { resolveCollision(ball: ball, previousBallPos: prevPos, physicsCircle: $0) }
             }
             
             // Resolve polyline collisions
-            if let prevPos = ball.previousPosition {
+            if let prevPos = prevBallPos {
                 polyLines.forEach { resolveCollision(ball: ball, previousBallPos: prevPos, polyline: $0) }
             }
             
@@ -124,6 +132,8 @@ class PhysicsSimulation: Codable {
     // MARK: - Ball Collisions
         
     private func resolveCollision(ball1: Ball, ball2: Ball) {
+        
+        if !ball1.boundingBox.intersects(ball2.boundingBox) { return }
                 
         let distance = ball1.position.distance(to: ball2.position)
         if distance > ball1.radius + ball2.radius {
@@ -186,6 +196,8 @@ class PhysicsSimulation: Codable {
     // MARK: - Line Collisions
     
     private func resolveCollision(ball: Ball, previousBallPos: Vector2D, line: PhysicsLine) {
+        
+        if !ball.boundingBox.intersects(line.boundingBox) { return }
         
         if ball.position == previousBallPos {
             return
@@ -262,6 +274,8 @@ class PhysicsSimulation: Codable {
     
     private func resolveCollision(ball: Ball, previousBallPos: Vector2D, circle: Circle, elasticity: Double) {
         
+        if !ball.boundingBox.intersects(circle.boundingBox) { return }
+        
         let lineSegment = LineSegment(start: previousBallPos, end: ball.position)
         
         guard let intersection = calculateIntersection(circle: circle, lineSegment: lineSegment) else {
@@ -323,6 +337,8 @@ class PhysicsSimulation: Codable {
     // MARK: - Polyline Collisions
     
     private func resolveCollision(ball: Ball, previousBallPos: Vector2D, polyline: PhysicsPolyline) {
+        
+        if !ball.boundingBox.intersects(polyline.boundingBox) { return }
         
         for (point, nextPoint) in zip(polyline.points, polyline.points.dropFirst()) {
             let line = PhysicsLine(start: point, end: nextPoint)
