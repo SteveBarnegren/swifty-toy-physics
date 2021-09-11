@@ -37,11 +37,11 @@ class VariablesPanelView: NSView {
             if let last = lastView {
                 newView.pinBelowView(last)
             } else {
-                newView.pinToSuperviewTop(margin: 0)
+                newView.pinToSuperviewTop(0)
             }
             
-            newView.pinToSuperviewLeft(margin: 0)
-            newView.pinToSuperviewRight(margin: 0)
+            newView.pinToSuperviewLeft(0)
+            newView.pinToSuperviewRight(0)
             lastView = newView
         }
         

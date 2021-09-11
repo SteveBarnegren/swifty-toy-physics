@@ -9,7 +9,7 @@
 import Foundation
 import AppKit
 
-protocol KeyHandler: class {
+protocol KeyHandler: AnyObject {
     func keyDown(with event: NSEvent)
     func flagsChanged(with event: NSEvent)
     func cancelOperation(_ sender: Any?)

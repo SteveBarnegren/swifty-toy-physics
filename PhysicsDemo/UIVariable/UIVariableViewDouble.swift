@@ -26,9 +26,9 @@ class UIVariableViewDouble: NSView {
         titleLabel = NSTextField(labelWithString: variable.name)
         titleLabel.alignment = .center
         addSubview(titleLabel)
-        titleLabel.pinToSuperviewLeft(margin: 0)
-        titleLabel.pinToSuperviewRight(margin: 0)
-        titleLabel.pinToSuperviewTop(margin: 0)
+        titleLabel.pinToSuperviewLeft(0)
+        titleLabel.pinToSuperviewRight(0)
+        titleLabel.pinToSuperviewTop(0)
         
         // Slider
         slider = NSSlider(value: variable.get(),
@@ -38,8 +38,8 @@ class UIVariableViewDouble: NSView {
                           action: #selector(sliderValueChanged))
         addSubview(slider)
         slider.pinBelowView(titleLabel, separation: 8)
-        slider.pinToSuperviewLeft(margin: 0)
-        slider.pinToSuperviewRight(margin: 0)
+        slider.pinToSuperviewLeft(0)
+        slider.pinToSuperviewRight(0)
         slider.pinWidth(500, priority: UILayoutPriority(251))
         
         // Readout
@@ -47,9 +47,9 @@ class UIVariableViewDouble: NSView {
         readoutLabel.alignment = .center
         addSubview(readoutLabel)
         readoutLabel.pinBelowView(slider)
-        readoutLabel.pinToSuperviewLeft(margin: 0)
-        readoutLabel.pinToSuperviewRight(margin: 0)
-        readoutLabel.pinToSuperviewBottom(margin: 0)
+        readoutLabel.pinToSuperviewLeft(0)
+        readoutLabel.pinToSuperviewRight(0)
+        readoutLabel.pinToSuperviewBottom(0)
         
         updateReadoutLabel()
     }

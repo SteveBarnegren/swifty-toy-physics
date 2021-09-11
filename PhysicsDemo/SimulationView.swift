@@ -12,7 +12,7 @@ import SBSwiftUtils
 
 private let lineThickness = 2.0
 
-protocol SimulationViewDelegate: class {
+protocol SimulationViewDelegate: AnyObject {
     func mouseDown(at location: Vector2D)
     func mouseDragged(to location: Vector2D)
     func mouseUp(at location: Vector2D)

@@ -67,8 +67,6 @@ class InputHandlerAddPolyline: InputHandler {
             enterPressed(simulation: simulation)
         case .esc:
             escapePressed()
-        default:
-            break
         }
     }
     

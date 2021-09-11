@@ -13,7 +13,7 @@ struct InputHandlerContext {
     let simulationSize: Vector2D
 }
 
-protocol InputHandlerDelegate: class {
+protocol InputHandlerDelegate: AnyObject {
     func inputHandlerDidFinish(handler: InputHandler)
 }
 
