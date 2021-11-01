@@ -2,7 +2,7 @@
 
 ## What is this?
 
-This is a macOS application featuring a 'toy physics simulation sandbox' that you can play around in. I created it just to learn a little more about physics. It's been sitting around doing nothing for a while, so I thought I'd open source it.
+This is a macOS application featuring a toy physics simulation that you can play around in. I created it just to learn a little more about physics. It's been sitting around doing nothing for a while, so I thought I'd open source it.
 
 This isn't a library or any type of system that's designed to be used in another application, and only simulates some very basic physics interactions.
 
