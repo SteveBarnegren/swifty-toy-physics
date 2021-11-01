@@ -30,7 +30,7 @@ This isn't a library or any type of system that's designed to be used in another
 
 ### Option 1: Download Built App
 
-Download the application from here
+Download the application from [here](https://github.com/SteveBarnegren/PhysicsDemo/releases).
 
 ### Option 2: Compile from source
 
